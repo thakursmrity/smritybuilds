@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Smrity builds</title>
+<meta name="description" content="Smrity is a product builder in B2B SaaS and AI. Case studies, builds, and the life that shapes the work.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23D9D2F5'/><path d='M0 32 A32 32 0 0 1 32 0 L32 32Z' fill='%23FFD3BF'/><circle cx='22' cy='22' r='6' fill='%232B2541'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   DESIGN TOKENS: change colors and fonts here
+   ========================================================= */
+:root{
+  color-scheme: light;
+  --paper:#FBFAFE;
+  --ink:#2B2541;
+  --ink-soft:#5E5878;
+  --line:#E6E2F2;
+  --lilac:#D9D2F5;
+  --mint:#CDEFE0;
+  --peach:#FFD3BF;
+  --butter:#FFEFB0;
+  --sky:#CFE5FA;
+  --rose:#F8D2E1;
+  --lilac-ink:#4B3E8F;
+  --mint-ink:#1E6B4F;
+  --peach-ink:#94431F;
+  --sky-ink:#245A88;
+  --rose-ink:#8C2F59;
+  --butter-ink:#7A5B00;
+  --display:"Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --serif:"Fraunces", Georgia, "Times New Roman", serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--display);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--lilac-ink);outline-offset:3px;border-radius:6px}
+p{margin:0 0 1em;max-width:62ch}
+h1,h2,h3,h4{margin:0;line-height:1.05;letter-spacing:-0.025em;font-weight:800}
+h1{font-size:clamp(44px,6.2vw,84px)}
+h2{font-size:clamp(34px,4.6vw,58px);max-width:16ch}
+h3{font-size:24px;letter-spacing:-0.015em;line-height:1.15;font-weight:700}
+h4{font-size:15px;font-weight:700;letter-spacing:0}
+.serif{font-family:var(--serif);font-weight:400;letter-spacing:-0.01em}
+.soft{color:var(--ink-soft)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* ===== header ===== */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(251,250,254,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
+.mark{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:19px;margin-right:auto}
+.mark svg{width:30px;height:30px}
+.nav{display:flex;gap:4px;flex-wrap:wrap}
+.nav a{text-decoration:none;font-size:15px;padding:7px 12px;border-radius:999px;color:var(--ink-soft)}
+.nav a:hover{color:var(--ink);background:var(--line)}
+.nav a[aria-current="page"]{background:var(--ink);color:var(--paper)}
+
+/* ===== pages ===== */
+section.page{padding:64px 0 40px;animation:pageIn .5s ease}
+section.page[hidden]{display:none}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ===== pattern tiles: the signature ===== */
+.quilt{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;aspect-ratio:6/5}
+.tile{position:relative;border-radius:10px;overflow:hidden;transition:transform .9s cubic-bezier(.7,0,.2,1),background-color .9s ease}
+.tile i{position:absolute;inset:0;transition:background-color .9s ease}
+.s-quarter i{border-radius:0 0 0 100%;inset:0 0 0 0}
+.s-half i{border-radius:100% 100% 0 0;top:50%}
+.s-circle i{border-radius:50%;inset:18%}
+.s-tri i{clip-path:polygon(0 0,100% 100%,0 100%)}
+.s-leaf i{border-radius:0 100% 0 100%}
+.s-stripe i{background:none !important}
+.s-dots i{background:none !important}
+
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;padding-top:8px}
+.hero h1 span{display:block}
+.hero .lede{font-size:21px;margin-top:28px;color:var(--ink-soft);max-width:44ch}
+.roles{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
+.roles span{font-size:14px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:#fff}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:16px;padding:12px 20px;border-radius:999px;background:var(--ink);color:var(--paper);border:1.5px solid var(--ink)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:hover{transform:translateY(-1px)}
+
+/* ===== band (moving marquee) ===== */
+.band{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:72px 0;background:#fff}
+.band-track{display:flex;gap:40px;padding:18px 0;width:max-content;animation:slide 40s linear infinite}
+.band-track span{display:inline-flex;align-items:center;gap:40px;font-size:22px;font-weight:600;white-space:nowrap}
+.band-track b{width:18px;height:18px;display:inline-block;border-radius:0 100% 0 100%}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ===== mind map ===== */
+.mapwrap{display:grid;grid-template-columns:1.35fr 1fr;gap:40px;align-items:center;margin-top:36px}
+.mindmap{width:100%;height:auto}
+.mindmap .branch{cursor:pointer}
+.mindmap .branch circle{transition:r .35s ease}
+.mindmap text{font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)}
+.mindmap .link{transition:stroke-width .3s ease,opacity .3s ease}
+.mappanel{border-radius:22px;padding:30px;min-height:330px;transition:background-color .5s ease}
+.mappanel h3{margin-bottom:10px}
+.leafs{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.leafs span{background:rgba(255,255,255,.75);padding:7px 13px;border-radius:999px;font-size:14px;animation:pop .45s backwards}
+@keyframes pop{from{opacity:0;transform:scale(.8) translateY(6px)}to{opacity:1;transform:none}}
+
+/* ===== numbers ===== */
+.numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
+.num{border-radius:20px;padding:24px;position:relative;overflow:hidden;min-height:170px;display:flex;flex-direction:column;justify-content:flex-end}
+.num b{font-size:46px;letter-spacing:-0.03em;line-height:1;font-weight:800}
+.num span{font-size:15px;margin-top:8px}
+.num::before{content:"";position:absolute;width:90px;height:90px;top:-20px;right:-20px;border-radius:50%;background:rgba(255,255,255,.55)}
+
+/* ===== timeline ===== */
+.timeline{position:relative;margin-top:48px;padding-left:0;list-style:none}
+.timeline li{display:grid;grid-template-columns:110px 54px 1fr;gap:18px;align-items:start;padding:0 0 38px}
+.timeline .yr{font-size:30px;font-weight:800;letter-spacing:-0.03em;line-height:1}
+.timeline .knot{width:54px;height:54px;border-radius:14px;position:relative;overflow:hidden}
+.timeline .knot i{position:absolute;inset:0}
+.timeline li:not(:last-child) .knot::after{content:"";position:absolute}
+.timeline .rail{position:absolute;left:155px;top:54px;bottom:20px;width:2px;background:repeating-linear-gradient(to bottom,var(--line) 0 6px,transparent 6px 12px)}
+.timeline h3{margin-bottom:6px}
+.timeline p{margin:0;color:var(--ink-soft)}
+
+/* ===== slides (case studies) ===== */
+.slider{margin-top:40px}
+.viewport{overflow:hidden;border-radius:28px}
+.track{display:flex;transition:transform .7s cubic-bezier(.7,0,.2,1)}
+.slide{min-width:100%;display:grid;grid-template-columns:.85fr 1.4fr;background:#fff;border:1px solid var(--line);border-radius:28px;overflow:hidden}
+.slide-art{position:relative;min-height:520px;padding:32px;display:flex;flex-direction:column;justify-content:space-between}
+.slide-art .art{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(4,1fr);gap:8px;padding:8px;opacity:.95}
+.slide-art .art div{border-radius:10px;position:relative;overflow:hidden}
+.slide-art .art div i{position:absolute;inset:0}
+.slide-art .label{position:relative;z-index:1;align-self:flex-start;background:#fff;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}
+.slide-art h3{position:relative;z-index:1;background:#fff;border-radius:16px;padding:18px 20px;font-size:28px}
+.slide-body{padding:36px 40px;display:grid;grid-template-columns:1fr 1fr;gap:26px 34px;align-content:start}
+.slide-body .full{grid-column:1/-1}
+.slide-body h4{margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.slide-body h4 b{width:10px;height:10px;border-radius:3px;display:inline-block}
+.slide-body p{font-size:15.5px;margin:0;color:var(--ink-soft)}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tags span{font-size:13px;border-radius:999px;padding:4px 11px;background:var(--paper);border:1px solid var(--line)}
+.slider-nav{display:flex;align-items:center;justify-content:space-between;margin-top:20px;gap:16px;flex-wrap:wrap}
+.dots{display:flex;gap:8px;flex-wrap:wrap}
+.dots button{border:0;padding:0;width:34px;height:8px;border-radius:4px;background:var(--line);transition:background .3s,width .3s}
+.dots button[aria-current="true"]{background:var(--ink);width:56px}
+.arrows{display:flex;gap:8px}
+.arrows button{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;display:grid;place-items:center}
+.arrows button:hover{background:var(--ink);color:var(--paper)}
+.counter{font-size:15px;color:var(--ink-soft)}
+
+/* ===== builds ===== */
+.builds{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:40px}
+.build{border-radius:24px;padding:26px 26px 64px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;min-height:250px}
+.build.w3{grid-column:span 3}
+.build.w2{grid-column:span 2}
+.build.w4{grid-column:span 4}
+.build .status{align-self:flex-start;font-size:13px;font-weight:600;background:rgba(255,255,255,.8);border-radius:999px;padding:4px 11px}
+.build p{font-size:15.5px;margin:0}
+.build a.more{margin-top:auto;font-weight:600;font-size:15px;text-underline-offset:4px}
+.build .deco{position:absolute;right:-30px;bottom:-30px;width:130px;height:130px;opacity:.55;transition:transform 1.2s cubic-bezier(.7,0,.2,1)}
+.build:hover .deco{transform:rotate(90deg)}
+.evolution{margin-top:72px}
+.evo-svg{width:100%;height:auto;margin-top:24px}
+.evo-svg text{font-family:var(--display);fill:var(--ink)}
+.evo-path{stroke-dasharray:8 10;animation:dash 2.5s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-36}}
+
+/* ===== becoming ===== */
+.becoming-hero{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:end}
+.becoming-hero .big{font-family:var(--serif);font-style:italic;font-size:clamp(26px,3vw,36px);line-height:1.3;max-width:24ch}
+.weave{margin-top:56px;display:grid;grid-template-columns:1fr 120px 1fr;gap:0;align-items:stretch}
+.weave-col{display:flex;flex-direction:column;gap:12px}
+.weave-col button{text-align:left;border:1px solid var(--line);background:#fff;border-radius:16px;padding:16px 18px;transition:background-color .35s ease,border-color .35s ease,transform .35s ease}
+.weave-col button b{display:block;font-size:18px}
+.weave-col button span{display:block;font-size:14.5px;color:var(--ink-soft);margin-top:2px}
+.weave-col button.on{transform:translateX(0) scale(1.02)}
+.weave-col.left button.on{border-color:transparent}
+.weave-col.right button{cursor:default}
+.weave svg{width:100%;height:100%}
+.becoming-note{margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.note{border-radius:24px;padding:30px}
+.note p{font-family:var(--serif);font-size:19px;line-height:1.6;max-width:none}
+.bird{width:100%;max-width:280px;height:auto}
+
+/* ===== contact / footer ===== */
+.closing{margin-top:96px;border-radius:32px;background:var(--ink);color:var(--paper);padding:56px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.closing h2{color:var(--paper)}
+.closing .btn{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.closing .btn.ghost{background:transparent;color:var(--paper)}
+.closing .mini{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.closing .mini div{aspect-ratio:1;border-radius:10px;position:relative;overflow:hidden}
+.closing .mini i{position:absolute;inset:0}
+footer{padding:36px 0 48px;color:var(--ink-soft);font-size:14px}
+
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+.section-head p{margin:0;max-width:46ch;color:var(--ink-soft);font-size:18px}
+.spacer{height:96px}
+
+/* ===== responsive ===== */
+@media (max-width:920px){
+  .hero,.mapwrap,.becoming-hero,.becoming-note,.closing{grid-template-columns:1fr}
+  .numbers{grid-template-columns:repeat(2,1fr)}
+  .slide{grid-template-columns:1fr}
+  .slide-art{min-height:240px}
+  .slide-body{grid-template-columns:1fr;padding:28px}
+  .builds{grid-template-columns:1fr}
+  .build.w2,.build.w3,.build.w4{grid-column:auto}
+  .timeline li{grid-template-columns:70px 44px 1fr;gap:12px}
+  .timeline .yr{font-size:22px}
+  .timeline .knot{width:44px;height:44px}
+  .timeline .rail{left:103px;top:44px}
+  .weave{grid-template-columns:1fr 50px 1fr}
+  .closing{padding:36px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#home" aria-label="Smrity builds, home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--lilac)"/><path d="M0 32 A32 32 0 0 1 32 0 L32 32Z" fill="var(--peach)"/><circle cx="22" cy="22" r="6" fill="var(--ink)"/></svg>
+      <span id="brandName"></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Pages"></nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HOME -->
+  <section class="page" id="home">
+    <div class="hero">
+      <div>
+        <h1 id="heroTitle"></h1>
+        <p class="lede" id="heroLede"></p>
+        <div class="roles" id="heroRoles"></div>
+        <div class="cta-row">
+          <a class="btn" href="#cases">See case studies</a>
+          <a class="btn ghost" href="#becoming">Who I am outside work</a>
+        </div>
+      </div>
+      <div class="quilt" id="quilt" aria-hidden="true"></div>
+    </div>
+
+    <div class="band" aria-hidden="true"><div class="band-track" id="band"></div></div>
+
+    <div class="section-head">
+      <h2>A map of what I work on</h2>
+      <p>Select a branch to see what sits inside it. Everything connects back to one habit: finding the real problem and building toward it.</p>
+    </div>
+    <div class="mapwrap">
+      <svg class="mindmap" id="mindmap" viewBox="0 0 720 460" role="group" aria-label="Mind map of Smrity's work areas"></svg>
+      <div class="mappanel" id="mappanel" aria-live="polite"></div>
+    </div>
+
+    <div class="spacer"></div>
+    <div class="section-head">
+      <h2>Numbers I'm proud of</h2>
+      <p>From the enterprise accounts and customers I've worked with at Xorosoft.</p>
+    </div>
+    <div class="numbers" id="numbers"></div>
+  </section>
+
+  <!-- WORK -->
+  <section class="page" id="work" hidden>
+    <div class="section-head">
+      <h2>The path so far</h2>
+      <p id="workIntro"></p>
+    </div>
+    <ol class="timeline" id="timeline"><div class="rail"></div></ol>
+    <div class="section-head" style="margin-top:40px">
+      <h2>Tools of the trade</h2>
+      <p>Domains and capabilities I've worked across.</p>
+    </div>
+    <div class="leafs" id="skills" style="margin-top:28px"></div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <section class="page" id="cases" hidden>
+    <div class="section-head">
+      <h2>Case studies</h2>
+      <p>Each one follows the same shape: the context, the problem, what I did, what changed, and what I learned. Use the arrows or your keyboard.</p>
+    </div>
+    <div class="slider">
+      <div class="viewport"><div class="track" id="track"></div></div>
+      <div class="slider-nav">
+        <div class="dots" id="dots"></div>
+        <span class="counter" id="counter"></span>
+        <div class="arrows">
+          <button id="prev" aria-label="Previous case study"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M11 3 5 9l6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+          <button id="next" aria-label="Next case study"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="m7 3 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILDS -->
+  <section class="page" id="builds" hidden>
+    <div class="section-head">
+      <h2>Builds and side projects</h2>
+      <p>Things I've made to learn, test an idea, or scratch an itch. Some are live, some are concepts, one I shut down and learned the most from.</p>
+    </div>
+    <div class="builds" id="builds-grid"></div>
+    <div class="evolution">
+      <div class="section-head">
+        <h2>How one idea kept evolving</h2>
+        <p>Every build taught me something the next one used.</p>
+      </div>
+      <svg class="evo-svg" id="evo" viewBox="0 0 1100 280" role="img" aria-label="Evolution from Kitten Notes journals to a digital journaling space to Flowify to the Haven concept"></svg>
+    </div>
+  </section>
+
+  <!-- BECOMING -->
+  <section class="page" id="becoming" hidden>
+    <div class="becoming-hero">
+      <div>
+        <h2>Work, life, becoming</h2>
+        <p class="soft" style="margin-top:20px;font-size:19px" id="becomingIntro"></p>
+      </div>
+      <p class="big" id="becomingQuote"></p>
+    </div>
+    <div class="weave" id="weave">
+      <div class="weave-col left" id="weaveLeft"></div>
+      <svg id="weaveLines" aria-hidden="true" preserveAspectRatio="none"></svg>
+      <div class="weave-col right" id="weaveRight"></div>
+    </div>
+    <div class="becoming-note" id="becomingNotes"></div>
+  </section>
+
+  <div class="closing" id="closing">
+    <div>
+      <h2 id="closingTitle"></h2>
+      <p style="margin-top:16px;opacity:.8" id="closingText"></p>
+      <div class="cta-row" id="contactBtns"></div>
+    </div>
+    <div class="mini" id="mini" aria-hidden="true"></div>
+  </div>
+</main>
+<footer><div class="wrap" id="footer"></div></footer>
+
+<script>
+/* =================================================================
+   CONTENT: edit any sentence, number or link here.
+   Everything on the page is built from this object.
+   ================================================================= */
+const SITE = {
+  name: "Smrity",
+  brand: "smritybuilds",
+  hero: {
+    title: ["I build products", "close to the problem."],
+    lede: "Product builder with 8 years in B2B SaaS. I sit with enterprise customers, find the real problem, and turn it into product. Lately, that product has AI inside it.",
+    roles: ["AI product builder", "Problem solver", "Enterprise SaaS", "Revenue tech", "Maker of side projects"]
+  },
+  band: ["ERP for 200 clients", "LLM query layer on MCP", "Demand forecasting", "Workflow automation", "Shopify integrations", "Data migrations", "AI sales OS", "Journals and apps"],
+
+  /* Mind map: each branch has a color key (lilac, mint, peach, sky, rose, butter) */
+  map: [
+    { label: "Enterprise SaaS", color: "sky", text: "Six years inside a cloud ERP serving retail, ecommerce and wholesale businesses across the US, Canada and Australia.", leaves: ["20 enterprise accounts", "Customer data migrations", "Shopify App Store listing", "Pricing rules engine", "Multi-currency FX", "Omnichannel fulfillment", "B2B ordering portal"] },
+    { label: "AI and ML", color: "lilac", text: "From automation to prediction to language: the progression my AI work has followed.", leaves: ["MCP server, LLM query layer", "Ops Copilot support assistant", "Workflow automation engine", "Demand and inventory forecasting", "Anomaly detection", "Confidence-tiered autonomy"] },
+    { label: "Revenue tech", color: "peach", text: "A deep dive into how modern sales teams find, work and close pipeline, and where AI changes the job.", leaves: ["Sequor, AI sales OS", "Superleap pitch", "Apollo, Clay, Instantly", "Reply.io, AiSDR, Artisan", "Competitive intelligence"] },
+    { label: "Ventures", color: "mint", text: "Consumer products I built end to end, with real users and real lessons.", leaves: ["Kitten Notes", "Flowify", "Haven, a habit concept"] },
+    { label: "Storytelling", color: "rose", text: "Explaining products clearly is part of building them.", leaves: ["The Product Future on Instagram", "Case study writing", "Customer ops proposal"] },
+    { label: "Life", color: "butter", text: "The parts of me that quietly shape how I work.", leaves: ["Guitar", "Travel", "Art", "Journaling", "Dreaming big"] }
+  ],
+
+  numbers: [
+    { value: "90%+", label: "retention across ~20 enterprise accounts I own end to end", color: "mint" },
+    { value: "4.9/5", label: "G2 rating across 94 reviews", color: "lilac" },
+    { value: "80%", label: "customer satisfaction score", color: "peach" },
+    { value: "22%", label: "fewer repeat support tickets", color: "sky" }
+  ],
+
+  workIntro: "Travel tech, then six years in enterprise ERP, a year of building my own products, and now AI.",
+  timeline: [
+    { year: "2018", color: "peach", title: "Product Analyst at Nomadic Feet", text: "Started in a B2B2C travel-tech startup, learning product from data, users and a lot of spreadsheets." },
+    { year: "2020", color: "sky", title: "Joined Xorosoft", text: "A B2B cloud ERP for retail, ecommerce and wholesale. Worked across pricing rules, multi-currency, omnichannel fulfillment and the B2B ordering portal." },
+    { year: "2023", color: "lilac", title: "Product and customer success", text: "Led product and customer success work, close to enterprise clients and their hardest operational problems." },
+    { year: "2024", color: "mint", title: "Built my own products", text: "Launched Kitten Notes, then turned its digital side into Flowify, my first app, with a working prototype in under three weeks." },
+    { year: "2025", color: "rose", title: "Back in enterprise, with AI", text: "Owning about 20 enterprise accounts from onboarding to renewal, while working on the MCP query layer, demand forecasting and workflow automation." },
+    { year: "2026", color: "butter", title: "Building AI products in public", text: "Shipping AI product builds fast to learn by doing: an AI sales OS, tailored pitches for companies I admire, and a calm habit app concept." }
+  ],
+  skills: ["Product discovery", "PRDs and specs", "B2B SaaS", "ERP and OMS", "Ecommerce", "Integrations and APIs", "Data migrations", "LLMs and MCP", "RAG", "ML: forecasting, anomaly detection", "Enterprise customers", "GTM thinking", "Prototyping with AI tools", "Storytelling"],
+
+  /* Case studies: same five-part template for every slide */
+  cases: [
+    { title: "An LLM query layer on MCP", label: "AI", colors: ["lilac", "sky", "rose"], tags: ["LLM", "MCP", "ERP data", "Internal to client-facing"],
+      context: "ERP data lives behind reports and filters. Our teams and clients kept asking questions the screens couldn't answer quickly.",
+      problem: "Every new question meant a new report request or a support ticket. Knowledge sat with a few people.",
+      did: "Scoped an LLM query layer built on an MCP server, so people could ask questions of ERP data in plain language. Started with internal teams, then extended it to clients.",
+      changed: "What began as an internal tool became a client-facing capability of the product.",
+      learned: "Start internal, where feedback is fast and forgiving. The questions people actually ask are the best roadmap." },
+    { title: "AI workflow automation engine", label: "ML", colors: ["mint", "butter", "sky"], tags: ["Anomaly detection", "Prioritization scoring", "Operations"],
+      context: "ERP customers run dozens of operational workflows: replenishment, purchase order approvals, order routing, notifications, warehouse tasks and financial approvals.",
+      problem: "Rule-based automation fires on schedule even when the situation has changed, and people stop trusting it.",
+      did: "Worked on the intelligence layer: anomaly detection, prioritization scoring, and tracking when users accept or override a recommendation. Flagged an edge case for engineering: vendor lead-time drift, where a reorder still fires on time but can't arrive in time.",
+      changed: "Automation that knows when its own assumptions have gone stale, and asks a person instead of acting blindly.",
+      learned: "Override data is gold. Every time a human disagrees with the system, it's telling you what the model missed." },
+    { title: "Demand and inventory forecasting", label: "ML", colors: ["peach", "lilac", "mint"], tags: ["Time-series", "Forecasting", "Tiered autonomy"],
+      context: "Wholesale and retail customers balance two fears: running out of stock and drowning in it.",
+      problem: "Forecasts alone don't help if every reorder still needs a person, and full automation is too risky for unusual demand.",
+      did: "Shaped an approach where automation isn't all or nothing. Routine, low-risk reorders go through on their own, larger or uncertain ones wait for a planner, and unusual demand is flagged rather than acted on.",
+      changed: "Planners spend their attention on the decisions that actually need judgment.",
+      learned: "The right question isn't whether to automate. It's how much autonomy each decision has earned." },
+    { title: "Migrations and Shopify", label: "Enterprise", colors: ["sky", "peach", "butter"], tags: ["Data migration", "Shopify App Store", "Onboarding", "Retention"],
+      context: "New customers came to us from Shopify and older systems, carrying years of customer records, contacts, price lists, credit limits and orders.",
+      problem: "Customers rarely churn over missing features. They churn when, in the first weeks, they can't find or trust their own data.",
+      did: "Ran customer data migrations end to end, and helped get Xorosoft's app listed on the Shopify App Store, working directly with clients through the listing.",
+      changed: "Smoother onboarding and customers who stayed, part of holding 90%+ retention across the accounts I own.",
+      learned: "Migration is the first product experience. Show customers their own world working before go-live." },
+    { title: "Restructuring customer operations", label: "Org design", colors: ["rose", "mint", "lilac"], tags: ["Org structure", "Career ladders", "Culture"],
+      context: "Support and customer success had grown together into one blurry team, with titles that undersold the work.",
+      problem: "Unclear ownership meant slow answers for customers and no growth path for the people answering.",
+      did: "Wrote a restructuring proposal for leadership: a split between support and customer success, an ERP Consultant career ladder to replace a generic support title, a clear CSM scope, and a culture section.",
+      changed: "A shared language for who owns what, and a ladder people could see themselves climbing.",
+      learned: "Org design is product design. The users are your teammates, and titles are part of the interface." }
+  ],
+
+  builds: [
+    { name: "Sequor", status: "Building", color: "lilac", size: "w4", text: "An AI sales OS for small companies, starting with prospecting and outreach and growing into pipeline, enablement and post-sales. My hands-on way of learning revenue tech from the inside.", link: "https://sequorai.com", linkText: "Visit sequorai.com" },
+    { name: "Superleap pitch", status: "Live", color: "peach", size: "w2", text: "Three product concepts with working demos, built for an AI-native CRM I admire.", link: "https://superleap.smritybuilds.com", linkText: "See the pitch" },
+    { name: "Haven", status: "Concept", color: "mint", size: "w2", text: "A calm habit and progress app for small circles of friends. Not gamified, not loud. Working name." },
+    { name: "Kitten Notes and Flowify", status: "Closed, with lessons", color: "rose", size: "w2", text: "Journals for learners became a digital journaling space, then Flowify, my first app. Organic users loved it; scaling needed acquisition money I didn't have. I learned distribution is half the product." },
+    { name: "The Product Future", status: "Ongoing", color: "sky", size: "w2", text: "A short-form Instagram series explaining how great products work, narrative first and backed by data." },
+    { name: "Revenue tech landscape", status: "Research", color: "butter", size: "w3", text: "A comparison of Apollo, AiSDR, Reply.io, Clay, Instantly and Artisan, and competitive intelligence on Clay, ColdIQ and SimpliAI: what each does better, and worse." },
+    { name: "Case study library", status: "Ongoing", color: "lilac", size: "w3", text: "Every project documented with one template, from context and discovery to edge cases and post-launch learnings, sorted into AI and ML." }
+  ],
+
+  evolution: [
+    { name: "Kitten Notes", sub: "Physical journals", color: "rose" },
+    { name: "Digital space", sub: "Online journaling", color: "peach" },
+    { name: "Flowify", sub: "Journals and shared habits", color: "lilac" },
+    { name: "Haven", sub: "Calm progress with friends", color: "mint" }
+  ],
+
+  becoming: {
+    intro: "I don't keep work and life in separate rooms. The person who plays guitar, travels and fills journals is the same one who sits with enterprise customers. Select a part of my life to see where it shows up at work.",
+    quote: "I'm an artist and a dreamer at heart, who happens to love the discipline of shipping.",
+    threads: [
+      { life: "Guitar", lifeNote: "Practice in short loops", work: "Iteration", workNote: "Prototype, listen, adjust, repeat", color: "lilac" },
+      { life: "Travel", lifeNote: "Comfortable being new somewhere", work: "New domains", workNote: "From travel tech to ERP to AI", color: "sky" },
+      { life: "Journals", lifeNote: "Designing calm daily rituals", work: "Habit-forming products", workNote: "Systems people want to return to", color: "rose" },
+      { life: "Art", lifeNote: "Seeing the picture before it exists", work: "Product vision", workNote: "Making ideas tangible fast", color: "peach" },
+      { life: "Freedom", lifeNote: "My choices are mine to make", work: "Ownership", workNote: "Owning outcomes, not just tasks", color: "mint" }
+    ],
+    notes: [
+      { color: "butter", text: "I think of myself as kaleidoscopic. The same pieces, curiosity, care and craft, keep rearranging into new patterns, whether it's a journal, an app or an enterprise workflow." },
+      { color: "lilac", text: "Like a bird, I've learned that where I fly next is mine to decide. That's why I keep building: every project is a small flight, and every flight teaches me the wind." }
+    ]
+  },
+
+  closing: {
+    title: "Let's build something people actually need.",
+    text: "I'm looking for builder roles at AI startups: AI product, forward deployed and solutions work, close to customers."
+  },
+  contact: [
+    { label: "Find me on LinkedIn", href: "https://www.linkedin.com/search/results/people/?keywords=Smrity%20Xorosoft" },
+    { label: "See my latest pitch", href: "https://superleap.smritybuilds.com", ghost: true }
+  ],
+  footer: "Designed and built by Smrity. Every pattern on this site is made from five shapes."
+};
+
+/* =================================================================
+   RENDERING: you usually won't need to edit below this line.
+   ================================================================= */
+const $ = (s) => document.querySelector(s);
+const C = (k) => `var(--${k})`;
+const INK = (k) => `var(--${k}-ink)`;
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const PAL = ["lilac", "mint", "peach", "butter", "sky", "rose"];
+const SHAPES = ["s-quarter", "s-half", "s-circle", "s-tri", "s-leaf"];
+const rand = (a) => a[Math.floor(Math.random() * a.length)];
+
+function tileHTML(bg, fg, shape, rot) {
+  return `<div class="tile ${shape}" style="background:${C(bg)};transform:rotate(${rot}deg)"><i style="background:${C(fg)}"></i></div>`;
+}
+function shapeCell(bg, fg, shape) {
+  const r = rand([0, 90, 180, 270]);
+  return `<div class="${shape}" style="background:${C(bg)};transform:rotate(${r}deg)"><i style="background:${C(fg)}"></i></div>`;
+}
+
+/* nav and router */
+const PAGES = [["home", "Home"], ["work", "Work"], ["cases", "Case studies"], ["builds", "Builds"], ["becoming", "Becoming"]];
+$("#brandName").textContent = SITE.brand;
+$("#nav").innerHTML = PAGES.map(([id, l]) => `<a href="#${id}">${l}</a>`).join("");
+function route() {
+  let id = (location.hash || "#home").slice(1);
+  if (!PAGES.some((p) => p[0] === id)) id = "home";
+  document.querySelectorAll("section.page").forEach((s) => (s.hidden = s.id !== id));
+  document.querySelectorAll(".nav a").forEach((a) => { if (a.getAttribute("href") === "#" + id) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  window.scrollTo(0, 0);
+  if (id === "becoming") requestAnimationFrame(drawWeave);
+}
+window.addEventListener("hashchange", route);
+
+/* hero */
+$("#heroTitle").innerHTML = SITE.hero.title.map((t) => `<span>${t}</span>`).join("");
+$("#heroLede").textContent = SITE.hero.lede;
+$("#heroRoles").innerHTML = SITE.hero.roles.map((r) => `<span>${r}</span>`).join("");
+
+/* quilt: the shifting pattern */
+const quilt = $("#quilt");
+const TILES = 30;
+let tileState = [];
+for (let i = 0; i < TILES; i++) {
+  let bg = rand(PAL), fg = rand(PAL.filter((p) => p !== bg));
+  tileState.push({ rot: rand([0, 90, 180, 270]) });
+  quilt.insertAdjacentHTML("beforeend", tileHTML(bg, fg, rand(SHAPES), tileState[i].rot));
+}
+const tiles = [...quilt.children];
+if (!reduce) {
+  setInterval(() => {
+    if (document.hidden || $("#home").hidden) return;
+    const wave = Math.floor(Math.random() * 6);
+    tiles.forEach((t, i) => {
+      if (i % 6 === wave || Math.random() < 0.08) {
+        tileState[i].rot += 90;
+        t.style.transform = `rotate(${tileState[i].rot}deg)`;
+        if (Math.random() < 0.35) {
+          const bg = rand(PAL);
+          t.style.background = C(bg);
+          t.firstChild.style.background = C(rand(PAL.filter((p) => p !== bg)));
+        }
+      }
+    });
+  }, 1800);
+}
+
+/* band */
+const bandItems = SITE.band.map((b, i) => `<span>${b}<b style="background:${C(PAL[i % PAL.length])}"></b></span>`).join("");
+$("#band").innerHTML = bandItems + bandItems;
+
+/* mind map */
+const svgNS = "http://www.w3.org/2000/svg";
+const mm = $("#mindmap");
+const cx = 360, cy = 230;
+const nodes = SITE.map.map((b, i) => {
+  const a = (-90 + i * (360 / SITE.map.length)) * Math.PI / 180;
+  return { ...b, x: cx + Math.cos(a) * 250 * 0.96, y: cy + Math.sin(a) * 175 };
+});
+let mmHTML = "";
+nodes.forEach((n, i) => {
+  const mx = (cx + n.x) / 2 + (n.y - cy) * 0.18, my = (cy + n.y) / 2 - (n.x - cx) * 0.18;
+  mmHTML += `<path class="link" id="link${i}" d="M${cx} ${cy} Q${mx} ${my} ${n.x} ${n.y}" fill="none" stroke="${C(n.color)}" stroke-width="6" stroke-linecap="round"/>`;
+});
+mmHTML += `<circle cx="${cx}" cy="${cy}" r="58" fill="var(--ink)"/><text x="${cx}" y="${cy + 6}" text-anchor="middle" style="fill:var(--paper);font-size:19px;font-weight:800">${SITE.name}</text>`;
+nodes.forEach((n, i) => {
+  const right = n.x >= cx;
+  const tx = Math.abs(n.x - cx) < 10 ? n.x : n.x + (right ? 0 : 0);
+  const ty = n.y < cy ? n.y - 36 : n.y + 46;
+  mmHTML += `<g class="branch" id="br${i}" tabindex="0" role="button" aria-label="${n.label}">
+    <circle cx="${n.x}" cy="${n.y}" r="24" fill="${C(n.color)}" stroke="var(--paper)" stroke-width="4"/>
+    <text x="${tx}" y="${ty}" text-anchor="middle">${n.label}</text></g>`;
+});
+mm.innerHTML = mmHTML;
+function pickBranch(i) {
+  const n = nodes[i];
+  nodes.forEach((_, j) => {
+    $("#br" + j + " circle").setAttribute("r", j === i ? 34 : 22);
+    const l = $("#link" + j);
+    l.setAttribute("stroke-width", j === i ? 10 : 4);
+    l.style.opacity = j === i ? 1 : 0.55;
+  });
+  const p = $("#mappanel");
+  p.style.background = C(n.color);
+  p.innerHTML = `<h3>${n.label}</h3><p style="color:${INK(n.color)}">${n.text}</p>
+    <div class="leafs">${n.leaves.map((l, k) => `<span style="animation-delay:${k * 60}ms">${l}</span>`).join("")}</div>`;
+}
+nodes.forEach((_, i) => {
+  const g = $("#br" + i);
+  g.addEventListener("click", () => pickBranch(i));
+  g.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pickBranch(i); } });
+});
+pickBranch(1);
+
+/* numbers */
+$("#numbers").innerHTML = SITE.numbers.map((n) => `<div class="num" style="background:${C(n.color)};color:${INK(n.color)}"><b>${n.value}</b><span>${n.label}</span></div>`).join("");
+
+/* timeline */
+$("#workIntro").textContent = SITE.workIntro;
+$("#timeline").insertAdjacentHTML("beforeend", SITE.timeline.map((t) => {
+  const other = rand(PAL.filter((p) => p !== t.color));
+  return `<li><span class="yr">${t.year}</span>
+    <span class="knot ${rand(SHAPES)}" style="background:${C(t.color)}"><i style="background:${C(other)}"></i></span>
+    <div><h3>${t.title}</h3><p>${t.text}</p></div></li>`;
+}).join(""));
+$("#skills").innerHTML = SITE.skills.map((s, i) => `<span style="background:${C(PAL[i % PAL.length])};animation-delay:${i * 40}ms">${s}</span>`).join("");
+
+/* case study slides */
+const track = $("#track");
+track.innerHTML = SITE.cases.map((c) => {
+  let art = "";
+  for (let k = 0; k < 12; k++) {
+    const bg = c.colors[k % 3], fg = c.colors[(k + 1) % 3];
+    art += shapeCell(bg, fg, rand(SHAPES));
+  }
+  const dot = (k) => `<b style="background:${C(c.colors[k % 3])}"></b>`;
+  return `<article class="slide" aria-roledescription="slide">
+    <div class="slide-art"><div class="art">${art}</div>
+      <span class="label">${c.label}</span><h3>${c.title}</h3></div>
+    <div class="slide-body">
+      <div class="full tags">${c.tags.map((t) => `<span>${t}</span>`).join("")}</div>
+      <div><h4>${dot(0)}Context</h4><p>${c.context}</p></div>
+      <div><h4>${dot(1)}Problem</h4><p>${c.problem}</p></div>
+      <div class="full"><h4>${dot(2)}What I did</h4><p>${c.did}</p></div>
+      <div><h4>${dot(0)}What changed</h4><p>${c.changed}</p></div>
+      <div><h4>${dot(1)}What I learned</h4><p>${c.learned}</p></div>
+    </div></article>`;
+}).join("");
+let slideIdx = 0;
+$("#dots").innerHTML = SITE.cases.map((c, i) => `<button aria-label="Go to ${c.title}"></button>`).join("");
+function goSlide(i) {
+  slideIdx = (i + SITE.cases.length) % SITE.cases.length;
+  track.style.transform = `translateX(-${slideIdx * 100}%)`;
+  [...$("#dots").children].forEach((d, k) => d.setAttribute("aria-current", k === slideIdx ? "true" : "false"));
+  $("#counter").textContent = `${slideIdx + 1} of ${SITE.cases.length}: ${SITE.cases[slideIdx].title}`;
+  [...track.children].forEach((s, k) => s.setAttribute("aria-hidden", k === slideIdx ? "false" : "true"));
+}
+[...$("#dots").children].forEach((d, i) => d.addEventListener("click", () => goSlide(i)));
+$("#prev").addEventListener("click", () => goSlide(slideIdx - 1));
+$("#next").addEventListener("click", () => goSlide(slideIdx + 1));
+document.addEventListener("keydown", (e) => {
+  if ($("#cases").hidden) return;
+  if (e.key === "ArrowRight") goSlide(slideIdx + 1);
+  if (e.key === "ArrowLeft") goSlide(slideIdx - 1);
+});
+let touchX = null;
+track.addEventListener("touchstart", (e) => (touchX = e.touches[0].clientX), { passive: true });
+track.addEventListener("touchend", (e) => {
+  if (touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  if (Math.abs(dx) > 50) goSlide(slideIdx + (dx < 0 ? 1 : -1));
+  touchX = null;
+});
+goSlide(0);
+
+/* builds */
+$("#builds-grid").innerHTML = SITE.builds.map((b) => {
+  const other = rand(PAL.filter((p) => p !== b.color));
+  return `<article class="build ${b.size}" style="background:${C(b.color)};color:${INK(b.color)}">
+    <span class="status">${b.status}</span><h3 style="color:var(--ink)">${b.name}</h3><p>${b.text}</p>
+    ${b.link ? `<a class="more" href="${b.link}" target="_blank" rel="noopener">${b.linkText}</a>` : ""}
+    <svg class="deco" viewBox="0 0 100 100" aria-hidden="true"><path d="M0 100 A100 100 0 0 1 100 0 L100 100Z" fill="${C(other)}"/><circle cx="70" cy="70" r="14" fill="var(--paper)"/></svg>
+  </article>`;
+}).join("");
+
+/* evolution path */
+(function () {
+  const evo = $("#evo"), ev = SITE.evolution, step = 1100 / ev.length;
+  let h = "";
+  const pts = ev.map((_, i) => ({ x: step * i + step / 2, y: i % 2 ? 160 : 100 }));
+  let d = `M${pts[0].x} ${pts[0].y}`;
+  for (let i = 1; i < pts.length; i++) {
+    const p0 = pts[i - 1], p1 = pts[i], mx = (p0.x + p1.x) / 2;
+    d += ` C${mx} ${p0.y} ${mx} ${p1.y} ${p1.x} ${p1.y}`;
+  }
+  h += `<path class="evo-path" d="${d}" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>`;
+  ev.forEach((e, i) => {
+    const p = pts[i];
+    h += `<circle cx="${p.x}" cy="${p.y}" r="42" fill="${C(e.color)}" stroke="var(--paper)" stroke-width="6"/>
+      <text x="${p.x}" y="${p.y + 6}" text-anchor="middle" style="font-size:16px;font-weight:800">${i + 1}</text>
+      <text x="${p.x}" y="${p.y + (i % 2 ? 76 : -78)}" text-anchor="middle" style="font-size:19px;font-weight:700">${e.name}</text>
+      <text x="${p.x}" y="${p.y + (i % 2 ? 98 : -56)}" text-anchor="middle" style="font-size:14px;fill:var(--ink-soft)">${e.sub}</text>`;
+  });
+  evo.innerHTML = h;
+})();
+
+/* becoming: woven threads */
+const B = SITE.becoming;
+$("#becomingIntro").textContent = B.intro;
+$("#becomingQuote").textContent = B.quote;
+$("#weaveLeft").innerHTML = B.threads.map((t, i) => `<button data-i="${i}" aria-pressed="false"><b>${t.life}</b><span>${t.lifeNote}</span></button>`).join("");
+/* right column is shuffled on purpose so the threads cross and weave */
+const weaveOrder = [2, 0, 4, 1, 3].filter((i) => i < B.threads.length).concat(B.threads.map((_, i) => i).filter((i) => i > 4));
+$("#weaveRight").innerHTML = weaveOrder.map((i) => { const t = B.threads[i]; return `<button data-i="${i}" tabindex="-1" aria-hidden="true"><b>${t.work}</b><span>${t.workNote}</span></button>`; }).join("");
+let activeThread = 0;
+function drawWeave() {
+  const svg = $("#weaveLines"), box = svg.getBoundingClientRect();
+  if (!box.width) return;
+  svg.setAttribute("viewBox", `0 0 ${box.width} ${box.height}`);
+  const L = [...$("#weaveLeft").children], R = [...$("#weaveRight").children];
+  const mid = (el) => { const r = el.getBoundingClientRect(); return r.top - box.top + r.height / 2; };
+  svg.innerHTML = B.threads.map((t, i) => {
+    const rEl = R.find((r) => +r.dataset.i === i);
+    const y1 = mid(L[i]), y2 = mid(rEl), w = box.width, on = i === activeThread;
+    return `<path d="M0 ${y1} C${w * 0.5} ${y1} ${w * 0.5} ${y2} ${w} ${y2}" fill="none" stroke="${C(t.color)}" stroke-width="${on ? 10 : 4}" stroke-linecap="round" opacity="${on ? 1 : 0.6}"/>`;
+  }).join("");
+  L.forEach((b, i) => { const on = i === activeThread; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); b.style.background = on ? C(B.threads[i].color) : "#fff"; });
+  R.forEach((b) => { const i = +b.dataset.i, on = i === activeThread; b.classList.toggle("on", on); b.style.background = on ? C(B.threads[i].color) : "#fff"; b.style.borderColor = on ? "transparent" : ""; });
+}
+$("#weaveLeft").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; activeThread = +b.dataset.i; drawWeave(); });
+window.addEventListener("resize", () => { if (!$("#becoming").hidden) drawWeave(); });
+if (!reduce) setInterval(() => { if (!$("#becoming").hidden && !document.hidden && !document.querySelector("#weaveLeft:hover")) { activeThread = (activeThread + 1) % B.threads.length; drawWeave(); } }, 3200);
+$("#becomingNotes").innerHTML = B.notes.map((n, i) => `<div class="note" style="background:${C(n.color)}">
+  ${i === 1 ? `<svg class="bird" viewBox="0 0 280 120" aria-hidden="true"><path d="M20 80 Q70 20 120 70 Q170 20 220 60" fill="none" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/><circle cx="240" cy="40" r="10" fill="var(--peach)"/></svg>` : ""}
+  <p>${n.text}</p></div>`).join("");
+
+/* closing */
+$("#closingTitle").textContent = SITE.closing.title;
+$("#closingText").textContent = SITE.closing.text;
+$("#contactBtns").innerHTML = SITE.contact.map((c) => `<a class="btn${c.ghost ? " ghost" : ""}" href="${c.href}" target="_blank" rel="noopener">${c.label}</a>`).join("");
+let mini = "";
+for (let i = 0; i < 16; i++) { const bg = rand(PAL); mini += shapeCell(bg, rand(PAL.filter((p) => p !== bg)), rand(SHAPES)); }
+$("#mini").innerHTML = mini;
+$("#footer").textContent = `${SITE.footer} ${new Date().getFullYear()}.`;
+
+route();
+</script>
+</body>
+</html>
