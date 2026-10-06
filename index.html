@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Smrity builds</title>
-<meta name="description" content="Smrity is a product builder in B2B SaaS and AI. Case studies, builds, and the life that shapes the work.">
+<meta name="description" content="Smrity is a product builder in B2B SaaS and AI. Work, builds, and the life that shapes it.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23D9D2F5'/><path d='M0 32 A32 32 0 0 1 32 0 L32 32Z' fill='%23FFD3BF'/><circle cx='22' cy='22' r='6' fill='%232B2541'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,7 +69,14 @@ section.page[hidden]{display:none}
 @keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 /* ===== pattern tiles: the signature ===== */
-.quilt{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;aspect-ratio:6/5}
+.quilt{position:relative;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:64px;touch-action:manipulation}
+.unit{aspect-ratio:1;transition:transform 1s cubic-bezier(.65,0,.25,1);will-change:transform}
+.unit .tile{width:100%;height:100%;border-radius:10px;position:relative;overflow:hidden;display:grid;place-items:center;transition:transform 1s cubic-bezier(.65,0,.25,1),background-color 1s ease}
+.unit .tile i{position:absolute;transition:top 1s ease,right 1s ease,bottom 1s ease,left 1s ease,border-radius 1s ease,background-color 1s ease}
+.unit .letter{position:relative;z-index:1;font-size:clamp(22px,5vw,62px);font-weight:800;line-height:1;color:var(--ink);transition:transform 1s cubic-bezier(.65,0,.25,1)}
+.q-hint{text-align:center;font-size:14px;color:var(--ink-soft);margin:14px 0 0;max-width:none;transition:opacity .5s ease}
+.quilt.ordered + .q-hint{opacity:0}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .tile{position:relative;border-radius:10px;overflow:hidden;transition:transform .9s cubic-bezier(.7,0,.2,1),background-color .9s ease}
 .tile i{position:absolute;inset:0;transition:background-color .9s ease}
 .s-quarter i{border-radius:0 0 0 100%;inset:0 0 0 0}
@@ -80,7 +87,7 @@ section.page[hidden]{display:none}
 .s-stripe i{background:none !important}
 .s-dots i{background:none !important}
 
-.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;padding-top:8px}
+.hero{padding-top:8px}
 .hero h1 span{display:block}
 .hero .lede{font-size:21px;margin-top:28px;color:var(--ink-soft);max-width:44ch}
 .roles{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
@@ -132,14 +139,14 @@ section.page[hidden]{display:none}
 .slider{margin-top:40px}
 .viewport{overflow:hidden;border-radius:28px}
 .track{display:flex;transition:transform .7s cubic-bezier(.7,0,.2,1)}
-.slide{min-width:100%;display:grid;grid-template-columns:.85fr 1.4fr;background:#fff;border:1px solid var(--line);border-radius:28px;overflow:hidden}
-.slide-art{position:relative;min-height:520px;padding:32px;display:flex;flex-direction:column;justify-content:space-between}
-.slide-art .art{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(4,1fr);gap:8px;padding:8px;opacity:.95}
+.slide{min-width:100%;display:grid;grid-template-columns:340px 1fr;align-items:center;padding:16px;background:#fff;border:1px solid var(--line);border-radius:28px;overflow:hidden}
+.slide-art{position:relative;min-height:0;aspect-ratio:1;border-radius:18px;overflow:hidden;padding:20px;display:flex;flex-direction:column;justify-content:space-between}
+.slide-art .art{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:8px;padding:8px;opacity:.95}
 .slide-art .art div{border-radius:10px;position:relative;overflow:hidden}
 .slide-art .art div i{position:absolute;inset:0}
 .slide-art .label{position:relative;z-index:1;align-self:flex-start;background:#fff;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}
-.slide-art h3{position:relative;z-index:1;background:#fff;border-radius:16px;padding:18px 20px;font-size:28px}
-.slide-body{padding:36px 40px;display:grid;grid-template-columns:1fr 1fr;gap:26px 34px;align-content:start}
+.slide-art h3{position:relative;z-index:1;background:#fff;border-radius:16px;padding:14px 16px;font-size:22px}
+.slide-body{padding:20px 84px 20px 34px;display:grid;grid-template-columns:1fr 1fr;gap:26px 34px;align-content:start}
 .slide-body .full{grid-column:1/-1}
 .slide-body h4{margin-bottom:6px;display:flex;align-items:center;gap:8px}
 .slide-body h4 b{width:10px;height:10px;border-radius:3px;display:inline-block}
@@ -150,8 +157,9 @@ section.page[hidden]{display:none}
 .dots{display:flex;gap:8px;flex-wrap:wrap}
 .dots button{border:0;padding:0;width:34px;height:8px;border-radius:4px;background:var(--line);transition:background .3s,width .3s}
 .dots button[aria-current="true"]{background:var(--ink);width:56px}
-.arrows{display:flex;gap:8px}
-.arrows button{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;display:grid;place-items:center}
+.stage{position:relative}
+.arrows{position:absolute;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:2}
+.arrows button{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--ink);background:#fff;display:grid;place-items:center}
 .arrows button:hover{background:var(--ink);color:var(--paper)}
 .counter{font-size:15px;color:var(--ink-soft)}
 
@@ -194,10 +202,10 @@ section.page[hidden]{display:none}
 .closing h2{color:var(--paper)}
 .closing .btn{background:var(--paper);color:var(--ink);border-color:var(--paper)}
 .closing .btn.ghost{background:transparent;color:var(--paper)}
-.closing .mini{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.closing .mini{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:300px;justify-self:end;width:100%}
 .closing .mini div{aspect-ratio:1;border-radius:10px;position:relative;overflow:hidden}
 .closing .mini i{position:absolute;inset:0}
-footer{padding:36px 0 48px;color:var(--ink-soft);font-size:14px}
+main.wrap{padding-bottom:56px}
 
 .section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
 .section-head p{margin:0;max-width:46ch;color:var(--ink-soft);font-size:18px}
@@ -205,11 +213,12 @@ footer{padding:36px 0 48px;color:var(--ink-soft);font-size:14px}
 
 /* ===== responsive ===== */
 @media (max-width:920px){
-  .hero,.mapwrap,.becoming-hero,.becoming-note,.closing{grid-template-columns:1fr}
+  .mapwrap,.becoming-hero,.becoming-note,.closing{grid-template-columns:1fr}
   .numbers{grid-template-columns:repeat(2,1fr)}
   .slide{grid-template-columns:1fr}
-  .slide-art{min-height:240px}
-  .slide-body{grid-template-columns:1fr;padding:28px}
+  .slide-art{min-height:0;aspect-ratio:1;width:100%;max-width:360px;justify-self:center}
+  .slide-body{grid-template-columns:1fr;padding:24px 8px 8px}
+  .arrows{top:28px;transform:none;right:28px;flex-direction:row}
   .builds{grid-template-columns:1fr}
   .build.w2,.build.w3,.build.w4{grid-column:auto}
   .timeline li{grid-template-columns:70px 44px 1fr;gap:12px}
@@ -246,12 +255,13 @@ footer{padding:36px 0 48px;color:var(--ink-soft);font-size:14px}
         <p class="lede" id="heroLede"></p>
         <div class="roles" id="heroRoles"></div>
         <div class="cta-row">
-          <a class="btn" href="#cases">See case studies</a>
+          <a class="btn" href="#work">See my work</a>
           <a class="btn ghost" href="#becoming">Who I am outside work</a>
         </div>
       </div>
-      <div class="quilt" id="quilt" aria-hidden="true"></div>
     </div>
+    <div class="quilt" id="quilt"><span class="sr-only">Clarity from chaos</span></div>
+    <p class="q-hint" id="qHint" aria-hidden="true"></p>
 
     <div class="band" aria-hidden="true"><div class="band-track" id="band"></div></div>
 
@@ -284,23 +294,21 @@ footer{padding:36px 0 48px;color:var(--ink-soft);font-size:14px}
       <p>Domains and capabilities I've worked across.</p>
     </div>
     <div class="leafs" id="skills" style="margin-top:28px"></div>
-  </section>
-
-  <!-- CASE STUDIES -->
-  <section class="page" id="cases" hidden>
-    <div class="section-head">
-      <h2>Case studies</h2>
-      <p>Each one follows the same shape: the context, the problem, what I did, what changed, and what I learned. Use the arrows or your keyboard.</p>
+    <div class="section-head" style="margin-top:88px">
+      <h2>Latest work</h2>
+      <p>Recent projects from Xorosoft, each in the same shape: the context, the problem, what I did, what changed, and what I learned. Use the arrows or your keyboard.</p>
     </div>
-    <div class="slider">
-      <div class="viewport"><div class="track" id="track"></div></div>
+    <div class="slider" id="latest">
+      <div class="stage">
+        <div class="viewport"><div class="track" id="track"></div></div>
+          <div class="arrows">
+          <button id="prev" aria-label="Previous project"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M11 3 5 9l6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+          <button id="next" aria-label="Next project"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="m7 3 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+          </div>
+      </div>
       <div class="slider-nav">
         <div class="dots" id="dots"></div>
         <span class="counter" id="counter"></span>
-        <div class="arrows">
-          <button id="prev" aria-label="Previous case study"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M11 3 5 9l6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
-          <button id="next" aria-label="Next case study"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="m7 3 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
-        </div>
       </div>
     </div>
   </section>
@@ -347,7 +355,6 @@ footer{padding:36px 0 48px;color:var(--ink-soft);font-size:14px}
     <div class="mini" id="mini" aria-hidden="true"></div>
   </div>
 </main>
-<footer><div class="wrap" id="footer"></div></footer>
 
 <script>
 /* =================================================================
@@ -368,10 +375,10 @@ const SITE = {
   map: [
     { label: "Enterprise SaaS", color: "sky", text: "Six years inside a cloud ERP serving retail, ecommerce and wholesale businesses across the US, Canada and Australia.", leaves: ["20 enterprise accounts", "Customer data migrations", "Shopify App Store listing", "Pricing rules engine", "Multi-currency FX", "Omnichannel fulfillment", "B2B ordering portal"] },
     { label: "AI and ML", color: "lilac", text: "From automation to prediction to language: the progression my AI work has followed.", leaves: ["MCP server, LLM query layer", "Ops Copilot support assistant", "Workflow automation engine", "Demand and inventory forecasting", "Anomaly detection", "Confidence-tiered autonomy"] },
-    { label: "Revenue tech", color: "peach", text: "A deep dive into how modern sales teams find, work and close pipeline, and where AI changes the job.", leaves: ["Sequor, AI sales OS", "Superleap pitch", "Apollo, Clay, Instantly", "Reply.io, AiSDR, Artisan", "Competitive intelligence"] },
+    { label: "Revenue tech", color: "peach", text: "A deep dive into how modern sales teams find, work and close pipeline, and where AI changes the job.", leaves: ["Sequor, AI sales OS", "Tailored pitch pages", "Apollo, Clay, Instantly", "Reply.io, AiSDR, Artisan", "Competitive intelligence"] },
     { label: "Ventures", color: "mint", text: "Consumer products I built end to end, with real users and real lessons.", leaves: ["Kitten Notes", "Flowify", "Haven, a habit concept"] },
     { label: "Storytelling", color: "rose", text: "Explaining products clearly is part of building them.", leaves: ["The Product Future on Instagram", "Case study writing", "Customer ops proposal"] },
-    { label: "Life", color: "butter", text: "The parts of me that quietly shape how I work.", leaves: ["Guitar", "Travel", "Art", "Journaling", "Dreaming big"] }
+    { label: "Life", color: "butter", text: "The parts of me that quietly shape how I work.", leaves: ["Guitar", "Travel", "Chess", "Journaling", "Meditation"] }
   ],
 
   numbers: [
@@ -381,18 +388,18 @@ const SITE = {
     { value: "22%", label: "fewer repeat support tickets", color: "sky" }
   ],
 
-  workIntro: "Travel tech, then six years in enterprise ERP, a year of building my own products, and now AI.",
+  workIntro: "Most recent first: building AI products now, before that six years in enterprise ERP and a year of building my own products, and it all started in travel tech. My latest work from Xorosoft follows below.",
   timeline: [
-    { year: "2018", color: "peach", title: "Product Analyst at Nomadic Feet", text: "Started in a B2B2C travel-tech startup, learning product from data, users and a lot of spreadsheets." },
-    { year: "2020", color: "sky", title: "Joined Xorosoft", text: "A B2B cloud ERP for retail, ecommerce and wholesale. Worked across pricing rules, multi-currency, omnichannel fulfillment and the B2B ordering portal." },
-    { year: "2023", color: "lilac", title: "Product and customer success", text: "Led product and customer success work, close to enterprise clients and their hardest operational problems." },
-    { year: "2024", color: "mint", title: "Built my own products", text: "Launched Kitten Notes, then turned its digital side into Flowify, my first app, with a working prototype in under three weeks." },
+    { year: "2026", color: "butter", title: "Building AI products in public", text: "Shipping AI product builds fast to learn by doing: an AI sales OS, tailored pitches for companies I admire, and a calm habit app concept." },
     { year: "2025", color: "rose", title: "Back in enterprise, with AI", text: "Owning about 20 enterprise accounts from onboarding to renewal, while working on the MCP query layer, demand forecasting and workflow automation." },
-    { year: "2026", color: "butter", title: "Building AI products in public", text: "Shipping AI product builds fast to learn by doing: an AI sales OS, tailored pitches for companies I admire, and a calm habit app concept." }
+    { year: "2024", color: "mint", title: "Built my own products", text: "Launched Kitten Notes, then turned its digital side into Flowify, my first app, with a working prototype in under three weeks." },
+    { year: "2023", color: "lilac", title: "Product and customer success", text: "Led product and customer success work, close to enterprise clients and their hardest operational problems." },
+    { year: "2020", color: "sky", title: "Joined Xorosoft", text: "A B2B cloud ERP for retail, ecommerce and wholesale. Worked across pricing rules, multi-currency, omnichannel fulfillment and the B2B ordering portal." },
+    { year: "2018", color: "peach", title: "Product Analyst at Nomadic Feet", text: "Started in a B2B2C travel-tech startup, learning product from data, users and a lot of spreadsheets." }
   ],
   skills: ["Product discovery", "PRDs and specs", "B2B SaaS", "ERP and OMS", "Ecommerce", "Integrations and APIs", "Data migrations", "LLMs and MCP", "RAG", "ML: forecasting, anomaly detection", "Enterprise customers", "GTM thinking", "Prototyping with AI tools", "Storytelling"],
 
-  /* Case studies: same five-part template for every slide */
+  /* Latest work (Xorosoft): same five-part template for every slide */
   cases: [
     { title: "An LLM query layer on MCP", label: "AI", colors: ["lilac", "sky", "rose"], tags: ["LLM", "MCP", "ERP data", "Internal to client-facing"],
       context: "ERP data lives behind reports and filters. Our teams and clients kept asking questions the screens couldn't answer quickly.",
@@ -428,7 +435,7 @@ const SITE = {
 
   builds: [
     { name: "Sequor", status: "Building", color: "lilac", size: "w4", text: "An AI sales OS for small companies, starting with prospecting and outreach and growing into pipeline, enablement and post-sales. My hands-on way of learning revenue tech from the inside.", link: "https://sequorai.com", linkText: "Visit sequorai.com" },
-    { name: "Superleap pitch", status: "Live", color: "peach", size: "w2", text: "Three product concepts with working demos, built for an AI-native CRM I admire.", link: "https://superleap.smritybuilds.com", linkText: "See the pitch" },
+    { name: "Pitch pages", status: "Ongoing", color: "peach", size: "w2", text: "Product concepts with working demos, built for teams I'd love to work with and shared with each of them directly." },
     { name: "Haven", status: "Concept", color: "mint", size: "w2", text: "A calm habit and progress app for small circles of friends. Not gamified, not loud. Working name." },
     { name: "Kitten Notes and Flowify", status: "Closed, with lessons", color: "rose", size: "w2", text: "Journals for learners became a digital journaling space, then Flowify, my first app. Organic users loved it; scaling needed acquisition money I didn't have. I learned distribution is half the product." },
     { name: "The Product Future", status: "Ongoing", color: "sky", size: "w2", text: "A short-form Instagram series explaining how great products work, narrative first and backed by data." },
@@ -444,13 +451,14 @@ const SITE = {
   ],
 
   becoming: {
-    intro: "I don't keep work and life in separate rooms. The person who plays guitar, travels and fills journals is the same one who sits with enterprise customers. Select a part of my life to see where it shows up at work.",
+    intro: "I don't keep work and life in separate rooms. The person who plays guitar and chess, travels, meditates and fills journals is the same one who sits with enterprise customers. Select a part of my life to see where it shows up at work.",
     quote: "I'm an artist and a dreamer at heart, who happens to love the discipline of shipping.",
     threads: [
       { life: "Guitar", lifeNote: "Practice in short loops", work: "Iteration", workNote: "Prototype, listen, adjust, repeat", color: "lilac" },
       { life: "Travel", lifeNote: "Comfortable being new somewhere", work: "New domains", workNote: "From travel tech to ERP to AI", color: "sky" },
-      { life: "Journals", lifeNote: "Designing calm daily rituals", work: "Habit-forming products", workNote: "Systems people want to return to", color: "rose" },
-      { life: "Art", lifeNote: "Seeing the picture before it exists", work: "Product vision", workNote: "Making ideas tangible fast", color: "peach" },
+      { life: "Journaling", lifeNote: "Designing calm daily rituals", work: "Habit-forming products", workNote: "Systems people want to return to", color: "rose" },
+      { life: "Chess", lifeNote: "Thinking a few moves ahead", work: "Product strategy", workNote: "Weighing trade-offs before committing", color: "peach" },
+      { life: "Meditation", lifeNote: "Finding stillness in the noise", work: "Clarity", workNote: "Cutting to the one problem that matters", color: "butter" },
       { life: "Freedom", lifeNote: "My choices are mine to make", work: "Ownership", workNote: "Owning outcomes, not just tasks", color: "mint" }
     ],
     notes: [
@@ -464,10 +472,9 @@ const SITE = {
     text: "I'm looking for builder roles at AI startups: AI product, forward deployed and solutions work, close to customers."
   },
   contact: [
-    { label: "Find me on LinkedIn", href: "https://www.linkedin.com/search/results/people/?keywords=Smrity%20Xorosoft" },
-    { label: "See my latest pitch", href: "https://superleap.smritybuilds.com", ghost: true }
-  ],
-  footer: "Designed and built by Smrity. Every pattern on this site is made from five shapes."
+    { label: "Find me on LinkedIn", href: "https://www.linkedin.com/in/thakursmrity" },
+    { label: "Email me", href: "mailto:thakursmrity@gmail.com", ghost: true }
+  ]
 };
 
 /* =================================================================
@@ -485,12 +492,13 @@ function tileHTML(bg, fg, shape, rot) {
   return `<div class="tile ${shape}" style="background:${C(bg)};transform:rotate(${rot}deg)"><i style="background:${C(fg)}"></i></div>`;
 }
 function shapeCell(bg, fg, shape) {
-  const r = rand([0, 90, 180, 270]);
-  return `<div class="${shape}" style="background:${C(bg)};transform:rotate(${r}deg)"><i style="background:${C(fg)}"></i></div>`;
+  /* flips and half turns keep cells aligned even when they are not perfect squares */
+  const t = rand(["none", "rotate(180deg)", "scaleX(-1)", "scaleY(-1)"]);
+  return `<div class="${shape}" style="background:${C(bg)};transform:${t}"><i style="background:${C(fg)}"></i></div>`;
 }
 
 /* nav and router */
-const PAGES = [["home", "Home"], ["work", "Work"], ["cases", "Case studies"], ["builds", "Builds"], ["becoming", "Becoming"]];
+const PAGES = [["home", "Home"], ["work", "Work"], ["builds", "Builds"], ["becoming", "Becoming"]];
 $("#brandName").textContent = SITE.brand;
 $("#nav").innerHTML = PAGES.map(([id, l]) => `<a href="#${id}">${l}</a>`).join("");
 function route() {
@@ -500,6 +508,7 @@ function route() {
   document.querySelectorAll(".nav a").forEach((a) => { if (a.getAttribute("href") === "#" + id) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
   window.scrollTo(0, 0);
   if (id === "becoming") requestAnimationFrame(drawWeave);
+  if (id === "home" && typeof placeChaos === "function") requestAnimationFrame(placeChaos);
 }
 window.addEventListener("hashchange", route);
 
@@ -508,32 +517,88 @@ $("#heroTitle").innerHTML = SITE.hero.title.map((t) => `<span>${t}</span>`).join
 $("#heroLede").textContent = SITE.hero.lede;
 $("#heroRoles").innerHTML = SITE.hero.roles.map((r) => `<span>${r}</span>`).join("");
 
-/* quilt: the shifting pattern */
+/* quilt: clarity from chaos, 7 columns by 3 rows */
 const quilt = $("#quilt");
-const TILES = 30;
-let tileState = [];
-for (let i = 0; i < TILES; i++) {
-  let bg = rand(PAL), fg = rand(PAL.filter((p) => p !== bg));
-  tileState.push({ rot: rand([0, 90, 180, 270]) });
-  quilt.insertAdjacentHTML("beforeend", tileHTML(bg, fg, rand(SHAPES), tileState[i].rot));
+const COLS = 7, ROWS = 3;
+const LETTERS = [
+  "CLARITY".split(""),
+  " FROM  ".split(""),
+  " CHAOS ".split("")
+];
+const QSHAPE = {
+  quarter: { t: "0", r: "0", b: "0", l: "0", br: "0 0 0 100%" },
+  half: { t: "50%", r: "0", b: "0", l: "0", br: "100% 100% 0 0" },
+  circle: { t: "18%", r: "18%", b: "18%", l: "18%", br: "50%" },
+  leaf: { t: "0", r: "0", b: "0", l: "0", br: "0 100% 0 100%" },
+  pill: { t: "30%", r: "6%", b: "30%", l: "6%", br: "999px" }
+};
+const QKEYS = Object.keys(QSHAPE);
+const setShape = (i, k) => { const q = QSHAPE[k]; Object.assign(i.style, { top: q.t, right: q.r, bottom: q.b, left: q.l, borderRadius: q.br }); };
+const units = [];
+for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+  const u = document.createElement("div"); u.className = "unit"; u.setAttribute("aria-hidden", "true");
+  const ch = LETTERS[r][c].trim();
+  u.innerHTML = `<div class="tile"><i></i>${ch ? `<span class="letter">${ch}</span>` : ""}</div>`;
+  quilt.appendChild(u); units.push({ el: u, r, c });
 }
-const tiles = [...quilt.children];
-if (!reduce) {
-  setInterval(() => {
-    if (document.hidden || $("#home").hidden) return;
-    const wave = Math.floor(Math.random() * 6);
-    tiles.forEach((t, i) => {
-      if (i % 6 === wave || Math.random() < 0.08) {
-        tileState[i].rot += 90;
-        t.style.transform = `rotate(${tileState[i].rot}deg)`;
-        if (Math.random() < 0.35) {
-          const bg = rand(PAL);
-          t.style.background = C(bg);
-          t.firstChild.style.background = C(rand(PAL.filter((p) => p !== bg)));
-        }
-      }
-    });
-  }, 1800);
+/* ordered look: 2x2 blocks of quarter discs meet to form full circles */
+const BLOCK_ROT = [[90, 180], [0, 270]];
+function orderedLook(o) {
+  const tile = o.el.firstChild, i = tile.firstChild, letter = tile.querySelector(".letter");
+  const bc = Math.floor(o.c / 2), br = Math.floor(o.r / 2);
+  const fg = PAL[(bc + br * 2) % PAL.length], bg = PAL[(bc + br * 2 + 3) % PAL.length];
+  tile.style.background = C(bg); i.style.background = C(fg);
+  setShape(i, "quarter");
+  const rot = BLOCK_ROT[o.r % 2][o.c % 2];
+  tile.style.transform = `rotate(${rot}deg)`;
+  if (letter) letter.style.transform = `rotate(${-rot}deg)`;
+}
+let ordered = false;
+const perm = units.map((_, i) => i).sort(() => Math.random() - 0.5);
+const jitter = units.map(() => ({ x: (Math.random() - 0.5) * 40, y: (Math.random() - 0.5) * 34, rot: (Math.random() - 0.5) * 100, sc: 0.75 + Math.random() * 0.35 }));
+function chaosLook() {
+  units.forEach((o) => {
+    const bg = rand(PAL), tile = o.el.firstChild, i = tile.firstChild, letter = tile.querySelector(".letter");
+    tile.style.background = C(bg); i.style.background = C(rand(PAL.filter((p) => p !== bg)));
+    setShape(i, rand(QKEYS));
+    const rot = rand([0, 90, 180, 270]) + (Math.random() - 0.5) * 30;
+    tile.style.transform = `rotate(${rot}deg)`;
+    if (letter) letter.style.transform = `rotate(${-rot + (Math.random() - 0.5) * 60}deg)`;
+  });
+}
+function placeChaos() {
+  if (ordered) return;
+  units.forEach((o) => { o.el.style.transition = "none"; o.el.style.transform = "none"; });
+  const box = quilt.getBoundingClientRect();
+  if (!box.width) return;
+  const pos = units.map((o) => { const r = o.el.getBoundingClientRect(); return { x: r.left - box.left, y: r.top - box.top }; });
+  units.forEach((o, k) => {
+    const to = pos[perm[k]], j = jitter[k];
+    o.el.style.transform = `translate(${to.x - pos[k].x + j.x}px, ${to.y - pos[k].y + j.y}px) rotate(${j.rot}deg) scale(${j.sc})`;
+  });
+  quilt.offsetHeight;
+  units.forEach((o) => { o.el.style.transition = ""; });
+}
+function bringOrder() {
+  if (ordered) return;
+  ordered = true; quilt.classList.add("ordered");
+  units.forEach((o, k) => {
+    const d = (o.c + o.r) * 90;
+    [o.el, o.el.firstChild, o.el.firstChild.firstChild, o.el.querySelector(".letter")].forEach((e) => { if (e) e.style.transitionDelay = d + "ms"; });
+    o.el.style.transform = "none";
+    orderedLook(o);
+  });
+}
+const canHover = window.matchMedia("(hover: hover)").matches;
+if (reduce) {
+  ordered = true; quilt.classList.add("ordered"); units.forEach(orderedLook);
+} else {
+  chaosLook();
+  requestAnimationFrame(placeChaos);
+  window.addEventListener("resize", placeChaos);
+  $("#qHint").textContent = canHover ? "Hover over the tiles" : "Tap the tiles";
+  quilt.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") bringOrder(); });
+  quilt.addEventListener("pointerdown", bringOrder);
 }
 
 /* band */
@@ -600,7 +665,7 @@ $("#skills").innerHTML = SITE.skills.map((s, i) => `<span style="background:${C(
 const track = $("#track");
 track.innerHTML = SITE.cases.map((c) => {
   let art = "";
-  for (let k = 0; k < 12; k++) {
+  for (let k = 0; k < 9; k++) {
     const bg = c.colors[k % 3], fg = c.colors[(k + 1) % 3];
     art += shapeCell(bg, fg, rand(SHAPES));
   }
@@ -630,7 +695,7 @@ function goSlide(i) {
 $("#prev").addEventListener("click", () => goSlide(slideIdx - 1));
 $("#next").addEventListener("click", () => goSlide(slideIdx + 1));
 document.addEventListener("keydown", (e) => {
-  if ($("#cases").hidden) return;
+  if ($("#work").hidden) return;
   if (e.key === "ArrowRight") goSlide(slideIdx + 1);
   if (e.key === "ArrowLeft") goSlide(slideIdx - 1);
 });
@@ -681,7 +746,7 @@ $("#becomingIntro").textContent = B.intro;
 $("#becomingQuote").textContent = B.quote;
 $("#weaveLeft").innerHTML = B.threads.map((t, i) => `<button data-i="${i}" aria-pressed="false"><b>${t.life}</b><span>${t.lifeNote}</span></button>`).join("");
 /* right column is shuffled on purpose so the threads cross and weave */
-const weaveOrder = [2, 0, 4, 1, 3].filter((i) => i < B.threads.length).concat(B.threads.map((_, i) => i).filter((i) => i > 4));
+const weaveOrder = [2, 0, 5, 1, 3, 4].filter((i) => i < B.threads.length).concat(B.threads.map((_, i) => i).filter((i) => i > 5));
 $("#weaveRight").innerHTML = weaveOrder.map((i) => { const t = B.threads[i]; return `<button data-i="${i}" tabindex="-1" aria-hidden="true"><b>${t.work}</b><span>${t.workNote}</span></button>`; }).join("");
 let activeThread = 0;
 function drawWeave() {
@@ -710,9 +775,8 @@ $("#closingTitle").textContent = SITE.closing.title;
 $("#closingText").textContent = SITE.closing.text;
 $("#contactBtns").innerHTML = SITE.contact.map((c) => `<a class="btn${c.ghost ? " ghost" : ""}" href="${c.href}" target="_blank" rel="noopener">${c.label}</a>`).join("");
 let mini = "";
-for (let i = 0; i < 16; i++) { const bg = rand(PAL); mini += shapeCell(bg, rand(PAL.filter((p) => p !== bg)), rand(SHAPES)); }
+for (let i = 0; i < 9; i++) { const bg = rand(PAL); mini += shapeCell(bg, rand(PAL.filter((p) => p !== bg)), rand(SHAPES)); }
 $("#mini").innerHTML = mini;
-$("#footer").textContent = `${SITE.footer} ${new Date().getFullYear()}.`;
 
 route();
 </script>
