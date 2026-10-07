@@ -158,9 +158,25 @@ section.page[hidden]{display:none}
 .dots button{border:0;padding:0;width:34px;height:8px;border-radius:4px;background:var(--line);transition:background .3s,width .3s}
 .dots button[aria-current="true"]{background:var(--ink);width:56px}
 .stage{position:relative}
-.arrows{position:absolute;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:2}
-.arrows button{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--ink);background:#fff;display:grid;place-items:center}
-.arrows button:hover{background:var(--ink);color:var(--paper)}
+
+/* ===== slide arrows: frosted petal buttons, next on top ===== */
+.arrows{position:absolute;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column-reverse;gap:12px;z-index:2}
+.arrows button{position:relative;width:52px;height:52px;padding:0;display:grid;place-items:center;overflow:hidden;color:var(--ink);background:rgba(255,255,255,.42);border:1.5px solid rgba(43,37,65,.22);box-shadow:0 8px 22px rgba(43,37,65,.10);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:.5;transition:opacity .4s ease,transform .35s cubic-bezier(.65,0,.25,1),background-color .4s ease,color .4s ease,border-color .4s ease}
+#next{border-radius:50% 50% 50% 14px}
+#prev{border-radius:14px 50% 50% 50%}
+.arrows button::before{content:"";position:absolute;width:62%;height:62%;transition:transform .7s cubic-bezier(.65,0,.25,1),background-color .4s ease}
+#next::before{right:-14%;bottom:-14%;border-radius:100% 0 0 0;background:var(--lilac)}
+#prev::before{left:-14%;bottom:-14%;border-radius:0 100% 0 0;background:var(--peach)}
+.arrows button::after{content:"";position:absolute;inset:-2px;border-radius:inherit;border:2px solid var(--ink);opacity:0;transform:scale(1)}
+.arrows svg{position:relative;z-index:1;transition:transform .35s cubic-bezier(.65,0,.25,1)}
+.arrows button:hover,.arrows button:focus-visible{opacity:.85}
+#next:hover svg{transform:translateX(3px)}
+#prev:hover svg{transform:translateX(-3px)}
+.arrows button:active{transform:scale(.9)}
+.arrows button.lit{opacity:1;background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.arrows button.lit::before{transform:scale(1.6) rotate(90deg)}
+.arrows button.lit::after{animation:ring .7s ease-out}
+@keyframes ring{from{opacity:.6;transform:scale(1)}to{opacity:0;transform:scale(1.45)}}
 .counter{font-size:15px;color:var(--ink-soft)}
 
 /* ===== builds ===== */
@@ -302,8 +318,8 @@ main.wrap{padding-bottom:56px}
       <div class="stage">
         <div class="viewport"><div class="track" id="track"></div></div>
           <div class="arrows">
-          <button id="prev" aria-label="Previous project"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M11 3 5 9l6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
-          <button id="next" aria-label="Next project"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="m7 3 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+          <button id="prev" aria-label="Previous project"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M11 3 5 9l6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button id="next" aria-label="Next project"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="m7 3 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           </div>
       </div>
       <div class="slider-nav">
@@ -691,13 +707,21 @@ function goSlide(i) {
   $("#counter").textContent = `${slideIdx + 1} of ${SITE.cases.length}: ${SITE.cases[slideIdx].title}`;
   [...track.children].forEach((s, k) => s.setAttribute("aria-hidden", k === slideIdx ? "false" : "true"));
 }
+/* arrows light up fully when clicked, then drift back to translucent */
+function lightUp(btn) {
+  btn.classList.remove("lit");
+  void btn.offsetWidth;
+  btn.classList.add("lit");
+  clearTimeout(btn._fade);
+  btn._fade = setTimeout(() => btn.classList.remove("lit"), 1400);
+}
 [...$("#dots").children].forEach((d, i) => d.addEventListener("click", () => goSlide(i)));
-$("#prev").addEventListener("click", () => goSlide(slideIdx - 1));
-$("#next").addEventListener("click", () => goSlide(slideIdx + 1));
+$("#prev").addEventListener("click", () => { lightUp($("#prev")); goSlide(slideIdx - 1); });
+$("#next").addEventListener("click", () => { lightUp($("#next")); goSlide(slideIdx + 1); });
 document.addEventListener("keydown", (e) => {
   if ($("#work").hidden) return;
-  if (e.key === "ArrowRight") goSlide(slideIdx + 1);
-  if (e.key === "ArrowLeft") goSlide(slideIdx - 1);
+  if (e.key === "ArrowRight") { lightUp($("#next")); goSlide(slideIdx + 1); }
+  if (e.key === "ArrowLeft") { lightUp($("#prev")); goSlide(slideIdx - 1); }
 });
 let touchX = null;
 track.addEventListener("touchstart", (e) => (touchX = e.touches[0].clientX), { passive: true });
