@@ -599,7 +599,7 @@ function bringOrder() {
   if (ordered) return;
   ordered = true; quilt.classList.add("ordered");
   units.forEach((o, k) => {
-    const d = (o.c + o.r) * 90;
+    const d = 0;
     [o.el, o.el.firstChild, o.el.firstChild.firstChild, o.el.querySelector(".letter")].forEach((e) => { if (e) e.style.transitionDelay = d + "ms"; });
     o.el.style.transform = "none";
     orderedLook(o);
