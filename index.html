@@ -45,8 +45,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:2px solid var(--lilac-ink);outline-offset:3px;border-radius:6px}
 p{margin:0 0 1em;max-width:62ch}
 h1,h2,h3,h4{margin:0;line-height:1.05;letter-spacing:-0.025em;font-weight:800}
-h1{font-size:clamp(44px,6.2vw,84px)}
-h2{font-size:clamp(34px,4.6vw,58px);max-width:16ch}
+h1{font-size:clamp(40px,4.6vw,66px)}
+h2{font-size:clamp(32px,3.8vw,52px);max-width:18ch}
 h3{font-size:24px;letter-spacing:-0.015em;line-height:1.15;font-weight:700}
 h4{font-size:15px;font-weight:700;letter-spacing:0}
 .serif{font-family:var(--serif);font-weight:400;letter-spacing:-0.01em}
@@ -64,17 +64,17 @@ h4{font-size:15px;font-weight:700;letter-spacing:0}
 .nav a[aria-current="page"]{background:var(--ink);color:var(--paper)}
 
 /* ===== pages ===== */
-section.page{padding:64px 0 40px;animation:pageIn .5s ease}
+section.page{padding:56px 0 40px;animation:pageIn .5s ease}
 section.page[hidden]{display:none}
 @keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
 /* ===== pattern tiles: the signature ===== */
-.quilt{position:relative;display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:64px;touch-action:manipulation}
+.quilt{position:relative;display:grid;grid-template-columns:repeat(7,1fr);gap:7px;touch-action:manipulation;container-type:inline-size}
 .unit{aspect-ratio:1;transition:transform 1s cubic-bezier(.15,.85,.3,1);will-change:transform}
 .unit .tile{width:100%;height:100%;border-radius:10px;position:relative;overflow:hidden;display:grid;place-items:center;transition:transform 1s cubic-bezier(.15,.85,.3,1),background-color 1s ease-out}
 .unit .tile i{position:absolute;transition:top 1s ease-out,right 1s ease-out,bottom 1s ease-out,left 1s ease-out,border-radius 1s ease-out,background-color 1s ease-out}
-.unit .letter{position:relative;z-index:1;font-size:clamp(22px,5vw,62px);font-weight:800;line-height:1;color:var(--ink);transition:transform 1s cubic-bezier(.15,.85,.3,1)}
-.q-hint{text-align:center;font-size:14px;color:var(--ink-soft);margin:14px 0 0;max-width:none;transition:opacity .5s ease}
+.unit .letter{position:relative;z-index:1;font-size:clamp(16px,8cqw,56px);font-weight:800;line-height:1;color:var(--ink);transition:transform 1s cubic-bezier(.15,.85,.3,1)}
+.q-hint{text-align:center;font-size:14px;color:var(--ink-soft);margin:12px 0 0;max-width:none;transition:opacity .5s ease}
 .quilt.ordered + .q-hint{opacity:0}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .tile{position:relative;border-radius:10px;overflow:hidden;transition:transform .9s cubic-bezier(.7,0,.2,1),background-color .9s ease}
@@ -87,38 +87,69 @@ section.page[hidden]{display:none}
 .s-stripe i{background:none !important}
 .s-dots i{background:none !important}
 
-.hero{padding-top:8px}
+/* ===== hero: text left, quilt right ===== */
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:56px;align-items:center}
 .hero h1 span{display:block}
-.hero .lede{font-size:21px;margin-top:28px;color:var(--ink-soft);max-width:44ch}
-.roles{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
+.hero .lede{font-size:20px;margin-top:24px;color:var(--ink-soft);max-width:44ch}
+.roles{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
 .roles span{font-size:14px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:#fff}
-.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
 .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:16px;padding:12px 20px;border-radius:999px;background:var(--ink);color:var(--paper);border:1.5px solid var(--ink)}
 .btn.ghost{background:transparent;color:var(--ink)}
 .btn:hover{transform:translateY(-1px)}
+.now{display:flex;gap:14px;align-items:flex-start;margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.now b{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--mint-ink)}
+.now p{margin:2px 0 0;font-size:15.5px;max-width:none}
+.pulse{flex:none;width:10px;height:10px;border-radius:50%;background:var(--mint-ink);margin-top:6px;animation:pulse 2.2s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(30,107,79,.45)}100%{box-shadow:0 0 0 12px rgba(30,107,79,0)}}
 
 /* ===== band (moving marquee) ===== */
-.band{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:72px 0;background:#fff}
+.band{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:64px 0;background:#fff}
 .band-track{display:flex;gap:40px;padding:18px 0;width:max-content;animation:slide 40s linear infinite}
 .band-track span{display:inline-flex;align-items:center;gap:40px;font-size:22px;font-weight:600;white-space:nowrap}
 .band-track b{width:18px;height:18px;display:inline-block;border-radius:0 100% 0 100%}
 @keyframes slide{to{transform:translateX(-50%)}}
 
-/* ===== mind map ===== */
-.mapwrap{display:grid;grid-template-columns:1.35fr 1fr;gap:40px;align-items:center;margin-top:36px}
-.mindmap{width:100%;height:auto}
-.mindmap .branch{cursor:pointer}
-.mindmap .branch circle{transition:r .35s ease}
-.mindmap text{font-family:var(--display);font-size:15px;font-weight:600;fill:var(--ink)}
-.mindmap .link{transition:stroke-width .3s ease,opacity .3s ease}
-.mappanel{border-radius:22px;padding:30px;min-height:330px;transition:background-color .5s ease}
-.mappanel h3{margin-bottom:10px}
+/* ===== map: a four-petal bloom ===== */
+.mapwrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px;align-items:center;margin-top:36px}
+.flower{width:100%;height:auto;overflow:visible}
+.flower text{font-family:var(--display);fill:var(--ink)}
+.petal-wrap{transform-box:view-box;transform-origin:320px 260px;animation:bloom 1s cubic-bezier(.2,.9,.3,1.15) backwards}
+@keyframes bloom{from{transform:scale(.15) rotate(-70deg);opacity:0}to{transform:none;opacity:1}}
+.petal{cursor:pointer;transform-box:view-box;transform-origin:320px 260px;transition:transform .5s cubic-bezier(.2,.9,.3,1.2),opacity .4s ease}
+.petal-label{font-size:21px;font-weight:800;pointer-events:none}
+.petal-num{font-size:13px;font-weight:700;pointer-events:none;letter-spacing:.08em}
+.flower.has-pick .petal{opacity:.45}
+.flower .petal.on,.flower .petal:hover,.flower .petal:focus-visible{opacity:1}
+.flower .petal.on{transform:scale(1.07)}
+.petal:focus{outline:none}
+.orbit{fill:none;stroke:var(--ink);stroke-opacity:.28;stroke-width:1.5;stroke-dasharray:2 10;stroke-linecap:round;animation:orbit 40s linear infinite}
+@keyframes orbit{to{stroke-dashoffset:-480}}
+.chip{cursor:pointer;transition:opacity .4s ease}
+.chip:focus{outline:none}
+.chip rect{fill:#fff;stroke:var(--line);stroke-width:1.5;transition:fill .4s,stroke .4s}
+.chip text{font-size:15px;font-weight:700;pointer-events:none;transition:fill .4s}
+.flower.has-pick .chip{opacity:.5}
+.flower .chip.near,.flower .chip.on,.flower .chip:hover,.flower .chip:focus-visible{opacity:1}
+.flower .chip.near rect,.flower .chip:hover rect{stroke:var(--ink)}
+.flower .chip.on rect{fill:var(--ink);stroke:var(--ink)}
+.flower .chip.on text{fill:var(--paper)}
+.core-name{font-size:21px;font-weight:800}
+.core-sub{font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.mappanel{border-radius:24px;padding:32px;min-height:400px;display:flex;flex-direction:column;transition:background .5s ease}
+.mappanel .eyebrow{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.mappanel h3{font-size:32px;margin:8px 0 12px;letter-spacing:-0.02em;font-weight:800}
+.mappanel p{font-size:16.5px}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.facts span{font-size:14px;font-weight:700;padding:7px 13px;border-radius:12px;background:var(--ink);color:var(--paper);animation:pop .45s backwards}
+.mappanel .go{margin-top:auto;padding-top:24px}
+.mappanel .go a{padding:10px 18px;font-size:15px}
 .leafs{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .leafs span{background:rgba(255,255,255,.75);padding:7px 13px;border-radius:999px;font-size:14px;animation:pop .45s backwards}
 @keyframes pop{from{opacity:0;transform:scale(.8) translateY(6px)}to{opacity:1;transform:none}}
 
 /* ===== numbers ===== */
-.numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
+.numbers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px}
 .num{border-radius:20px;padding:24px;position:relative;overflow:hidden;min-height:170px;display:flex;flex-direction:column;justify-content:flex-end}
 .num b{font-size:46px;letter-spacing:-0.03em;line-height:1;font-weight:800}
 .num span{font-size:15px;margin-top:8px}
@@ -133,7 +164,19 @@ section.page[hidden]{display:none}
 .timeline li:not(:last-child) .knot::after{content:"";position:absolute}
 .timeline .rail{position:absolute;left:155px;top:54px;bottom:20px;width:2px;background:repeating-linear-gradient(to bottom,var(--line) 0 6px,transparent 6px 12px)}
 .timeline h3{margin-bottom:6px}
-.timeline p{margin:0;color:var(--ink-soft)}
+.timeline p{margin:0;color:var(--ink-soft);max-width:none}
+.path{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:48px;align-items:start;margin-top:40px}
+.path .timeline{margin-top:0}
+.glance{position:sticky;top:96px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px}
+.glance h3{margin-bottom:16px}
+.glance h4{margin:22px 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft)}
+.g-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.g-stats div{border-radius:16px;padding:14px 12px}
+.g-stats b{display:block;font-size:30px;line-height:1;letter-spacing:-0.03em}
+.g-stats span{display:block;font-size:13px;margin-top:6px;line-height:1.3}
+.g-tags{display:flex;flex-wrap:wrap;gap:6px}
+.g-tags span{font-size:13.5px;padding:5px 12px;border-radius:999px;background:var(--paper);border:1px solid var(--line)}
+.glance p{margin:20px 0 0;font-size:15.5px;color:var(--ink-soft)}
 
 /* ===== slides (case studies) ===== */
 .slider{margin-top:40px}
@@ -214,22 +257,33 @@ section.page[hidden]{display:none}
 .bird{width:100%;max-width:280px;height:auto}
 
 /* ===== contact / footer ===== */
-.closing{margin-top:96px;border-radius:32px;background:var(--ink);color:var(--paper);padding:56px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.closing{margin-top:88px;border-radius:32px;background:var(--ink);color:var(--paper);padding:56px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
 .closing h2{color:var(--paper)}
 .closing .btn{background:var(--paper);color:var(--ink);border-color:var(--paper)}
 .closing .btn.ghost{background:transparent;color:var(--paper)}
-.closing .mini{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:300px;justify-self:end;width:100%}
-.closing .mini div{aspect-ratio:1;border-radius:10px;position:relative;overflow:hidden}
+.closing .mini{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:300px;justify-self:end;width:100%;cursor:pointer}
+.closing .mini > div{aspect-ratio:1;border-radius:10px;position:relative;overflow:hidden;transition:opacity .7s ease,transform .7s cubic-bezier(.2,.9,.3,1)}
+.closing .mini .pic{position:absolute;inset:0;width:100%;height:100%;opacity:0;transform:scale(.96);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.9,.3,1);pointer-events:none}
+.closing .mini:hover > div,.closing .mini.show > div{opacity:0;transform:scale(.9)}
+.closing .mini:hover .pic,.closing .mini.show .pic{opacity:1;transform:none}
+.pic .plane{transition:transform 1.4s cubic-bezier(.2,.9,.3,1) .2s;transform:translate(-14px,14px)}
+.closing .mini:hover .plane,.closing .mini.show .plane{transform:none}
+.pic .trail{stroke-dasharray:3 9;animation:dash 3s linear infinite}
+.pic .bar{transform-box:fill-box;transform-origin:bottom;transform:scaleY(.4);transition:transform 1s cubic-bezier(.2,.9,.3,1)}
+.closing .mini:hover .bar,.closing .mini.show .bar{transform:none}
 .closing .mini i{position:absolute;inset:0}
 main.wrap{padding-bottom:56px}
 
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
-.section-head p{margin:0;max-width:46ch;color:var(--ink-soft);font-size:18px}
-.spacer{height:96px}
+/* section heads: title left, note right, no dead space */
+.section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 56px;align-items:end}
+.section-head p{margin:0;max-width:50ch;color:var(--ink-soft);font-size:18px}
+.section-head.solo{grid-template-columns:1fr}
+.spacer{height:88px}
 
 /* ===== responsive ===== */
 @media (max-width:920px){
-  .mapwrap,.becoming-hero,.becoming-note,.closing{grid-template-columns:1fr}
+  .hero,.section-head,.path,.mapwrap,.becoming-hero,.becoming-note,.closing{grid-template-columns:1fr}
+  .hero{gap:36px}
   .numbers{grid-template-columns:repeat(2,1fr)}
   .slide{grid-template-columns:1fr}
   .slide-art{min-height:0;aspect-ratio:1;width:100%;max-width:360px;justify-self:center}
@@ -243,6 +297,8 @@ main.wrap{padding-bottom:56px}
   .timeline .rail{left:103px;top:44px}
   .weave{grid-template-columns:1fr 50px 1fr}
   .closing{padding:36px}
+  .mappanel{min-height:0}
+  .glance{position:static}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none !important;transition:none !important}
@@ -275,18 +331,21 @@ main.wrap{padding-bottom:56px}
           <a class="btn ghost" href="#becoming">Who I am outside work</a>
         </div>
       </div>
+      <div>
+        <div class="quilt" id="quilt"><span class="sr-only">Clarity from chaos</span></div>
+        <p class="q-hint" id="qHint" aria-hidden="true"></p>
+        <div class="now"><span class="pulse" aria-hidden="true"></span><div><b>Now</b><p id="heroNow"></p></div></div>
+      </div>
     </div>
-    <div class="quilt" id="quilt"><span class="sr-only">Clarity from chaos</span></div>
-    <p class="q-hint" id="qHint" aria-hidden="true"></p>
 
     <div class="band" aria-hidden="true"><div class="band-track" id="band"></div></div>
 
     <div class="section-head">
       <h2>A map of what I work on</h2>
-      <p>Select a branch to see what sits inside it. Everything connects back to one habit: finding the real problem and building toward it.</p>
+      <p>Four areas, one habit: find the real problem, then build toward it. Select a petal to open an area, or a point on the ring to see what I built where two areas meet.</p>
     </div>
     <div class="mapwrap">
-      <svg class="mindmap" id="mindmap" viewBox="0 0 720 460" role="group" aria-label="Mind map of Smrity's work areas"></svg>
+      <svg class="flower" id="flower" viewBox="0 0 640 520" role="group" aria-label="Map of Smrity's four work areas and where they meet"></svg>
       <div class="mappanel" id="mappanel" aria-live="polite"></div>
     </div>
 
@@ -300,11 +359,13 @@ main.wrap{padding-bottom:56px}
 
   <!-- WORK -->
   <section class="page" id="work" hidden>
-    <div class="section-head">
+    <div class="section-head solo">
       <h2>The path so far</h2>
-      <p id="workIntro"></p>
     </div>
-    <ol class="timeline" id="timeline"><div class="rail"></div></ol>
+    <div class="path">
+      <ol class="timeline" id="timeline"><div class="rail"></div></ol>
+      <aside class="glance" id="glance"></aside>
+    </div>
     <div class="section-head" style="margin-top:40px">
       <h2>Tools of the trade</h2>
       <p>Domains and capabilities I've worked across.</p>
@@ -383,31 +444,59 @@ const SITE = {
   hero: {
     title: ["I build products", "close to the problem."],
     lede: "Product builder with 8 years in B2B SaaS. I sit with enterprise customers, find the real problem, and turn it into product. Lately, that product has AI inside it.",
-    roles: ["AI product builder", "Problem solver", "Enterprise SaaS", "Revenue tech", "Maker of side projects"]
+    roles: ["AI product builder", "Enterprise SaaS", "AI and ML", "Revenue tech", "Founder of Sequor"],
+    now: "Building Sequor, an AI sales OS, and open to AI product, forward deployed and solutions roles."
   },
-  band: ["ERP for 200 clients", "LLM query layer on MCP", "Demand forecasting", "Workflow automation", "Shopify integrations", "Data migrations", "AI sales OS", "Journals and apps"],
+  band: ["ERP for 200 clients", "Anomaly detection", "Demand forecasting", "Workflow automation", "Shopify integrations", "Data migrations", "AI sales OS", "Journals and apps"],
 
-  /* Mind map: each branch has a color key (lilac, mint, peach, sky, rose, butter) */
+  /* Map: four petals, in order top-left, top-right, bottom-right, bottom-left.
+     cta.slide opens that case study on the Work page; cta.href links out. */
   map: [
-    { label: "Enterprise SaaS", color: "sky", text: "Six years inside a cloud ERP serving retail, ecommerce and wholesale businesses across the US, Canada and Australia.", leaves: ["20 enterprise accounts", "Customer data migrations", "Shopify App Store listing", "Pricing rules engine", "Multi-currency FX", "Omnichannel fulfillment", "B2B ordering portal"] },
-    { label: "AI and ML", color: "lilac", text: "From automation to prediction to language: the progression my AI work has followed.", leaves: ["MCP server, LLM query layer", "Ops Copilot support assistant", "Workflow automation engine", "Demand and inventory forecasting", "Anomaly detection", "Confidence-tiered autonomy"] },
-    { label: "Revenue tech", color: "peach", text: "A deep dive into how modern sales teams find, work and close pipeline, and where AI changes the job.", leaves: ["Sequor, AI sales OS", "Tailored pitch pages", "Apollo, Clay, Instantly", "Reply.io, AiSDR, Artisan", "Competitive intelligence"] },
-    { label: "Ventures", color: "mint", text: "Consumer products I built end to end, with real users and real lessons.", leaves: ["Kitten Notes", "Flowify", "Haven, a habit concept"] },
-    { label: "Storytelling", color: "rose", text: "Explaining products clearly is part of building them.", leaves: ["The Product Future on Instagram", "Case study writing", "Customer ops proposal"] },
-    { label: "Life", color: "butter", text: "The parts of me that quietly shape how I work.", leaves: ["Guitar", "Travel", "Chess", "Journaling", "Meditation"] }
+    { label: "Enterprise SaaS", lines: ["Enterprise", "SaaS"], color: "sky", role: "Where I learned the customer",
+      text: "Six years inside a cloud ERP serving retail, ecommerce and wholesale businesses across the US, Canada and Australia.",
+      facts: ["6 years at Xorosoft", "~40 enterprise accounts", "90%+ retention"],
+      leaves: ["Customer data migrations", "Shopify App Store listing", "Pricing rules engine", "Multi-currency FX", "Omnichannel fulfillment", "B2B ordering portal"],
+      cta: { label: "Read the migrations case study", slide: 2 } },
+    { label: "AI and ML", lines: ["AI and ML"], color: "lilac", role: "What I build with",
+      text: "AI that earns trust in daily operations: models that flag what's unusual, predict what's coming, and know when to hand a decision back to a person.",
+      facts: ["Anomaly detection", "Forecasting", "Tiered autonomy"],
+      leaves: ["Workflow automation engine", "Demand and inventory forecasting", "Prioritization scoring", "Override tracking", "Ops Copilot support assistant", "LLMs and RAG"],
+      cta: { label: "Read the workflow automation case study", slide: 0 } },
+    { label: "Revenue tech", lines: ["Revenue", "tech"], color: "peach", role: "Where I'm heading",
+      text: "A deep dive into how modern sales teams find, work and close pipeline, and where AI changes the job.",
+      facts: ["6 tools compared", "Competitive intel", "Building Sequor"],
+      leaves: ["Apollo, Clay, Instantly", "Reply.io, AiSDR, Artisan", "Clay, ColdIQ, SimpliAI teardown", "Prospecting and outreach", "Pipeline and post-sales"],
+      cta: { label: "See the research", href: "#builds" } },
+    { label: "Ventures", lines: ["Business", "and ventures"], color: "mint", role: "Where I explore",
+      text: "Ideas I take from zero to real users. Kitten Notes and Flowify taught me building, pricing and distribution. Sequor is the one I'm building now.",
+      facts: ["Founder of Sequor", "2 products shipped", "Prototype in under 3 weeks"],
+      leaves: ["Sequor, AI sales OS", "Kitten Notes", "Flowify", "Haven, a habit concept"],
+      cta: { label: "Visit sequorai.com", href: "https://sequorai.com" } }
+  ],
+  /* Where two neighbouring petals meet. link k sits between petal k and petal k+1. */
+  links: [
+    { label: "Smart reordering", text: "ERP know-how plus forecasting: routine reorders go through on their own, uncertain ones wait for a planner, and unusual demand gets flagged instead of acted on.", cta: { label: "Read the case study", slide: 1 } },
+    { label: "AI SDR teardown", text: "AI meets the sales floor: a hands-on comparison of Apollo, AiSDR, Reply.io, Clay, Instantly and Artisan, mapping where AI really helps sellers and where it just adds noise.", cta: { label: "See the research", href: "#builds" } },
+    { label: "Sequor", text: "A venture in revenue tech: an AI sales OS for small companies I'm founding, starting with prospecting and outreach and growing into pipeline, enablement and post-sales.", cta: { label: "Visit sequorai.com", href: "https://sequorai.com" } },
+    { label: "Retention", text: "Flowify taught me users leave when value shows up late. At Xorosoft I bring that into onboarding and data migrations, part of holding 90%+ retention.", cta: { label: "Read the case study", slide: 2 } }
   ],
 
   numbers: [
-    { value: "90%+", label: "retention across ~20 enterprise accounts I own end to end", color: "mint" },
+    { value: "90%+", label: "retention across ~40 enterprise accounts I own end to end", color: "mint" },
     { value: "4.9/5", label: "G2 rating across 94 reviews", color: "lilac" },
     { value: "80%", label: "customer satisfaction score", color: "peach" },
     { value: "22%", label: "fewer repeat support tickets", color: "sky" }
   ],
 
-  workIntro: "Most recent first: building AI products now, before that six years in enterprise ERP and a year of building my own products, and it all started in travel tech. My latest work from Xorosoft follows below.",
+  glance: {
+    title: "At a glance",
+    stats: [["8", "years in product"], ["~40", "enterprise accounts"], ["3", "products of my own"]],
+    domains: ["Travel tech", "Cloud ERP", "Ecommerce", "AI and ML", "Revenue tech"],
+    note: "Founder of Sequor, an AI sales OS, while owning enterprise accounts end to end at Xorosoft."
+  },
   timeline: [
-    { year: "2026", color: "butter", title: "Building AI products in public", text: "Shipping AI product builds fast to learn by doing: an AI sales OS, tailored pitches for companies I admire, and a calm habit app concept." },
-    { year: "2025", color: "rose", title: "Back in enterprise, with AI", text: "Owning about 20 enterprise accounts from onboarding to renewal, while working on the MCP query layer, demand forecasting and workflow automation." },
+    { year: "2026", color: "butter", title: "Founding Sequor, building AI in public", text: "Founded Sequor, an AI sales OS for small companies, and shipping AI product builds fast to learn by doing, alongside a calm habit app concept." },
+    { year: "2025", color: "rose", title: "Back in enterprise, with AI", text: "Owning about 40 enterprise accounts from onboarding to renewal, while working on demand forecasting, workflow automation and anomaly detection." },
     { year: "2024", color: "mint", title: "Built my own products", text: "Launched Kitten Notes, then turned its digital side into Flowify, my first app, with a working prototype in under three weeks." },
     { year: "2023", color: "lilac", title: "Product and customer success", text: "Led product and customer success work, close to enterprise clients and their hardest operational problems." },
     { year: "2020", color: "sky", title: "Joined Xorosoft", text: "A B2B cloud ERP for retail, ecommerce and wholesale. Worked across pricing rules, multi-currency, omnichannel fulfillment and the B2B ordering portal." },
@@ -417,12 +506,6 @@ const SITE = {
 
   /* Latest work (Xorosoft): same five-part template for every slide */
   cases: [
-    { title: "An LLM query layer on MCP", label: "AI", colors: ["lilac", "sky", "rose"], tags: ["LLM", "MCP", "ERP data", "Internal to client-facing"],
-      context: "ERP data lives behind reports and filters. Our teams and clients kept asking questions the screens couldn't answer quickly.",
-      problem: "Every new question meant a new report request or a support ticket. Knowledge sat with a few people.",
-      did: "Scoped an LLM query layer built on an MCP server, so people could ask questions of ERP data in plain language. Started with internal teams, then extended it to clients.",
-      changed: "What began as an internal tool became a client-facing capability of the product.",
-      learned: "Start internal, where feedback is fast and forgiving. The questions people actually ask are the best roadmap." },
     { title: "AI workflow automation engine", label: "ML", colors: ["mint", "butter", "sky"], tags: ["Anomaly detection", "Prioritization scoring", "Operations"],
       context: "ERP customers run dozens of operational workflows: replenishment, purchase order approvals, order routing, notifications, warehouse tasks and financial approvals.",
       problem: "Rule-based automation fires on schedule even when the situation has changed, and people stop trusting it.",
@@ -451,10 +534,9 @@ const SITE = {
 
   builds: [
     { name: "Sequor", status: "Building", color: "lilac", size: "w4", text: "An AI sales OS for small companies, starting with prospecting and outreach and growing into pipeline, enablement and post-sales. My hands-on way of learning revenue tech from the inside.", link: "https://sequorai.com", linkText: "Visit sequorai.com" },
-    { name: "Pitch pages", status: "Ongoing", color: "peach", size: "w2", text: "Product concepts with working demos, built for teams I'd love to work with and shared with each of them directly." },
     { name: "Haven", status: "Concept", color: "mint", size: "w2", text: "A calm habit and progress app for small circles of friends. Not gamified, not loud. Working name." },
-    { name: "Kitten Notes and Flowify", status: "Closed, with lessons", color: "rose", size: "w2", text: "Journals for learners became a digital journaling space, then Flowify, my first app. Organic users loved it; scaling needed acquisition money I didn't have. I learned distribution is half the product." },
-    { name: "The Product Future", status: "Ongoing", color: "sky", size: "w2", text: "A short-form Instagram series explaining how great products work, narrative first and backed by data." },
+    { name: "Kitten Notes and Flowify", status: "Closed, with lessons", color: "rose", size: "w3", text: "Journals for learners became a digital journaling space, then Flowify, my first app. Organic users loved it; scaling needed acquisition money I didn't have. I learned distribution is half the product." },
+    { name: "The Product Future", status: "Ongoing", color: "sky", size: "w3", text: "A short-form Instagram series explaining how great products work, narrative first and backed by data." },
     { name: "Revenue tech landscape", status: "Research", color: "butter", size: "w3", text: "A comparison of Apollo, AiSDR, Reply.io, Clay, Instantly and Artisan, and competitive intelligence on Clay, ColdIQ and SimpliAI: what each does better, and worse." },
     { name: "Case study library", status: "Ongoing", color: "lilac", size: "w3", text: "Every project documented with one template, from context and discovery to edge cases and post-launch learnings, sorted into AI and ML." }
   ],
@@ -504,9 +586,6 @@ const PAL = ["lilac", "mint", "peach", "butter", "sky", "rose"];
 const SHAPES = ["s-quarter", "s-half", "s-circle", "s-tri", "s-leaf"];
 const rand = (a) => a[Math.floor(Math.random() * a.length)];
 
-function tileHTML(bg, fg, shape, rot) {
-  return `<div class="tile ${shape}" style="background:${C(bg)};transform:rotate(${rot}deg)"><i style="background:${C(fg)}"></i></div>`;
-}
 function shapeCell(bg, fg, shape) {
   /* flips and half turns keep cells aligned even when they are not perfect squares */
   const t = rand(["none", "rotate(180deg)", "scaleX(-1)", "scaleY(-1)"]);
@@ -532,6 +611,7 @@ window.addEventListener("hashchange", route);
 $("#heroTitle").innerHTML = SITE.hero.title.map((t) => `<span>${t}</span>`).join("");
 $("#heroLede").textContent = SITE.hero.lede;
 $("#heroRoles").innerHTML = SITE.hero.roles.map((r) => `<span>${r}</span>`).join("");
+$("#heroNow").textContent = SITE.hero.now;
 
 /* quilt: clarity from chaos, 7 columns by 3 rows */
 const quilt = $("#quilt");
@@ -571,7 +651,7 @@ function orderedLook(o) {
 }
 let ordered = false;
 const perm = units.map((_, i) => i).sort(() => Math.random() - 0.5);
-const jitter = units.map(() => ({ x: (Math.random() - 0.5) * 40, y: (Math.random() - 0.5) * 34, rot: (Math.random() - 0.5) * 100, sc: 0.75 + Math.random() * 0.35 }));
+const jitter = units.map(() => ({ x: (Math.random() - 0.5) * 30, y: (Math.random() - 0.5) * 26, rot: (Math.random() - 0.5) * 100, sc: 0.75 + Math.random() * 0.35 }));
 function chaosLook() {
   units.forEach((o) => {
     const bg = rand(PAL), tile = o.el.firstChild, i = tile.firstChild, letter = tile.querySelector(".letter");
@@ -598,9 +678,7 @@ function placeChaos() {
 function bringOrder() {
   if (ordered) return;
   ordered = true; quilt.classList.add("ordered");
-  units.forEach((o, k) => {
-    const d = 0;
-    [o.el, o.el.firstChild, o.el.firstChild.firstChild, o.el.querySelector(".letter")].forEach((e) => { if (e) e.style.transitionDelay = d + "ms"; });
+  units.forEach((o) => {
     o.el.style.transform = "none";
     orderedLook(o);
   });
@@ -621,54 +699,91 @@ if (reduce) {
 const bandItems = SITE.band.map((b, i) => `<span>${b}<b style="background:${C(PAL[i % PAL.length])}"></b></span>`).join("");
 $("#band").innerHTML = bandItems + bandItems;
 
-/* mind map */
-const svgNS = "http://www.w3.org/2000/svg";
-const mm = $("#mindmap");
-const cx = 360, cy = 230;
-const nodes = SITE.map.map((b, i) => {
-  const a = (-90 + i * (360 / SITE.map.length)) * Math.PI / 180;
-  return { ...b, x: cx + Math.cos(a) * 250 * 0.96, y: cy + Math.sin(a) * 175 };
-});
-let mmHTML = "";
-nodes.forEach((n, i) => {
-  const mx = (cx + n.x) / 2 + (n.y - cy) * 0.18, my = (cy + n.y) / 2 - (n.x - cx) * 0.18;
-  mmHTML += `<path class="link" id="link${i}" d="M${cx} ${cy} Q${mx} ${my} ${n.x} ${n.y}" fill="none" stroke="${C(n.color)}" stroke-width="6" stroke-linecap="round"/>`;
-});
-mmHTML += `<circle cx="${cx}" cy="${cy}" r="58" fill="var(--ink)"/><text x="${cx}" y="${cy + 6}" text-anchor="middle" style="fill:var(--paper);font-size:19px;font-weight:800">${SITE.name}</text>`;
-nodes.forEach((n, i) => {
-  const right = n.x >= cx;
-  const tx = Math.abs(n.x - cx) < 10 ? n.x : n.x + (right ? 0 : 0);
-  const ty = n.y < cy ? n.y - 36 : n.y + 46;
-  mmHTML += `<g class="branch" id="br${i}" tabindex="0" role="button" aria-label="${n.label}">
-    <circle cx="${n.x}" cy="${n.y}" r="24" fill="${C(n.color)}" stroke="var(--paper)" stroke-width="4"/>
-    <text x="${tx}" y="${ty}" text-anchor="middle">${n.label}</text></g>`;
-});
-mm.innerHTML = mmHTML;
-function pickBranch(i) {
-  const n = nodes[i];
-  nodes.forEach((_, j) => {
-    $("#br" + j + " circle").setAttribute("r", j === i ? 34 : 22);
-    const l = $("#link" + j);
-    l.setAttribute("stroke-width", j === i ? 10 : 4);
-    l.style.opacity = j === i ? 1 : 0.55;
+/* map: four petals bloom around a core, chips on the ring mark where neighbours meet */
+const FL = $("#flower");
+const FX = 320, FY = 260, TIP = 170, RING = 228;
+const DIRS = [[-1, -1], [1, -1], [1, 1], [-1, 1]];
+const LINK_POS = [[0, -1], [1, 0], [0, 1], [-1, 0]];
+(function drawFlower() {
+  let h = `<circle class="orbit" cx="${FX}" cy="${FY}" r="${RING}"/>`;
+  SITE.map.forEach((a, i) => {
+    const [sx, sy] = DIRS[i];
+    const ox = FX + sx * TIP, oy = FY + sy * TIP;
+    const lx = FX + sx * 84, ly = FY + sy * 84;
+    const lineH = 23, y0 = ly - ((a.lines.length - 1) * lineH) / 2 + 7;
+    const labels = a.lines.map((t, k) => `<text class="petal-label" x="${lx}" y="${y0 + k * lineH}" text-anchor="middle">${t}</text>`).join("");
+    h += `<g class="petal-wrap" style="animation-delay:${i * 120}ms"><g class="petal" id="pt${i}" tabindex="0" role="button" aria-label="${a.label}">
+      <path d="M${FX} ${FY} A130 130 0 0 1 ${ox} ${oy} A130 130 0 0 1 ${FX} ${FY}Z" fill="${C(a.color)}" stroke="var(--paper)" stroke-width="5"/>
+      <path d="M${FX + sx * 112} ${FY + sy * 112} A40 40 0 0 1 ${ox} ${oy}" fill="none" stroke="${INK(a.color)}" stroke-width="2.5" stroke-linecap="round" opacity=".35"/>
+      <circle cx="${FX + sx * 140}" cy="${FY + sy * 140}" r="8" fill="var(--paper)"/>
+      <text class="petal-num" x="${lx}" y="${y0 - lineH}" text-anchor="middle" style="fill:${INK(a.color)}">0${i + 1}</text>
+      ${labels}</g></g>`;
   });
-  const p = $("#mappanel");
-  p.style.background = C(n.color);
-  p.innerHTML = `<h3>${n.label}</h3><p style="color:${INK(n.color)}">${n.text}</p>
-    <div class="leafs">${n.leaves.map((l, k) => `<span style="animation-delay:${k * 60}ms">${l}</span>`).join("")}</div>`;
+  h += `<circle cx="${FX}" cy="${FY}" r="64" fill="var(--ink)" stroke="var(--paper)" stroke-width="6"/>
+    <text class="core-name" x="${FX}" y="${FY + 2}" text-anchor="middle" style="fill:var(--paper)">${SITE.name}</text>
+    <text class="core-sub" x="${FX}" y="${FY + 22}" text-anchor="middle" style="fill:var(--paper);opacity:.7">problem first</text>`;
+  SITE.links.forEach((l, k) => {
+    const [dx, dy] = LINK_POS[k];
+    const px = FX + dx * RING, py = FY + dy * RING, w = l.label.length * 8.6 + 34;
+    h += `<g class="chip" id="ch${k}" tabindex="0" role="button" aria-label="${l.label}: where ${SITE.map[k].label} meets ${SITE.map[(k + 1) % 4].label}">
+      <rect x="${px - w / 2}" y="${py - 18}" width="${w}" height="36" rx="18"/>
+      <text x="${px}" y="${py + 5}" text-anchor="middle">${l.label}</text></g>`;
+  });
+  FL.innerHTML = h;
+})();
+function ctaHTML(cta) {
+  if (!cta) return "";
+  if (cta.slide !== undefined) return `<div class="go"><a class="btn" href="#work" data-slide="${cta.slide}">${cta.label}</a></div>`;
+  const ext = /^https?:/.test(cta.href);
+  return `<div class="go"><a class="btn" href="${cta.href}"${ext ? ' target="_blank" rel="noopener"' : ""}>${cta.label}</a></div>`;
 }
-nodes.forEach((_, i) => {
-  const g = $("#br" + i);
-  g.addEventListener("click", () => pickBranch(i));
-  g.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pickBranch(i); } });
+function pickArea(i) {
+  const a = SITE.map[i];
+  FL.classList.add("has-pick");
+  SITE.map.forEach((_, j) => $("#pt" + j).classList.toggle("on", j === i));
+  SITE.links.forEach((_, k) => { const c = $("#ch" + k); c.classList.remove("on"); c.classList.toggle("near", k === i || (k + 1) % 4 === i); });
+  const p = $("#mappanel");
+  p.style.background = C(a.color);
+  p.innerHTML = `<span class="eyebrow" style="color:${INK(a.color)}">0${i + 1} &nbsp; ${a.role}</span>
+    <h3>${a.label}</h3><p style="color:${INK(a.color)}">${a.text}</p>
+    <div class="facts">${a.facts.map((f, k) => `<span style="animation-delay:${k * 70}ms">${f}</span>`).join("")}</div>
+    <div class="leafs">${a.leaves.map((l, k) => `<span style="animation-delay:${200 + k * 50}ms">${l}</span>`).join("")}</div>
+    ${ctaHTML(a.cta)}`;
+}
+function pickLink(k) {
+  const l = SITE.links[k], a = SITE.map[k], b = SITE.map[(k + 1) % 4];
+  FL.classList.add("has-pick");
+  SITE.map.forEach((_, j) => $("#pt" + j).classList.toggle("on", j === k || j === (k + 1) % 4));
+  SITE.links.forEach((_, m) => { const c = $("#ch" + m); c.classList.remove("near"); c.classList.toggle("on", m === k); });
+  const p = $("#mappanel");
+  p.style.background = `linear-gradient(135deg, ${C(a.color)} 0 50%, ${C(b.color)} 50% 100%)`;
+  p.innerHTML = `<span class="eyebrow">Where two areas meet</span>
+    <h3>${l.label}</h3>
+    <div class="facts"><span>${a.label}</span><span style="animation-delay:70ms">${b.label}</span></div>
+    <p style="margin-top:18px">${l.text}</p>
+    ${ctaHTML(l.cta)}`;
+}
+function bindKey(el, fn) {
+  el.addEventListener("click", fn);
+  el.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fn(); } });
+}
+SITE.map.forEach((_, i) => bindKey($("#pt" + i), () => pickArea(i)));
+SITE.links.forEach((_, k) => bindKey($("#ch" + k), () => pickLink(k)));
+$("#mappanel").addEventListener("click", (e) => {
+  const a = e.target.closest("a[data-slide]");
+  if (a) goSlide(+a.dataset.slide);
 });
-pickBranch(1);
+pickArea(1);
 
 /* numbers */
 $("#numbers").innerHTML = SITE.numbers.map((n) => `<div class="num" style="background:${C(n.color)};color:${INK(n.color)}"><b>${n.value}</b><span>${n.label}</span></div>`).join("");
 
 /* timeline */
-$("#workIntro").textContent = SITE.workIntro;
+const G = SITE.glance;
+$("#glance").innerHTML = `<h3>${G.title}</h3>
+  <div class="g-stats">${G.stats.map(([v, l], i) => `<div style="background:${C(["lilac", "mint", "peach"][i % 3])}"><b>${v}</b><span>${l}</span></div>`).join("")}</div>
+  <h4>Domains</h4><div class="g-tags">${G.domains.map((d) => `<span>${d}</span>`).join("")}</div>
+  <p>${G.note}</p>`;
 $("#timeline").insertAdjacentHTML("beforeend", SITE.timeline.map((t) => {
   const other = rand(PAL.filter((p) => p !== t.color));
   return `<li><span class="yr">${t.year}</span>
@@ -699,7 +814,7 @@ track.innerHTML = SITE.cases.map((c) => {
     </div></article>`;
 }).join("");
 let slideIdx = 0;
-$("#dots").innerHTML = SITE.cases.map((c, i) => `<button aria-label="Go to ${c.title}"></button>`).join("");
+$("#dots").innerHTML = SITE.cases.map((c) => `<button aria-label="Go to ${c.title}"></button>`).join("");
 function goSlide(i) {
   slideIdx = (i + SITE.cases.length) % SITE.cases.length;
   track.style.transform = `translateX(-${slideIdx * 100}%)`;
@@ -800,7 +915,26 @@ $("#closingText").textContent = SITE.closing.text;
 $("#contactBtns").innerHTML = SITE.contact.map((c) => `<a class="btn${c.ghost ? " ghost" : ""}" href="${c.href}" target="_blank" rel="noopener">${c.label}</a>`).join("");
 let mini = "";
 for (let i = 0; i < 9; i++) { const bg = rand(PAL); mini += shapeCell(bg, rand(PAL.filter((p) => p !== bg)), rand(SHAPES)); }
+/* on hover the tiles step aside and a small picture appears, cut into the same 3x3 tiles:
+   growing bars, a sun, and a paper plane taking off. */
+const T = (300 - 16) / 3;
+let clips = "";
+for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) clips += `<rect x="${c * (T + 8)}" y="${r * (T + 8)}" width="${T}" height="${T}" rx="10"/>`;
+mini += `<svg class="pic" viewBox="0 0 300 300" preserveAspectRatio="none" aria-hidden="true">
+  <defs><clipPath id="tilesClip">${clips}</clipPath>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--lilac)"/><stop offset="1" stop-color="var(--rose)"/></linearGradient></defs>
+  <g clip-path="url(#tilesClip)">
+    <rect width="300" height="300" fill="url(#skyGrad)"/>
+    <circle cx="66" cy="70" r="34" fill="var(--butter)"/>
+    <circle cx="66" cy="70" r="50" fill="none" stroke="var(--butter)" stroke-width="3" opacity=".6"/>
+    <path class="bar" d="M30 300 V238 a26 26 0 0 1 52 0 V300Z" fill="var(--mint)"/>
+    <path class="bar" d="M124 300 V196 a26 26 0 0 1 52 0 V300Z" fill="var(--sky)" style="transition-delay:.12s"/>
+    <path class="bar" d="M218 300 V150 a26 26 0 0 1 52 0 V300Z" fill="var(--peach)" style="transition-delay:.24s"/>
+    <path class="trail" d="M40 205 C 110 200, 150 140, 196 112 S 240 74, 244 66" fill="none" stroke="var(--ink)" stroke-opacity=".35" stroke-width="2.5" stroke-linecap="round"/>
+    <g class="plane"><path d="M222 74 L286 38 L262 98 L248 80Z" fill="#fff"/><path d="M248 80 L286 38 L250 92Z" fill="var(--sky)"/></g>
+  </g></svg>`;
 $("#mini").innerHTML = mini;
+$("#mini").addEventListener("click", () => $("#mini").classList.toggle("show"));
 
 route();
 </script>
