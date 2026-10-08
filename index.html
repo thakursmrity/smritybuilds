@@ -228,6 +228,7 @@ section.page[hidden]{display:none}
 .build.w3{grid-column:span 3}
 .build.w2{grid-column:span 2}
 .build.w4{grid-column:span 4}
+.build.w6{grid-column:span 6}
 .build .status{align-self:flex-start;font-size:13px;font-weight:600;background:rgba(255,255,255,.8);border-radius:999px;padding:4px 11px}
 .build p{font-size:15.5px;margin:0}
 .build a.more{margin-top:auto;font-weight:600;font-size:15px;text-underline-offset:4px}
@@ -290,7 +291,7 @@ main.wrap{padding-bottom:56px}
   .slide-body{grid-template-columns:1fr;padding:24px 8px 8px}
   .arrows{top:28px;transform:none;right:28px;flex-direction:row}
   .builds{grid-template-columns:1fr}
-  .build.w2,.build.w3,.build.w4{grid-column:auto}
+  .build.w2,.build.w3,.build.w4,.build.w6{grid-column:auto}
   .timeline li{grid-template-columns:70px 44px 1fr;gap:12px}
   .timeline .yr{font-size:22px}
   .timeline .knot{width:44px;height:44px}
@@ -394,7 +395,7 @@ main.wrap{padding-bottom:56px}
   <section class="page" id="builds" hidden>
     <div class="section-head">
       <h2>Builds and side projects</h2>
-      <p>Things I've made to learn, test an idea, or scratch an itch. Some are live, some are concepts, one I shut down and learned the most from.</p>
+      <p>Things I've made to learn, test an idea, or scratch an itch. Some are live, some are still growing, one I shut down and learned the most from.</p>
     </div>
     <div class="builds" id="builds-grid"></div>
     <div class="evolution">
@@ -402,7 +403,7 @@ main.wrap{padding-bottom:56px}
         <h2>How one idea kept evolving</h2>
         <p>Every build taught me something the next one used.</p>
       </div>
-      <svg class="evo-svg" id="evo" viewBox="0 0 1100 280" role="img" aria-label="Evolution from Kitten Notes journals to a digital journaling space to Flowify to the Haven concept"></svg>
+      <svg class="evo-svg" id="evo" viewBox="0 0 1100 280" role="img" aria-label="Evolution from Kitten Notes journals to a digital journaling space to Flowify"></svg>
     </div>
   </section>
 
@@ -470,7 +471,7 @@ const SITE = {
     { label: "Ventures", lines: ["Business", "and ventures"], color: "mint", role: "Where I explore",
       text: "Ideas I take from zero to real users. Kitten Notes and Flowify taught me building, pricing and distribution. Sequor is the one I'm building now.",
       facts: ["Building Sequor", "2 products shipped", "Prototype in under 3 weeks"],
-      leaves: ["Sequor, AI sales OS", "Kitten Notes", "Flowify", "Haven, a habit concept"],
+      leaves: ["Sequor, AI sales OS", "Kitten Notes", "Flowify"],
       cta: { label: "Visit sequorai.com", href: "https://sequorai.com" } }
   ],
   /* Where two neighbouring petals meet. link k sits between petal k and petal k+1. */
@@ -495,7 +496,7 @@ const SITE = {
     note: "Building Sequor, an AI sales OS, while owning enterprise accounts end to end at Xorosoft."
   },
   timeline: [
-    { year: "2026", color: "butter", title: "Building Sequor, and AI in public", text: "Building Sequor, an AI sales OS for small companies, and shipping AI product builds fast to learn by doing, alongside a calm habit app concept." },
+    { year: "2026", color: "butter", title: "Building Sequor, and AI in public", text: "Building Sequor, an AI sales OS for small companies, and shipping AI product builds fast to learn by doing." },
     { year: "2025", color: "rose", title: "Owning enterprise accounts, building with AI", text: "Owning about 40 enterprise accounts from onboarding to renewal, while working on demand forecasting, workflow automation and anomaly detection." },
     { year: "2024", color: "mint", title: "Built my own products", text: "Launched Kitten Notes, then turned its digital side into Flowify, my first app, with a working prototype in under three weeks." },
     { year: "2023", color: "lilac", title: "Product and customer success", text: "Led product and customer success work, close to enterprise clients and their hardest operational problems." },
@@ -533,8 +534,7 @@ const SITE = {
   ],
 
   builds: [
-    { name: "Sequor", status: "Building", color: "lilac", size: "w4", text: "An AI sales OS for small companies, starting with prospecting and outreach and growing into pipeline, enablement and post-sales. My hands-on way of learning revenue tech from the inside.", link: "https://sequorai.com", linkText: "Visit sequorai.com" },
-    { name: "Haven", status: "Concept", color: "mint", size: "w2", text: "A calm habit and progress app for small circles of friends. Not gamified, not loud. Working name." },
+    { name: "Sequor", status: "Building", color: "lilac", size: "w6", text: "An AI sales OS for small companies, starting with prospecting and outreach and growing into pipeline, enablement and post-sales. My hands-on way of learning revenue tech from the inside.", link: "https://sequorai.com", linkText: "Visit sequorai.com" },
     { name: "Kitten Notes and Flowify", status: "Closed, with lessons", color: "rose", size: "w3", text: "Journals for learners became a digital journaling space, then Flowify, my first app. Organic users loved it; scaling needed acquisition money I didn't have. I learned distribution is half the product." },
     { name: "The Product Future", status: "Ongoing", color: "sky", size: "w3", text: "A short-form Instagram series explaining how great products work, narrative first and backed by data." },
     { name: "Revenue tech landscape", status: "Research", color: "butter", size: "w3", text: "A comparison of Apollo, AiSDR, Reply.io, Clay, Instantly and Artisan, and competitive intelligence on Clay, ColdIQ and SimpliAI: what each does better, and worse." },
@@ -544,8 +544,7 @@ const SITE = {
   evolution: [
     { name: "Kitten Notes", sub: "Physical journals", color: "rose" },
     { name: "Digital space", sub: "Online journaling", color: "peach" },
-    { name: "Flowify", sub: "Journals and shared habits", color: "lilac" },
-    { name: "Haven", sub: "Calm progress with friends", color: "mint" }
+    { name: "Flowify", sub: "Journals and shared habits", color: "lilac" }
   ],
 
   becoming: {
