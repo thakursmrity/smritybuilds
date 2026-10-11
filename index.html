@@ -538,7 +538,7 @@ const SITE = {
     { name: "Kitten Notes and Flowify", status: "Closed, with lessons", color: "rose", size: "w3", text: "Journals for learners became a digital journaling space, then Flowify, my first app. Organic users loved it; scaling needed acquisition money I didn't have. I learned distribution is half the product." },
     { name: "The Product Future", status: "Ongoing", color: "sky", size: "w3", text: "A short-form Instagram series explaining how great products work, narrative first and backed by data." },
     { name: "Revenue tech landscape", status: "Research", color: "butter", size: "w3", text: "A comparison of Apollo, AiSDR, Reply.io, Clay, Instantly and Artisan, and competitive intelligence on Clay, ColdIQ and SimpliAI: what each does better, and worse." },
-    { name: "Case study library", status: "Ongoing", color: "lilac", size: "w3", text: "Every project documented with one template, from context and discovery to edge cases and post-launch learnings, sorted into AI and ML." }
+    { name: "Case study library", status: "Ongoing", color: "lilac", size: "w3", text: "Every project documented with one template, from context and discovery to edge cases and post-launch learnings, plus product strategy cases worked end to end.", link: "case-studies/", linkText: "Open the case study library" }
   ],
 
   evolution: [
@@ -852,7 +852,7 @@ $("#builds-grid").innerHTML = SITE.builds.map((b) => {
   const other = rand(PAL.filter((p) => p !== b.color));
   return `<article class="build ${b.size}" style="background:${C(b.color)};color:${INK(b.color)}">
     <span class="status">${b.status}</span><h3 style="color:var(--ink)">${b.name}</h3><p>${b.text}</p>
-    ${b.link ? `<a class="more" href="${b.link}" target="_blank" rel="noopener">${b.linkText}</a>` : ""}
+    ${b.link ? `<a class="more" href="${b.link}"${/^https?:/.test(b.link) ? ' target="_blank" rel="noopener"' : ""}>${b.linkText}</a>` : ""}
     <svg class="deco" viewBox="0 0 100 100" aria-hidden="true"><path d="M0 100 A100 100 0 0 1 100 0 L100 100Z" fill="${C(other)}"/><circle cx="70" cy="70" r="14" fill="var(--paper)"/></svg>
   </article>`;
 }).join("");
