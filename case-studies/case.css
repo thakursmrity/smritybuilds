@@ -55,7 +55,7 @@ h3{font-size:20px;letter-spacing:-0.01em;font-weight:700;margin-bottom:6px}
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin:32px 0 22px}
 .filters button{font:inherit;font-size:14.5px;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink-soft);cursor:pointer}
 .filters button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.lib{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-bottom:72px}
+.lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,380px));gap:18px;padding-bottom:72px}
 .case{display:flex;flex-direction:column;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:26px;padding:12px;transition:transform .35s cubic-bezier(.2,.9,.3,1),box-shadow .35s}
 .case:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(43,37,65,.10)}
 .case .cover{position:relative;aspect-ratio:4/3;border-radius:18px;overflow:hidden;padding:16px;display:flex;flex-direction:column;justify-content:space-between}
@@ -63,7 +63,9 @@ h3{font-size:20px;letter-spacing:-0.01em;font-weight:700;margin-bottom:6px}
 .case .cover .label{position:relative;z-index:1;align-self:flex-start;background:#fff;border-radius:999px;padding:5px 12px;font-size:13.5px;font-weight:600}
 .case .cover .brand{position:relative;z-index:1;align-self:flex-start;background:#fff;border-radius:14px;padding:10px 14px;font-size:22px;font-weight:800;letter-spacing:-0.02em}
 .case .body{padding:16px 10px 8px;display:flex;flex-direction:column;gap:8px;flex:1}
-.case .body h3{font-size:21px}
+.case .body h3{font-size:21px;margin-top:6px}
+.case .q-label{font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--rose-ink)}
+.case .body p.q{font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.45;color:var(--ink);background:var(--paper);border-radius:14px;padding:12px 14px}
 .case .body p{margin:0;font-size:15.5px;color:var(--ink-soft)}
 .case .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:8px}
 .case .meta span{font-size:13px;border-radius:999px;padding:4px 11px;background:var(--paper);border:1px solid var(--line)}
@@ -141,3 +143,8 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:14px;color
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none !important;transition:none !important}
 }
+
+/* the question, shown on the article hero */
+.question{margin-top:22px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--rose-ink);border-radius:16px;padding:14px 18px;max-width:52ch}
+.question span{display:block;font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--rose-ink);margin-bottom:4px}
+.question p{margin:0;font-size:17px;font-weight:600}

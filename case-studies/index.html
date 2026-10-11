@@ -35,8 +35,7 @@
     <p>Each case is worked the same way: diagnose the metric, pick a segment, prioritize the pain, then design, measure and roll out. Choose one to read the full case.</p>
   </div>
 
-  <div class="filters" id="filters" role="group" aria-label="Filter case studies"></div>
-  <div class="lib" id="lib"></div>
+  <div class="lib" id="lib" style="margin-top:36px"></div>
 </main>
 
 <footer><div class="wrap">Smrity · smritybuilds.com</div></footer>
@@ -51,6 +50,7 @@ const CASES = [
     brand: "Zomato",
     title: "Bringing back the weekday lunch",
     type: "Product strategy",
+    question: "Order growth is slowing. Users are still growing, but each one orders less often. As the PM, how would you lift order frequency?",
     summary: "Orders per user were falling while users kept growing. A strategy to win back lapsing professionals at weekday lunch, with two solutions: one that removes the daily decision, and one that lowers the daily cost.",
     tags: ["Food delivery", "Order frequency", "Consumer"],
     colors: ["rose", "peach", "butter"],
@@ -72,34 +72,23 @@ function art(colors, seed) {
   return `<div class="art" aria-hidden="true">${h}</div>`;
 }
 
-const types = ["All", ...new Set(CASES.map((c) => c.type))];
-let active = "All";
-const filters = document.getElementById("filters");
 const lib = document.getElementById("lib");
-
 function render() {
-  filters.innerHTML = types.map((t) => `<button type="button" aria-pressed="${t === active}">${t}</button>`).join("");
-  [...filters.children].forEach((b, i) => b.addEventListener("click", () => { active = types[i]; render(); }));
-  const shown = CASES.filter((c) => active === "All" || c.type === active);
-  lib.innerHTML = shown.map((c, i) => `
+  lib.innerHTML = CASES.map((c, i) => `
     <a class="case" href="${c.href}">
       <div class="cover">${art(c.colors, i + 1)}
         <span class="label">${c.type}</span>
         <span class="brand">${c.brand}</span>
       </div>
       <div class="body">
+        <span class="q-label">The question</span>
+        <p class="q">${c.question}</p>
         <h3>${c.title}</h3>
         <p>${c.summary}</p>
         <div class="meta">${c.tags.map((t) => `<span>${t}</span>`).join("")}</div>
-        <span class="go">Read the case →</span>
+        <span class="go">Read the strategy →</span>
       </div>
-    </a>`).join("") + `
-    <a class="case note" href="../#work">
-      <div><span class="eyebrow e-butter" style="background:#fff">From Xorosoft</span>
-      <h3>Work case studies</h3>
-      <p style="margin-top:8px">Workflow automation, demand forecasting, migrations and customer operations live on the Work page, each in the same five part shape.</p></div>
-      <span class="go" style="font-weight:600">See them on Work →</span>
-    </a>`;
+    </a>`).join("");
 }
 render();
 </script>
