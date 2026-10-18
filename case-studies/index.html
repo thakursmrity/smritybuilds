@@ -32,34 +32,70 @@
       <span class="eyebrow e-lilac">Case study library</span>
       <h1>How I think through products</h1>
     </div>
-    <p>Each case is worked the same way: diagnose the metric, pick a segment, prioritize the pain, then design, measure and roll out. Choose one to read the full case.</p>
+    <p>Each case is worked the same way: diagnose the metric, pick a segment, prioritize the pain, then design, measure and roll out. Browse by the kind of product, then open a case to read it in full.</p>
   </div>
 
-  <div class="lib" id="lib" style="margin-top:36px"></div>
+  <nav class="cat-jump" id="catJump" aria-label="Categories"></nav>
+  <div id="cats"></div>
 </main>
 
 <footer><div class="wrap">Smrity · smritybuilds.com</div></footer>
 
 <script>
 /* ============================================================
-   CASE STUDIES: add a new object here and it appears as a card.
-   Each one opens its own page from `href`.
+   CATEGORIES: the kind of product. CASES: add an object, set its
+   `category` to one of the ids below, and it appears as a card in
+   that group. `qtype` is the interview question type, shown as a tag.
+   Colors can be a token name from case.css or a hex value.
    ============================================================ */
+const CATEGORIES = [
+  { id: "marketplace", name: "Two-sided marketplace", color: "lilac",
+    blurb: "Two groups that need each other, so every fix has to work for both sides at once.",
+    examples: "Uber, Zomato, Airbnb", next: "Airbnb" },
+  { id: "content", name: "Content and consumption", color: "rose",
+    blurb: "Products people come back to for what they watch, hear or read. Habit and discovery decide everything.",
+    examples: "Spotify, Netflix, YouTube", next: "Spotify" },
+  { id: "utility", name: "Utility tool", color: "sky",
+    blurb: "Products used to get a job done fast. Trust and accuracy matter more than delight.",
+    examples: "Google Maps, Google Calendar", next: "Google Maps" },
+  { id: "messaging", name: "Messaging and social", color: "mint",
+    blurb: "Products where value grows with every person who joins. Network effects drive the metrics.",
+    examples: "WhatsApp, LinkedIn", next: "WhatsApp" },
+  { id: "commerce", name: "Commerce", color: "peach",
+    blurb: "Products that sell things. Conversion, basket size and repeat purchase are the levers.",
+    examples: "Amazon, Swiggy Instamart", next: "Amazon" }
+];
+
 const CASES = [
   {
+    category: "marketplace",
     brand: "Zomato",
     title: "Bringing back the weekday lunch",
     type: "Product strategy",
+    qtype: "Grow a metric",
     question: "Order growth is slowing. Users are still growing, but each one orders less often. As the PM, how would you lift order frequency?",
     summary: "Orders per user were falling while users kept growing. A strategy to win back lapsing professionals at weekday lunch, with two solutions: one that removes the daily decision, and one that lowers the daily cost.",
     tags: ["Food delivery", "Order frequency", "Consumer"],
-    colors: ["rose", "peach", "butter"],
+    colors: ["#E23744", "#F4727C", "#FBC9CD"],
     href: "zomato-lunch-frequency.html",
     deck: "zomato-lunch-frequency.pdf"
+  },
+  {
+    category: "marketplace",
+    brand: "Uber",
+    dark: true,
+    title: "Winning back the daily commuter",
+    type: "Product improvement",
+    qtype: "Improve a product",
+    question: "How would you improve Uber?",
+    summary: "Uber is a mature leader, so the case is about retention, not growth. It zooms into riders who are drifting away, finds that waiting and cancellations are what pushes daily commuters out, and sequences three fixes from quick win to long bet.",
+    tags: ["Ride hailing", "Retention", "Consumer"],
+    colors: ["#111111", "#4A4A4A", "#BDBDBD"],
+    href: "uber-daily-commuter.html"
   }
 ];
 
-const C = (k) => `var(--${k})`;
+const C = (k) => (k.startsWith("#") ? k : `var(--${k})`);
 const SHAPES = ["s-quarter", "s-half", "s-circle", "s-tri", "s-leaf"];
 const pick = (a, i) => a[i % a.length];
 function art(colors, seed) {
@@ -72,25 +108,46 @@ function art(colors, seed) {
   return `<div class="art" aria-hidden="true">${h}</div>`;
 }
 
-const lib = document.getElementById("lib");
-function render() {
-  lib.innerHTML = CASES.map((c, i) => `
+function card(c, i) {
+  return `
     <a class="case" href="${c.href}">
       <div class="cover">${art(c.colors, i + 1)}
         <span class="label">${c.type}</span>
-        <span class="brand">${c.brand}</span>
+        <span class="brand${c.dark ? " dark" : ""}">${c.brand}</span>
       </div>
       <div class="body">
         <span class="q-label">The question</span>
         <p class="q">${c.question}</p>
         <h3>${c.title}</h3>
         <p>${c.summary}</p>
-        <div class="meta">${c.tags.map((t) => `<span>${t}</span>`).join("")}</div>
+        <div class="meta"><span class="qt">${c.qtype}</span>${c.tags.map((t) => `<span>${t}</span>`).join("")}</div>
         <span class="go">Read the strategy →</span>
       </div>
-    </a>`).join("");
+    </a>`;
 }
-render();
+
+document.getElementById("catJump").innerHTML = CATEGORIES.map((g) => {
+  const n = CASES.filter((c) => c.category === g.id).length;
+  return `<a href="#cat-${g.id}">${g.name}<b>${n}</b></a>`;
+}).join("");
+
+document.getElementById("cats").innerHTML = CATEGORIES.map((g, gi) => {
+  const list = CASES.filter((c) => c.category === g.id);
+  const cards = list.length
+    ? list.map((c) => card(c, CASES.indexOf(c))).join("")
+    : `<div class="case soon"><b>Coming soon</b><p>First up in this group: ${g.next}.</p></div>`;
+  return `
+    <section class="cat" id="cat-${g.id}">
+      <div class="cat-head">
+        <div>
+          <span class="eyebrow e-${g.color}">${String(gi + 1).padStart(2, "0")} · ${list.length} ${list.length === 1 ? "case" : "cases"}</span>
+          <h2>${g.name}</h2>
+        </div>
+        <div><p>${g.blurb}</p><span class="ex">Products in this group: ${g.examples}</span></div>
+      </div>
+      <div class="lib">${cards}</div>
+    </section>`;
+}).join("");
 </script>
 </body>
 </html>

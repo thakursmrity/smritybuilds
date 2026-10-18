@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Winning back the daily commuter · smritybuilds</title>
+<meta name="description" content="A product improvement case study by Smrity: how to improve Uber by winning back drifting daily commuters, worked from goal to rollout.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><clipPath id='r'><rect width='64' height='64' rx='5'/></clipPath><g clip-path='url(%23r)'><rect width='64' height='64' fill='%235B3FA6'/><path d='M50 0 A50 50 0 0 0 0 50 L0 64 L64 64 L64 0 Z' fill='%23D6C8F7'/><circle cx='43' cy='43' r='12' fill='%23FFFFFF'/></g></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="case.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="../#home" aria-label="Smrity builds, home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><clipPath id="mk"><rect width="64" height="64" rx="5"/></clipPath><g clip-path="url(#mk)"><rect width="64" height="64" fill="#5B3FA6"/><path d="M50 0 A50 50 0 0 0 0 50 L0 64 L64 64 L64 0 Z" fill="#D6C8F7"/><circle cx="43" cy="43" r="12" fill="#FFFFFF"/></g></svg>
+      <span>smritybuilds</span>
+    </a>
+    <nav class="nav" aria-label="Pages">
+      <a href="../#home">Home</a><a href="../#work">Work</a><a href="../#builds" aria-current="page">Builds</a><a href="../#becoming">Becoming</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <div>
+      <a class="crumb" href="./#cat-marketplace">← Case study library</a><br>
+      <span class="eyebrow e-ink">Product improvement · Uber</span>
+      <h1>Winning back the daily commuter</h1>
+      <p class="lede serif">How to improve a product people already know, worked from goal to rollout.</p>
+      <div class="question"><span>The question</span><p>How would you improve Uber?</p></div>
+      <div class="facts"><span>Ride hailing</span><span>Retention</span><span>Two-sided marketplace</span><span>Three solutions, sequenced</span></div>
+      <p class="disclaimer">An independent product sense exercise. Not affiliated with Uber. All figures are illustrative assumptions used to reason through the problem.</p>
+    </div>
+    <div class="art" id="heroArt" aria-hidden="true"></div>
+  </div>
+
+  <div class="layout">
+    <nav class="toc" aria-label="On this page">
+      <b>On this page</b>
+      <ol id="toc">
+        <li><a href="#category">The product type</a></li>
+        <li><a href="#goal">Goal</a></li>
+        <li><a href="#segments">Segments</a></li>
+        <li><a href="#pains">Pain points</a></li>
+        <li><a href="#prioritize">Prioritization</a></li>
+        <li><a href="#problem">Problem statement</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#tradeoffs">Trade-offs</a></li>
+        <li><a href="#metrics">Metrics and guardrails</a></li>
+        <li><a href="#risks">Risks</a></li>
+        <li><a href="#rollout">Rollout</a></li>
+        <li><a href="#takeaways">Takeaways</a></li>
+      </ol>
+    </nav>
+
+    <article>
+      <section id="category">
+        <span class="step">01 · The product type</span>
+        <h2>First, what kind of product is this?</h2>
+        <p>"Improve a product" answers change shape depending on the kind of product. Naming the type first tells you what the levers are, and what can break when you pull one.</p>
+        <div class="grid g3">
+          <div class="card c-lilac"><span class="tag" style="color:var(--lilac-ink)">Two-sided marketplace</span><h3>Uber, Zomato, Airbnb</h3><p>Two groups that need each other. A fix for one side can quietly hurt the other.</p></div>
+          <div class="card c-rose"><span class="tag" style="color:var(--rose-ink)">Content and consumption</span><h3>Spotify, Netflix, YouTube</h3><p>Habit and discovery. The lever is what people come back for.</p></div>
+          <div class="card c-sky"><span class="tag" style="color:var(--sky-ink)">Utility tool</span><h3>Google Maps, Calendar</h3><p>A job done fast. Trust and accuracy beat delight.</p></div>
+          <div class="card c-mint"><span class="tag" style="color:var(--mint-ink)">Messaging and social</span><h3>WhatsApp, LinkedIn</h3><p>Value grows with every person who joins.</p></div>
+          <div class="card c-peach"><span class="tag" style="color:var(--peach-ink)">Commerce</span><h3>Amazon, Instamart</h3><p>Conversion, basket size and repeat purchase.</p></div>
+          <div class="card c-butter"><span class="tag" style="color:var(--butter-ink)">This case</span><h3>Uber is a marketplace</h3><p>Riders on one side, drivers on the other. Uber earns a commission, the take rate, on each fare. Every idea gets checked against both sides.</p></div>
+        </div>
+        <p class="callout">Uber's mission is to make getting around fast and reliable. Reliability is the promise, so that is where the weak spots will show.</p>
+      </section>
+
+      <section id="goal">
+        <span class="step">02 · Goal</span>
+        <h2>Uber is mature, so the goal is retention</h2>
+        <p>Before picking users or ideas, pick the goal. Uber is a dominant player in most cities, with Ola and Rapido competing hard on price and availability. Chasing brand new riders is the expensive path. Keeping the riders it already has is the better use of effort.</p>
+        <div class="grid g3">
+          <div class="card"><h3>Why not growth</h3><p>Awareness is already high in core cities. New riders cost more to win than existing riders cost to keep.</p></div>
+          <div class="card"><h3>Why not revenue</h3><p>Revenue is the outcome, not the lever. It follows from riders staying active, and chasing it directly pushes toward fare and fee changes that hurt trust.</p></div>
+          <div class="card c-lilac"><h3>Why retention</h3><p>Rides per rider is the clearest health signal of a habit product. When it slips, a rival app is usually taking the ride.</p></div>
+        </div>
+        <div class="card c-lilac" style="margin:16px 0"><p class="serif" style="font-size:21px;line-height:1.45;margin:0">Keep existing riders in the habit of booking Uber, starting with the riders showing the first signs of leaving, without hurting driver supply or driver earnings.</p></div>
+        <div class="card c-mint"><h3>Scope</h3><p>Core city rides: cabs and autos. Outstation trips and rentals are left out, because they follow different behavior and a different business.</p></div>
+        <p class="callout">In an interview, ask the interviewer whether the goal is growth, revenue or retention. If they leave it open, state your choice and the reason, then move on.</p>
+      </section>
+
+      <section id="segments">
+        <span class="step">03 · Segments</span>
+        <h2>Pick the lens, then stack a second one</h2>
+        <p>A segment is a group of riders who share a situation. Several lenses can slice the same riders, and the goal decides which one is most useful.</p>
+        <div class="table-wrap"><table>
+          <tr><th>Lens</th><th>Example groups</th><th>Fit for a retention goal</th></tr>
+          <tr><td>Behavior</td><td>Heavy, medium, light riders</td><td>Useful, but a heavy rider is not necessarily at risk</td></tr>
+          <tr><td>Persona</td><td>Students, professionals, tourists</td><td>Describes who they are, not whether they are leaving</td></tr>
+          <tr><td>Use case</td><td>Daily commute, airport, travel destinations, in-city rides</td><td>Good for shaping the solution</td></tr>
+          <tr class="win"><td>Loyalty stage</td><td>Active, drifting, lapsed</td><td>Directly shows who is slipping away</td></tr>
+        </table></div>
+        <p>Loyalty stage wins for a retention goal because it separates riders by their direction of travel, not just where they are today.</p>
+
+        <div class="stages">
+          <div class="card c-mint"><span class="tag" style="color:var(--mint-ink)">Active</span><h3>Still riding as usual</h3><p>Healthy. Protect, do not disturb.</p></div>
+          <div class="card c-butter chosen"><span class="tag" style="color:var(--butter-ink)">Drifting · chosen</span><h3>Riding less than before</h3><p>Still here, but slipping. The last point where a fix is cheap.</p></div>
+          <div class="card c-rose"><span class="tag" style="color:var(--rose-ink)">Lapsed</span><h3>Gone to another option</h3><p>Costly to win back, and the reason they left is hard to find.</p></div>
+        </div>
+
+        <figure class="chartbox">
+          <svg viewBox="0 0 560 250" role="img" aria-label="Illustrative chart of weekly rides per commuter over eight weeks for active, drifting and lapsed riders">
+            <g stroke="#E6E2F2" stroke-width="1">
+              <line x1="50" y1="20" x2="520" y2="20"/><line x1="50" y1="80" x2="520" y2="80"/><line x1="50" y1="140" x2="520" y2="140"/><line x1="50" y1="200" x2="520" y2="200"/>
+            </g>
+            <g font-size="12" fill="#5E5878" font-family="Bricolage Grotesque, sans-serif">
+              <text x="40" y="24" text-anchor="end">6</text><text x="40" y="84" text-anchor="end">4</text><text x="40" y="144" text-anchor="end">2</text><text x="40" y="204" text-anchor="end">0</text>
+              <text x="50" y="224" text-anchor="middle">W1</text><text x="115" y="224" text-anchor="middle">W2</text><text x="180" y="224" text-anchor="middle">W3</text><text x="245" y="224" text-anchor="middle">W4</text><text x="310" y="224" text-anchor="middle">W5</text><text x="375" y="224" text-anchor="middle">W6</text><text x="440" y="224" text-anchor="middle">W7</text><text x="505" y="224" text-anchor="middle">W8</text>
+              <text x="14" y="112" transform="rotate(-90 14 112)" text-anchor="middle">Rides per week</text>
+            </g>
+            <rect x="285" y="14" width="110" height="192" rx="10" fill="#FFEFB0" opacity=".55"/>
+            <text x="340" y="34" text-anchor="middle" font-size="12" font-weight="700" fill="#7A5B00" font-family="Bricolage Grotesque, sans-serif">Step in here</text>
+            <polyline fill="none" stroke="#1E6B4F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" points="50,50 115,48 180,52 245,50 310,49 375,51 440,50 505,50"/>
+            <polyline fill="none" stroke="#111" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" points="50,50 115,56 180,65 245,80 310,98 375,110 440,122 505,128"/>
+            <polyline fill="none" stroke="#8C2F59" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 7" points="50,50 115,80 180,125 245,170 310,185 375,200 440,200 505,200"/>
+            <g font-size="13" font-weight="700" font-family="Bricolage Grotesque, sans-serif">
+              <text x="512" y="46" fill="#1E6B4F">Active</text>
+              <text x="512" y="132" fill="#111">Drifting</text>
+              <text x="512" y="196" fill="#8C2F59">Lapsed</text>
+            </g>
+          </svg>
+          <figcaption>Illustrative: a daily commuter who books 5 rides a week. Drifting riders slide to 2 or 3 before they leave for good.</figcaption>
+        </figure>
+
+        <div class="formula">[Loyalty stage] + [Use case]</div>
+        <div class="card c-butter"><h3>Chosen: drifting daily commuters in metro cities</h3><ul><li><b>Early signal:</b> they have not left yet, so the fix is still cheap</li><li><b>High frequency:</b> a small improvement repeats every working day and compounds</li><li><b>Real competition:</b> this is exactly the group Ola, Rapido or a personal vehicle can capture</li><li><b>Visible in data:</b> a drop from 4 or 5 weekly rides to 2 or 3 is easy to detect and target</li></ul></div>
+      </section>
+
+      <section id="pains">
+        <span class="step">04 · Pain points</span>
+        <h2>Why the commuter rides less</h2>
+        <p>Mapped across the commute: opening the app, price, waiting, the ride, and being recognized as a regular. The ride itself is mostly fine for this group, so the friction sits around it.</p>
+        <div class="grid g3">
+          <div class="card c-peach"><span class="tag" style="color:var(--peach-ink)">Price</span><h3>Price changes every day</h3><p>The same route costs different amounts at different times. A commuter plans their month around it.</p></div>
+          <div class="card c-sky"><span class="tag" style="color:var(--sky-ink)">Waiting</span><h3>Long waits and cancellations</h3><p>A driver cancels after accepting, and the wait starts again. Being late for work is a sharp trigger.</p></div>
+          <div class="card c-lilac"><span class="tag" style="color:var(--lilac-ink)">Recognition</span><h3>No reward for loyalty</h3><p>Someone who rides five times a week gets the same treatment as someone who rides once.</p></div>
+        </div>
+        <div class="card"><h3>Also noticed, set aside</h3><p>Inconsistent car condition and driver quality. Real, but it affects all riders equally and is not specific to why commuters drift.</p></div>
+      </section>
+
+      <section id="prioritize">
+        <span class="step">05 · Prioritization</span>
+        <h2>Waiting and cancellations come out on top</h2>
+        <p>Three lenses, each scored 1 to 5. <b>Impact:</b> how much the pain pushes a commuter away. <b>Frequency:</b> how often they run into it. <b>Feasibility:</b> how much Uber can actually fix, where 5 is easiest. Frequency matters because a small, constant annoyance can hurt a daily habit more than a rare, large one.</p>
+        <div class="table-wrap"><table>
+          <tr><th>Pain</th><th>Impact</th><th>Frequency</th><th>Feasibility</th><th>Total</th></tr>
+          <tr class="win"><td>Waiting and cancellations</td><td>5</td><td>4</td><td>4</td><td>13</td></tr>
+          <tr><td>Price inconsistency</td><td>5</td><td>5</td><td>2</td><td>12</td></tr>
+          <tr><td>No loyalty recognition</td><td>3</td><td>3</td><td>5</td><td>11</td></tr>
+        </table></div>
+        <div class="grid g3">
+          <div class="card c-sky"><h3>Waiting and cancellations</h3><p>High impact, frequent in dense cities, and fixable with product and matching changes without touching the pricing engine.</p></div>
+          <div class="card c-peach"><h3>Price inconsistency</h3><p>Hurts as much and happens daily, but it is tied to the whole marketplace pricing model. Changing it for one group is hard and risky.</p></div>
+          <div class="card c-lilac"><h3>No loyalty recognition</h3><p>Easy to build, but a slow erosion, not the moment someone switches. A good later add-on.</p></div>
+        </div>
+        <p class="callout">Impact alone points to price. Adding feasibility is what moves waiting to the top. Pick the problem Uber can actually solve.</p>
+        <p>Scores are hypotheses. To validate them: cancellation rate after driver acceptance by hour, and time from booking to pickup for commute-hour rides.</p>
+      </section>
+
+      <section id="problem">
+        <span class="step">06 · Problem statement</span>
+        <h2>One problem worth solving</h2>
+        <div class="card c-sky"><span class="tag" style="color:var(--sky-ink)">Problem · Waiting and cancellations</span><p class="serif" style="font-size:20px;line-height:1.5">For daily commuters in metro cities who are starting to ride Uber less, long waits and driver cancellations after acceptance make Uber feel unreliable on the mornings that matter most, so they try other options. This lowers rides per rider.</p><p><b>Insight:</b> a commuter is not buying a ride. They are buying arriving on time. One cancelled morning costs more trust than ten smooth ones earn.</p></div>
+      </section>
+
+      <section id="solutions">
+        <span class="step">07 · Solutions</span>
+        <h2>Three solutions, from quick win to long bet</h2>
+        <p>Ideas came from two angles: get a driver to the rider faster, and stop a driver from dropping a ride once accepted. They were then merged and scored.</p>
+        <div class="grid g3">
+          <div class="card c-peach"><span class="tag" style="color:var(--peach-ink)">Solution 1 · Quick win</span><h3>Cancellation penalty</h3><p>A driver who cancels after accepting loses matching priority for a short window. Fair exceptions apply: wrong pickup pin, rider no-show, safety concern.</p><p><b>Effort:</b> days to a few weeks. Mostly rules and thresholds.</p></div>
+          <div class="card c-sky"><span class="tag" style="color:var(--sky-ink)">Solution 2 · Medium bet</span><h3>Predictive pre-positioning</h3><p>Uber already knows where and when commuters book. It nudges drivers toward those zones just before the usual window, so supply is there before demand shows up.</p><p><b>Effort:</b> one to three months. A forecasting model plus a driver app nudge.</p></div>
+          <div class="card c-lilac"><span class="tag" style="color:var(--lilac-ink)">Solution 3 · Long bet</span><h3>Recurring commute plan</h3><p>Set a ride once: same time, same route, five days a week, like a calendar entry. Uber locks in a driver, and the predictable demand can justify a steadier price.</p><p><b>Effort:</b> four to six months or more. Scheduling, pricing, driver incentives, new UI.</p></div>
+        </div>
+
+        <div class="gantt" aria-label="Time to build each solution">
+          <div class="axis"><span></span><span>Month 1</span><span>Month 2</span><span>Month 3</span><span>Month 4</span><span>Month 5</span><span>Month 6+</span></div>
+          <div class="row"><div>Cancellation penalty</div><div class="track"><div class="bar" style="left:0;width:10%;background:var(--peach);color:var(--peach-ink)">Weeks</div></div></div>
+          <div class="row"><div>Pre-positioning</div><div class="track"><div class="bar" style="left:8%;width:42%;background:var(--sky);color:var(--sky-ink)">1 to 3 months</div></div></div>
+          <div class="row"><div>Recurring plan</div><div class="track"><div class="bar" style="left:50%;width:50%;background:var(--lilac);color:var(--lilac-ink)">4 to 6+ months</div></div></div>
+        </div>
+
+        <h3 style="font-size:24px;margin-top:30px">How the recurring plan works</h3>
+        <div class="flow">
+          <div class="card c-lilac"><span class="tag" style="color:var(--lilac-ink)">Set it once</span><p>Pick the days, pickup time and route. It sits like a calendar entry.</p></div>
+          <div class="card c-sky"><span class="tag" style="color:var(--sky-ink)">Driver locked in</span><p>A driver is assigned ahead of time, so the morning is no longer a gamble.</p></div>
+          <div class="card c-mint"><span class="tag" style="color:var(--mint-ink)">Steadier price</span><p>Because demand is committed, the price can be more stable. A side benefit, not the main fix.</p></div>
+          <div class="card c-butter"><span class="tag" style="color:var(--butter-ink)">Edit or pause</span><p>Skip a day or pause the plan. Repeated last minute cancels trigger a small fee.</p></div>
+        </div>
+        <p>Idea sources: the pre-positioning model and the pre-booking template came from reading demand patterns. The calendar style plan with a steadier price was the bigger swing. Uber already offers scheduled rides, so the new part is the recurring template and the guaranteed driver.</p>
+      </section>
+
+      <section id="tradeoffs">
+        <span class="step">08 · Trade-offs</span>
+        <h2>What each choice costs</h2>
+        <p>A trade-off is a benefit given up on purpose, decided at the moment of choosing a solution. A risk is something that could go wrong that nobody chose. They look alike, so they are kept apart.</p>
+        <div class="grid g3">
+          <div class="card"><h3>Cancellation penalty</h3><p><b>Gain:</b> riders can trust an accepted ride.</p><p><b>Give up:</b> some driver goodwill and flexibility.</p></div>
+          <div class="card"><h3>Pre-positioning</h3><p><b>Gain:</b> shorter waits in commute zones.</p><p><b>Give up:</b> some supply elsewhere, and engineering time on a model.</p></div>
+          <div class="card"><h3>Recurring plan</h3><p><b>Gain:</b> predictability and stickiness.</p><p><b>Give up:</b> some pricing flexibility, since surge is Uber's usual lever.</p></div>
+        </div>
+        <div class="grid g2">
+          <div class="card c-mint"><h3>Sequence</h3><p>Cheap and fast first, expensive and structural last. Each step earns the right to the next.</p></div>
+          <div class="card c-butter"><h3>Why not only the recurring plan</h3><p>It is the strongest idea but the slowest. Commuters are drifting now, so quick fixes buy time while the long bet is built.</p></div>
+        </div>
+      </section>
+
+      <section id="metrics">
+        <span class="step">09 · Metrics and guardrails</span>
+        <h2>How we know it worked</h2>
+        <div class="card c-lilac" style="margin:16px 0"><p><b>North star for all three:</b> rides per drifting commuter per week, test group versus a control group. A control group keeps rides that merely moved from being mistaken for rides that were won back.</p></div>
+        <div class="table-wrap"><table>
+          <tr><th>Solution</th><th>Success metric</th><th>Target (illustrative)</th><th>Guardrail</th></tr>
+          <tr><td>Cancellation penalty</td><td>Driver-initiated cancellation rate after acceptance, tracked weekly</td><td>20 to 30% relative drop in the first month</td><td>Driver appeal rate on penalties, driver active hours and churn</td></tr>
+          <tr><td>Pre-positioning</td><td>Average estimated wait for commute-hour bookings in targeted zones</td><td>15 to 20% drop in the first one to two months</td><td>Surge accuracy and frequency in non-commute hours staying stable</td></tr>
+          <tr><td>Recurring plan</td><td>Adoption (plans created), repeat use after week two, and fulfillment rate of on-time pickups</td><td>Set from beta results</td><td>Driver supply for non-recurring riders in commute hours, and rider cancellation rate on recurring bookings</td></tr>
+        </table></div>
+        <div class="grid g2">
+          <div class="card c-peach"><h3>Why fulfillment rate matters</h3><p>If Uber promises a guaranteed driver and then misses, that is worse than never offering the feature. Reliability is the whole point.</p></div>
+          <div class="card c-sky"><h3>A two-sided guardrail</h3><p>Riders who set up a plan and then cancel often waste reserved driver supply. A free cancel or two, then a small fee or a prompt to edit or pause the plan, protects drivers.</p></div>
+        </div>
+      </section>
+
+      <section id="risks">
+        <span class="step">10 · Risks</span>
+        <h2>What could go wrong</h2>
+        <p>Every risk is paired with a guardrail metric, which is its early warning. Risks come after success metrics because a guardrail only makes sense next to the thing it protects.</p>
+        <div class="table-wrap"><table>
+          <tr><th>Solution</th><th>Risk</th><th>Early warning</th><th>Mitigation</th></tr>
+          <tr><td>Cancellation penalty</td><td>Drivers are penalized unfairly or feel punished, and leave</td><td>Appeal rate, driver churn, active hours</td><td>Exempt wrong pins, no-shows and safety cases; start gentle</td></tr>
+          <tr><td>Pre-positioning</td><td>The model interferes with real surge signals</td><td>Surge accuracy outside commute hours</td><td>Limit nudges to predictable commute zones and times</td></tr>
+          <tr><td>Recurring plan</td><td>Too many drivers locked in, starving other riders</td><td>Available supply for non-recurring riders</td><td>Cap recurring slots per zone and hour</td></tr>
+          <tr><td>Recurring plan</td><td>Riders book a plan, then cancel repeatedly</td><td>Rider cancellation rate on recurring bookings</td><td>First cancels free, then a fee or a pause prompt</td></tr>
+        </table></div>
+        <p class="callout">A penalty solves one side's problem and can quietly break the other. In a marketplace, every guardrail should watch the side you did not design for.</p>
+      </section>
+
+      <section id="rollout">
+        <span class="step">11 · Rollout</span>
+        <h2>Cheap fixes go wide, risky ones start small</h2>
+        <div class="grid g3">
+          <div class="card c-peach"><span class="tag" style="color:var(--peach-ink)">Phase 1 · Weeks 1 to 3</span><h3>Test the penalty</h3><p>One or two cities with the highest cancellation rates. Half the drivers see the penalty, half do not.</p><p><b>Continue if</b> cancellations drop and driver complaints stay flat. <b>Then</b> roll out nationally.</p></div>
+          <div class="card c-sky"><span class="tag" style="color:var(--sky-ink)">Phase 2 · Months 2 to 4</span><h3>Pilot pre-positioning</h3><p>A handful of high-commute zones in one or two cities, compared with similar zones without it.</p><p><b>Continue if</b> waits fall and surge elsewhere is untouched. <b>Then</b> expand city by city.</p></div>
+          <div class="card c-lilac"><span class="tag" style="color:var(--lilac-ink)">Phase 3 · Months 5 to 6+</span><h3>Invite-only beta</h3><p>A small group of known high-frequency commuters already booking the same route most weekdays.</p><p><b>Continue if</b> fulfillment is high and supply for other riders holds. <b>Then</b> open it up broadly.</p></div>
+        </div>
+        <div class="table-wrap"><table>
+          <tr><th></th><th>Penalty</th><th>Pre-positioning</th><th>Recurring plan</th></tr>
+          <tr><td>Effort</td><td>Low, rules and thresholds</td><td>Medium, model plus driver nudge</td><td>High, multiple systems</td></tr>
+          <tr><td>Time to learn</td><td>2 to 3 weeks</td><td>4 to 8 weeks</td><td>8 to 12 weeks in beta</td></tr>
+          <tr><td>Upside</td><td>Moderate</td><td>High</td><td>Highest</td></tr>
+        </table></div>
+      </section>
+
+      <section id="takeaways">
+        <span class="step">Takeaways</span>
+        <h2>What this case taught</h2>
+        <div class="grid g2">
+          <div class="card c-sky"><h3>Name the product type first</h3><p>A marketplace has two sides. Every idea needs a check against both.</p></div>
+          <div class="card c-peach"><h3>Match the goal to the stage</h3><p>A mature leader should defend its base before chasing new users.</p></div>
+          <div class="card c-mint"><h3>Stack segment lenses</h3><p>Loyalty stage found who is leaving. Use case found why. Together they gave a sharp group to solve for.</p></div>
+          <div class="card c-lilac"><h3>Feasibility changes the answer</h3><p>The biggest pain was not the one Uber could fix. Scoring control separately made that clear.</p></div>
+        </div>
+        <p class="callout">Ship the quick win now, build the model next, and place the long bet only after the earlier steps prove the drivers and riders can both live with it.</p>
+        <div class="next">
+          <a class="btn ghost" href="./#cat-marketplace">← Back to the library</a>
+        </div>
+      </section>
+    </article>
+  </div>
+</main>
+
+<footer><div class="wrap">Smrity · smritybuilds.com</div></footer>
+
+<script>
+/* hero shape art, same language as the rest of the site */
+(function () {
+  const cols = ["#111111", "#4A4A4A", "#BDBDBD"], shapes = ["s-quarter", "s-half", "s-circle", "s-tri", "s-leaf"];
+  const flips = ["none", "rotate(180deg)", "scaleX(-1)", "scaleY(-1)"];
+  let h = "";
+  for (let k = 0; k < 9; k++) {
+    h += `<div class="${shapes[(k * 3 + 2) % 5]}" style="background:${cols[k % 3]};transform:${flips[(k * 7 + 2) % 4]}"><i style="background:${cols[(k + 1) % 3]}"></i></div>`;
+  }
+  document.getElementById("heroArt").innerHTML = h;
+})();
+
+/* highlight the section being read */
+(function () {
+  const links = [...document.querySelectorAll("#toc a")];
+  const map = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
+  if (!("IntersectionObserver" in window)) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        links.forEach((a) => a.classList.remove("on"));
+        const a = map.get(e.target.id);
+        if (a) a.classList.add("on");
+      }
+    });
+  }, { rootMargin: "-30% 0px -60% 0px" });
+  document.querySelectorAll("article section").forEach((s) => io.observe(s));
+})();
+</script>
+</body>
+</html>
