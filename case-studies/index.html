@@ -72,7 +72,6 @@ const CASES = [
     title: "Bringing back the weekday lunch",
     type: "Product strategy",
     question: "Order growth is slowing. Users are still growing, but each one orders less often. As the PM, how would you lift order frequency?",
-    summary: "Orders per user were falling while users kept growing. A strategy to win back lapsing professionals at weekday lunch, with two solutions: one that removes the daily decision, and one that lowers the daily cost.",
     colors: ["#E23744", "#F4727C", "#FBC9CD"],
     href: "zomato/",
     deck: "zomato-lunch-frequency.pdf"
@@ -84,7 +83,6 @@ const CASES = [
     title: "Winning back the daily commuter",
     type: "Product improvement",
     question: "How would you improve Uber?",
-    summary: "Uber is a mature leader, so the case is about retention, not growth. It zooms into riders who are drifting away, finds that waiting and cancellations are what pushes daily commuters out, and sequences three fixes from quick win to long bet.",
     colors: ["#111111", "#4A4A4A", "#BDBDBD"],
     href: "uber/"
   }
@@ -114,7 +112,6 @@ function card(c, i) {
         <span class="q-label">The question</span>
         <p class="q">${c.question}</p>
         <h3>${c.title}</h3>
-        <p>${c.summary}</p>
       </div>
     </a>`;
 }
