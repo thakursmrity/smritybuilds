@@ -236,3 +236,9 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:14px;color
 .cat-head h2{margin:0 0 8px}
 .cat-head p{max-width:none;margin:0}
 @media (min-width:921px){.cat-head p{white-space:nowrap}}
+
+/* library cards: wider, so titles sit on one line where possible */
+.lib{grid-template-columns:repeat(auto-fill,minmax(300px,440px))}
+.case .body h3{font-size:20px;line-height:1.2}
+@media (min-width:921px) and (max-width:1100px){.lib{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:920px){.lib{grid-template-columns:1fr}}
