@@ -29,3 +29,36 @@
 .tag-ref{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--lilac);color:var(--lilac-ink);margin-bottom:8px}
 .reflect{border:1px dashed var(--accent);border-radius:18px;padding:16px 20px;background:var(--tint);margin:18px 0}
 .reflect b{color:var(--accent)}
+
+/* Calm version: white page, colour only as box outlines */
+.theme-flowify{--paper:#fff;--tint:#fff}
+.theme-flowify .top{background:rgba(255,255,255,.9)}
+.theme-flowify .card,.theme-flowify .card:not([class*="c-"]){background:#fff;border:2px solid var(--line)}
+.theme-flowify .c-lilac{border-color:#8B5CF6}
+.theme-flowify .c-mint{border-color:#14A39F}
+.theme-flowify .c-peach{border-color:#F08A5D}
+.theme-flowify .c-sky{border-color:#4F83F0}
+.theme-flowify .c-rose{border-color:#E8588A}
+.theme-flowify .c-butter{border-color:#E0A82E}
+.theme-flowify .tag-ref{background:#fff;border:1.5px solid currentColor}
+.theme-flowify .c-lilac .tag-ref{color:#6D2FE0}
+.theme-flowify .c-mint .tag-ref{color:#0E7C79}
+.theme-flowify .c-peach .tag-ref{color:#C2552A}
+.theme-flowify .c-sky .tag-ref{color:#2F5FD0}
+.theme-flowify .c-rose .tag-ref{color:#C2336A}
+.theme-flowify .c-butter .tag-ref{color:#9A6F0C}
+.theme-flowify .stats .card{border-color:var(--line)}
+.theme-flowify .reflect{background:#fff;border:2px dashed var(--accent)}
+.theme-flowify .shot{box-shadow:none;border:2px solid var(--line)}
+.theme-flowify .gallery .tabs button[aria-selected="true"]{background:#fff;color:var(--accent);border:2px solid var(--accent)}
+.theme-flowify .btn,.theme-flowify .nav a[aria-current="page"],.theme-flowify .eyebrow{background:#fff;color:var(--accent);border:2px solid var(--accent)}
+.theme-flowify .btn.ghost{background:#fff}
+.theme-flowify .toc a{background:#fff !important;color:var(--ink) !important;border:2px solid var(--line) !important}
+.theme-flowify .toc li:nth-child(6n+1) a{border-color:#8B5CF6 !important}
+.theme-flowify .toc li:nth-child(6n+2) a{border-color:#14A39F !important}
+.theme-flowify .toc li:nth-child(6n+3) a{border-color:#F08A5D !important}
+.theme-flowify .toc li:nth-child(6n+4) a{border-color:#4F83F0 !important}
+.theme-flowify .toc li:nth-child(6n+5) a{border-color:#E8588A !important}
+.theme-flowify .toc li:nth-child(6n+6) a{border-color:#E0A82E !important}
+.theme-flowify .toc a.on{background:#fff !important;color:var(--accent) !important;border-color:var(--accent) !important;font-weight:700}
+.theme-flowify .step{display:inline-block;background:none;border:0;padding:0;color:var(--accent);margin-bottom:10px}
