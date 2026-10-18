@@ -224,12 +224,13 @@ section.page[hidden]{display:none}
 
 /* ===== builds ===== */
 .builds{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:40px}
-.build{border-radius:24px;padding:26px 26px 64px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;min-height:250px}
+.build{border-radius:24px;padding:24px 26px 26px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;min-height:0}
 .build.w3{grid-column:span 3}
 .build.w2{grid-column:span 2}
 .build.w4{grid-column:span 4}
 .build.w6{grid-column:span 6}
-.build .status{align-self:flex-start;font-size:13px;font-weight:600;background:rgba(255,255,255,.8);border-radius:999px;padding:4px 11px}
+.build .status{position:absolute;top:20px;right:20px;z-index:1;font-size:13px;font-weight:600;background:rgba(255,255,255,.8);border-radius:999px;padding:4px 11px}
+.build h3{padding-right:130px;margin:0}
 .build p{font-size:15.5px;margin:0}
 .build.w6 p{max-width:none}
 .build a.more{margin-top:auto;font-weight:600;font-size:15px;text-underline-offset:4px}
@@ -856,7 +857,7 @@ $("#builds-grid").innerHTML = SITE.builds.map((b) => {
   return `<article class="build ${b.size}" style="background:${C(b.color)};color:${INK(b.color)}">
     <span class="status">${b.status}</span><h3 style="color:var(--ink)">${b.name}</h3><p>${b.text}</p>
     ${b.link ? `<a class="more" href="${b.link}" target="_blank" rel="noopener">${b.linkText}</a>` : ""}
-    ${b.page ? `<a class="more card-link" href="${b.page}">${b.pageText || "Open the library →"}</a>` : ""}
+    ${b.page ? `<a class="card-link" href="${b.page}" aria-label="${b.name}"></a>` : ""}
     <svg class="deco" viewBox="0 0 100 100" aria-hidden="true"><path d="M0 100 A100 100 0 0 1 100 0 L100 100Z" fill="${C(other)}"/><circle cx="70" cy="70" r="14" fill="var(--paper)"/></svg>
   </article>`;
 }).join("");
