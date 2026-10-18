@@ -30,8 +30,8 @@
     <div>
       <a class="crumb" href="../">← Case study library</a><br>
       <span class="eyebrow e-rose">Product strategy · Zomato</span>
-      <h1>Bringing back the weekday lunch</h1>
-      <div class="question"><span>The question</span><p>Order growth is slowing. Users are still growing, but each one orders less often. As the PM, how would you lift order frequency?</p></div>
+      <h1 class="q-title" style="--qs:min(3.25vw,44px)">How would you lift Zomato's order frequency?</h1>
+      <nav class="chapters" id="chapters" aria-label="Chapters"></nav>
     </div>
   </div>
 
@@ -290,23 +290,6 @@
 </main>
 
 
-<script>
-/* highlight the section being read */
-(function () {
-  const links = [...document.querySelectorAll("#toc a")];
-  const map = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
-  if (!("IntersectionObserver" in window)) return;
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        links.forEach((a) => a.classList.remove("on"));
-        const a = map.get(e.target.id);
-        if (a) a.classList.add("on");
-      }
-    });
-  }, { rootMargin: "-30% 0px -60% 0px" });
-  document.querySelectorAll("article section").forEach((s) => io.observe(s));
-})();
-</script>
+<script src="../case.js"></script>
 </body>
 </html>

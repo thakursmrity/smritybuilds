@@ -248,3 +248,53 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:14px;color
 .hero.solo h1{max-width:none}
 .hero.solo .question{max-width:none}
 .hero.solo .question p{font-size:clamp(17px,1.9vw,21px)}
+
+/* ===== case page layout: question headline, chapter tiles, sticky chapter bar, section panels ===== */
+.theme-zomato{--tint:#FFF1F2}
+.theme-uber{--tint:#F1F1F1}
+.q-title{font-size:var(--qs,40px);line-height:1.1;letter-spacing:-0.035em;white-space:nowrap}
+.hero.solo{padding:40px 0 20px}
+.chapters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:28px}
+.chapters a{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:84px;padding:12px 14px;border-radius:18px;text-decoration:none;font-weight:700;font-size:15px;line-height:1.2;color:var(--ink);transition:transform .3s cubic-bezier(.2,.9,.3,1),box-shadow .3s}
+.chapters a i{position:absolute;top:10px;right:14px;font-style:normal;opacity:.45;transition:transform .3s,opacity .3s}
+.chapters a:hover{transform:translateY(-5px) rotate(-1.2deg);box-shadow:0 14px 28px rgba(0,0,0,.10)}
+.chapters a:hover i{transform:translateY(3px);opacity:1}
+
+.layout{display:block;border-top:0;padding-top:14px}
+.toc{position:sticky;top:var(--hh,66px);z-index:15;margin:0 0 22px;padding:10px 0 12px;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.toc b{display:none}
+.toc ol{flex-direction:row;flex-wrap:nowrap;gap:6px;overflow-x:auto;scrollbar-width:none}
+.toc ol::-webkit-scrollbar{display:none}
+.toc li{flex:none}
+.toc a{border:1px solid var(--line);border-radius:999px;padding:6px 14px;background:#fff;white-space:nowrap}
+.toc a.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.toc::after{content:"";position:absolute;left:0;bottom:-1px;height:3px;border-radius:3px;width:calc(var(--p,0) * 100%);background:var(--accent)}
+
+.theme-zomato article section,.theme-uber article section{background:#fff;border:1px solid var(--line);border-radius:30px;padding:34px 38px 30px;margin-bottom:20px;scroll-margin-top:calc(var(--hh,66px) + 70px)}
+.theme-zomato article section:nth-child(even),.theme-uber article section:nth-child(even){background:var(--tint)}
+.theme-zomato .step,.theme-uber .step{display:inline-block;background:var(--accent);color:#fff;padding:5px 13px;border-radius:999px;margin-bottom:14px;letter-spacing:.07em}
+
+/* peek tiles */
+.peek{position:relative;overflow:hidden;cursor:pointer;min-height:190px;display:flex;flex-direction:column;justify-content:center;transition:transform .3s cubic-bezier(.2,.9,.3,1)}
+.peek:hover{transform:translateY(-3px)}
+.peek::after{content:"+";position:absolute;top:10px;right:16px;font-size:22px;font-weight:800;opacity:.45;transition:opacity .2s}
+.peek h3{font-size:22px;line-height:1.15}
+.peek .tag{font-size:13.5px}
+.peek .peek-back{position:absolute;inset:0;background:var(--accent);color:#fff;padding:18px 22px;display:flex;flex-direction:column;justify-content:center;gap:6px;transform:translateY(102%);transition:transform .38s cubic-bezier(.2,.9,.3,1)}
+.peek .peek-back p,.peek .peek-back li{color:#fff;font-size:15.5px;margin:0}
+.peek.open .peek-back{transform:none}
+.peek.open::after{opacity:0}
+@media (hover:hover){.peek:hover .peek-back{transform:none}.peek:hover::after{opacity:0}}
+.peek:focus-visible .peek-back{transform:none}
+@media print{.peek{min-height:0}.peek .peek-back{position:static;transform:none;background:none;color:inherit;padding:0}.peek .peek-back p{color:inherit}.peek::after{display:none}}
+
+@media (max-width:920px){
+  .q-title{white-space:normal;font-size:clamp(26px,7.2vw,40px)}
+  .chapters{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .theme-zomato article section,.theme-uber article section{padding:24px 20px 22px;border-radius:24px}
+}
+@media (min-width:921px) and (max-width:1100px){.chapters{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.theme-zomato th{background:#FBEFF0}
+.theme-uber th{background:#F2F2F2}
+.peek .peek-back .tag{color:rgba(255,255,255,.75) !important;margin:0}
+.peek .peek-back h3{color:#fff;font-size:17px;margin:0 0 2px}

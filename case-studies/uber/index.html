@@ -30,8 +30,8 @@
     <div>
       <a class="crumb" href="../../#cat-marketplace">← Case study library</a><br>
       <span class="eyebrow">Product improvement · Uber</span>
-      <h1>Winning back the daily commuter</h1>
-      <div class="question"><span>The question</span><p>How would you improve Uber?</p></div>
+      <h1 class="q-title" style="--qs:min(5.2vw,64px)">How would you improve Uber?</h1>
+      <nav class="chapters" id="chapters" aria-label="Chapters"></nav>
     </div>
   </div>
 
@@ -259,23 +259,6 @@
 </main>
 
 
-<script>
-/* highlight the section being read */
-(function () {
-  const links = [...document.querySelectorAll("#toc a")];
-  const map = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
-  if (!("IntersectionObserver" in window)) return;
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        links.forEach((a) => a.classList.remove("on"));
-        const a = map.get(e.target.id);
-        if (a) a.classList.add("on");
-      }
-    });
-  }, { rootMargin: "-30% 0px -60% 0px" });
-  document.querySelectorAll("article section").forEach((s) => io.observe(s));
-})();
-</script>
+<script src="../case.js"></script>
 </body>
 </html>
