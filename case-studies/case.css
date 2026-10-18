@@ -223,3 +223,9 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:14px;color
 .theme-zomato .formula,.theme-uber .formula{border-color:var(--accent)}
 .theme-zomato .meter i.on,.theme-uber .meter i.on{background:var(--accent)}
 .theme-zomato,.theme-uber{color:var(--ink)}
+.theme-zomato{--paper:#FFF8F8}
+.theme-uber{--paper:#F9F9F9}
+.theme-zomato .top{background:rgba(255,248,248,.88)}
+.theme-uber .top{background:rgba(249,249,249,.88)}
+.theme-zomato .nav a[aria-current="page"],.theme-uber .nav a[aria-current="page"]{background:var(--accent);color:#fff}
+.theme-zomato .card:not([class*="c-"]),.theme-uber .card:not([class*="c-"]){background:#fff}
