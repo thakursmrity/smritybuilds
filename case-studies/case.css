@@ -193,3 +193,33 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:14px;color
 }
 .cat-jump .off{font-size:14.5px;padding:7px 14px;border-radius:999px;border:1px dashed var(--line);color:var(--ink-soft);opacity:.65;cursor:default}
 .cat-jump .off b{font-weight:700;margin-left:4px}
+
+/* ===== brand themes =====
+   Each case page puts a theme class on <main> (theme-zomato, theme-uber).
+   A theme re-points the pastel tokens and --accent to that brand, so every
+   card, table, tag and chart on the page follows the brand.
+   For a new case: add a .theme-<brand> block below and use it on its page. */
+.theme-zomato{
+  --ink:#1C1C1C;--ink-soft:#5B5557;--line:#F1DEE0;--accent:#E23744;
+  --lilac:#FAD0D4;--mint:#FDE9EA;--peach:#F6BFC5;--butter:#F5EAE6;--sky:#EEE3E3;--rose:#FFD9DC;
+  --lilac-ink:#A31F2D;--mint-ink:#7A2A2F;--peach-ink:#8E1B27;--sky-ink:#5A4A4C;--rose-ink:#B71C2C;--butter-ink:#6B4F45;
+}
+.theme-uber{
+  --ink:#111111;--ink-soft:#5C5C5C;--line:#E4E4E4;--accent:#111111;
+  --lilac:#E6E6E6;--mint:#F0F0F0;--peach:#D6D6D6;--butter:#F5F5F5;--sky:#DEDEDE;--rose:#EBEBEB;
+  --lilac-ink:#111111;--mint-ink:#2E2E2E;--peach-ink:#111111;--sky-ink:#333333;--rose-ink:#111111;--butter-ink:#444444;
+}
+.theme-zomato tr.win td{background:#FDE9EA}
+.theme-uber tr.win td{background:#EDEDED}
+.theme-zomato .step,.theme-uber .step{color:var(--accent)}
+.theme-zomato .callout,.theme-uber .callout{border-left-color:var(--accent)}
+.theme-zomato .question,.theme-uber .question{border-left-color:var(--accent)}
+.theme-zomato .question span,.theme-uber .question span{color:var(--accent)}
+.theme-zomato .flow .card::before,.theme-uber .flow .card::before{background:var(--accent)}
+.theme-zomato .toc a.on,.theme-uber .toc a.on{border-left-color:var(--accent)}
+.theme-zomato .btn,.theme-uber .btn{background:var(--accent);border-color:var(--accent)}
+.theme-zomato .btn.ghost,.theme-uber .btn.ghost{background:transparent;color:var(--accent)}
+.theme-zomato .eyebrow,.theme-uber .eyebrow{background:var(--accent);color:#fff}
+.theme-zomato .formula,.theme-uber .formula{border-color:var(--accent)}
+.theme-zomato .meter i.on,.theme-uber .meter i.on{background:var(--accent)}
+.theme-zomato,.theme-uber{color:var(--ink)}

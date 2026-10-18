@@ -25,14 +25,13 @@
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap theme-zomato">
   <div class="hero">
     <div>
       <a class="crumb" href="../">← Case study library</a><br>
       <span class="eyebrow e-rose">Product strategy · Zomato</span>
       <h1>Bringing back the weekday lunch</h1>
       <div class="question"><span>The question</span><p>Order growth is slowing. Users are still growing, but each one orders less often. As the PM, how would you lift order frequency?</p></div>
-      <p style="margin-top:18px"><a class="btn ghost" href="../zomato-lunch-frequency.pdf" download>Download the deck (PDF)</a></p>
     </div>
     <div class="art" id="heroArt" aria-hidden="true"></div>
   </div>
@@ -284,7 +283,7 @@
         <p class="callout">Run the cheap experiment first, learn what brings people back, then place the bigger bet.</p>
         <div class="next">
           <a class="btn ghost" href="../">← Back to the library</a>
-          <a class="btn" href="../zomato-lunch-frequency.pdf" download>Download the deck (PDF)</a>
+          <a class="btn" href="../zomato-lunch-frequency.pdf" target="_blank" rel="noopener">Download the deck (PDF)</a>
         </div>
       </section>
     </article>
@@ -295,11 +294,11 @@
 <script>
 /* hero shape art, same language as the rest of the site */
 (function () {
-  const cols = ["rose", "peach", "butter"], shapes = ["s-quarter", "s-half", "s-circle", "s-tri", "s-leaf"];
+  const cols = ["#E23744", "#F4727C", "#FBC9CD"], shapes = ["s-quarter", "s-half", "s-circle", "s-tri", "s-leaf"];
   const flips = ["none", "rotate(180deg)", "scaleX(-1)", "scaleY(-1)"];
   let h = "";
   for (let k = 0; k < 9; k++) {
-    h += `<div class="${shapes[(k * 3 + 1) % 5]}" style="background:var(--${cols[k % 3]});transform:${flips[(k * 7 + 1) % 4]}"><i style="background:var(--${cols[(k + 1) % 3]})"></i></div>`;
+    h += `<div class="${shapes[(k * 3 + 1) % 5]}" style="background:${cols[k % 3]};transform:${flips[(k * 7 + 1) % 4]}"><i style="background:${cols[(k + 1) % 3]}"></i></div>`;
   }
   document.getElementById("heroArt").innerHTML = h;
 })();

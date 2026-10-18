@@ -43,7 +43,8 @@
 /* ============================================================
    CATEGORIES: the kind of product. CASES: add an object, set its
    `category` to one of the ids below, and it appears as a card in
-   that group. `qtype` is the interview question type, shown as a tag.
+   that group. Give each case its own folder (uber/, zomato/) and a brand
+   theme in case.css (.theme-<brand>) used on that page's <main>.
    Colors can be a token name from case.css or a hex value.
    ============================================================ */
 const CATEGORIES = [
@@ -70,10 +71,8 @@ const CASES = [
     brand: "Zomato",
     title: "Bringing back the weekday lunch",
     type: "Product strategy",
-    qtype: "Grow a metric",
     question: "Order growth is slowing. Users are still growing, but each one orders less often. As the PM, how would you lift order frequency?",
     summary: "Orders per user were falling while users kept growing. A strategy to win back lapsing professionals at weekday lunch, with two solutions: one that removes the daily decision, and one that lowers the daily cost.",
-    tags: ["Food delivery", "Order frequency", "Consumer"],
     colors: ["#E23744", "#F4727C", "#FBC9CD"],
     href: "zomato/",
     deck: "zomato-lunch-frequency.pdf"
@@ -84,10 +83,8 @@ const CASES = [
     dark: true,
     title: "Winning back the daily commuter",
     type: "Product improvement",
-    qtype: "Improve a product",
     question: "How would you improve Uber?",
     summary: "Uber is a mature leader, so the case is about retention, not growth. It zooms into riders who are drifting away, finds that waiting and cancellations are what pushes daily commuters out, and sequences three fixes from quick win to long bet.",
-    tags: ["Ride hailing", "Retention", "Consumer"],
     colors: ["#111111", "#4A4A4A", "#BDBDBD"],
     href: "uber/"
   }
@@ -118,8 +115,6 @@ function card(c, i) {
         <p class="q">${c.question}</p>
         <h3>${c.title}</h3>
         <p>${c.summary}</p>
-        <div class="meta"><span class="qt">${c.qtype}</span>${c.tags.map((t) => `<span>${t}</span>`).join("")}</div>
-        <span class="go">Read the strategy →</span>
       </div>
     </a>`;
 }
