@@ -298,3 +298,19 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:14px;color
 .theme-uber th{background:#F2F2F2}
 .peek .peek-back .tag{color:rgba(255,255,255,.75) !important;margin:0}
 .peek .peek-back h3{color:#fff;font-size:17px;margin:0 0 2px}
+
+/* chapter bar cells are tiles that light up as the page scrolls */
+.toc ol{gap:8px}
+.toc a{border:0;border-radius:14px;padding:10px 16px;font-weight:600;color:var(--ink);transition:background .25s,color .25s,transform .25s}
+.toc li:nth-child(6n+1) a{background:var(--lilac)}
+.toc li:nth-child(6n+2) a{background:var(--mint)}
+.toc li:nth-child(6n+3) a{background:var(--peach)}
+.toc li:nth-child(6n+4) a{background:var(--sky)}
+.toc li:nth-child(6n+5) a{background:var(--rose)}
+.toc li:nth-child(6n) a{background:var(--butter)}
+.toc a:hover{transform:translateY(-2px)}
+.toc a.on{background:var(--accent) !important;color:#fff;transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.14)}
+
+/* use the full width of the panel for text */
+.theme-zomato article section > p,.theme-uber article section > p{max-width:none}
+.theme-zomato .callout,.theme-uber .callout{max-width:none}

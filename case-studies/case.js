@@ -1,5 +1,5 @@
 /* Behavior shared by the case study pages:
-   chapter tiles in the hero, a sticky chapter bar with reading progress,
+   a sticky chapter bar with reading progress,
    and "peek" tiles that reveal their detail on hover or tap, then close again. */
 (function () {
   const $$ = (s, r) => [...(r || document).querySelectorAll(s)];
@@ -9,16 +9,8 @@
   const setHH = () => document.documentElement.style.setProperty("--hh", (header ? header.offsetHeight : 66) + "px");
   setHH(); addEventListener("resize", setHH);
 
-  /* chapter tiles in the hero, built from the chapter bar links */
-  const links = $$("#toc a");
-  const box = document.getElementById("chapters");
-  if (box) {
-    const tones = ["c-lilac", "c-mint", "c-peach", "c-sky", "c-rose", "c-butter"];
-    box.innerHTML = links.map((a, i) =>
-      `<a class="${tones[i % tones.length]}" href="${a.getAttribute("href")}"><i aria-hidden="true">↓</i>${a.textContent}</a>`).join("");
-  }
-
   /* reading progress and active chapter */
+  const links = $$("#toc a");
   const toc = document.querySelector(".toc"), ol = document.getElementById("toc");
   const map = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
   if ("IntersectionObserver" in window) {
