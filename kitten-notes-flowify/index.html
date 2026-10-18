@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kitten Notes and Flowify · smritybuilds</title>
+<meta name="description" content="The story of Kitten Notes and Flowify, my first app: habits you build with friends, what I built, what happened and what it taught me.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><clipPath id='r'><rect width='64' height='64' rx='5'/></clipPath><g clip-path='url(%23r)'><rect width='64' height='64' fill='%236D2FE0'/><path d='M50 0 A50 50 0 0 0 0 50 L0 64 L64 64 L64 0 Z' fill='%23D6C8F7'/><circle cx='43' cy='43' r='12' fill='%23FFFFFF'/></g></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../case-studies/case.css">
+<link rel="stylesheet" href="page.css">
+</head>
+<body class="theme-flowify">
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="../#home" aria-label="Smrity builds, home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><clipPath id="mk"><rect width="64" height="64" rx="5"/></clipPath><g clip-path="url(#mk)"><rect width="64" height="64" fill="#6D2FE0"/><path d="M50 0 A50 50 0 0 0 0 50 L0 64 L64 64 L64 0 Z" fill="#D6C8F7"/><circle cx="43" cy="43" r="12" fill="#FFFFFF"/></g></svg>
+      <span>smritybuilds</span>
+    </a>
+    <nav class="nav" aria-label="Pages">
+      <a href="../#home">Home</a><a href="../#work">Work</a><a href="../#builds" aria-current="page">Builds</a><a href="../#becoming">Becoming</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero solo">
+    <div>
+      <a class="crumb" href="../#builds">← Builds</a><br>
+      <span class="eyebrow">Closed, with lessons · My first app</span>
+      <h1 class="q-title" style="--qs:min(2.6vw,34px)">From Kitten Notes to Flowify: what I built and what it taught me</h1>
+    </div>
+  </div>
+
+  <div class="layout">
+    <nav class="toc" aria-label="On this page">
+      <b>On this page</b>
+      <ol id="toc">
+        <li><a href="#path">The path</a></li>
+        <li><a href="#pains">The problem</a></li>
+        <li><a href="#modules">The modules</a></li>
+        <li><a href="#together">Habits with friends</a></li>
+        <li><a href="#thread">The thread</a></li>
+        <li><a href="#design">Design choices</a></li>
+        <li><a href="#built">How it was built</a></li>
+        <li><a href="#outcome">What happened</a></li>
+        <li><a href="#takeaways">Lessons</a></li>
+      </ol>
+    </nav>
+
+    <article>
+      <section id="path">
+        <span class="step">01 · The path</span>
+        <h2>Journals for learners, then one app for the whole day</h2>
+        <p>Kitten Notes started as journals for learners. It grew a digital journaling space, and that digital side became Flowify, my first app. I got a working prototype out in under three weeks and kept it live for nine months.</p>
+        <div class="path">
+          <div class="card c-lilac"><span class="tag-ref">Step 1</span><h3>Kitten Notes</h3><p>Journals made for learners. The product people could hold.</p></div>
+          <div class="card c-mint"><span class="tag-ref">Step 2</span><h3>Digital journaling space</h3><p>The same habit of writing things down, moved online.</p></div>
+          <div class="card c-rose"><span class="tag-ref">Step 3</span><h3>Flowify</h3><p>Journal, habits, tasks, goals and messages in one place, built to be done with friends.</p></div>
+        </div>
+        <div class="stats">
+          <div class="card"><div class="big">9</div><p>months live</p></div>
+          <div class="card"><div class="big">~300</div><p>signups</p></div>
+          <div class="card"><div class="big">2 to 3</div><p>weeks to a prototype</p></div>
+          <div class="card"><div class="big">1st</div><p>app I shipped</p></div>
+        </div>
+      </section>
+
+      <section id="pains">
+        <span class="step">02 · The problem</span>
+        <h2>Self-improvement is scattered, and habits fade alone</h2>
+        <div class="grid g3">
+          <div class="card c-lilac"><span class="tag-ref">Pain</span><h3>Ten apps for one routine</h3><p>A journal here, a habit tracker there, a task list somewhere else. Nothing connected, so nothing stuck.</p></div>
+          <div class="card c-peach"><span class="tag-ref">Pain</span><h3>Habits fade when private</h3><p>A streak nobody sees is easy to drop. There is no one to notice a missed day.</p></div>
+          <div class="card c-sky"><span class="tag-ref">Pain</span><h3>Social apps are too loud</h3><p>Public feeds turn personal goals into performance. I wanted accountability without an audience.</p></div>
+        </div>
+        <p class="callout">The bet: put the whole day in one place, and let a few people you trust watch or work on a habit with you.</p>
+      </section>
+
+      <section id="modules" class="gallery">
+        <span class="step">03 · The modules</span>
+        <h2>One place for the day</h2>
+        <p>Flowify covered the daily loop. Pick a module to see it.</p>
+        <div class="tabs" role="tablist" aria-label="Flowify modules"></div>
+        <figure class="shot"><img id="gimg" alt="" loading="lazy"><figcaption>Real Flowify interface, shown with sample data (the names are made up).</figcaption></figure>
+        <p class="note" id="gnote"></p>
+      </section>
+
+      <section id="together">
+        <span class="step">04 · Habits with friends</span>
+        <h2>Two friends, one habit, side by side</h2>
+        <p>Habits had three views: My habits, Together and Supporting. The difference is who does the work.</p>
+        <div class="split">
+          <div class="card c-mint"><span class="tag-ref">Together</span><h3>You both do it</h3><p>Two streaks side by side. You nudge each other, compare progress and keep each other honest. It suits a bit of friendly competition.</p></div>
+          <div class="card c-sky"><span class="tag-ref">Supporting</span><h3>One does it, one cheers</h3><p>A friend works on a habit and you watch and support, without having to run one yourself.</p></div>
+        </div>
+        <figure class="shot"><img src="img/together-zoom.webp" alt="The Together tab in Flowify explaining that both people track the habit themselves" loading="lazy"><figcaption>The Together tab explains the idea in the product itself. Sample data.</figcaption></figure>
+        <figure class="shot"><img src="img/together.webp" alt="Two friends comparing the same habit, with a day-count lead and a catch-up nudge" loading="lazy"><figcaption>Comparing the same habit: a streak lead and a nudge to catch up. Sample data.</figcaption></figure>
+        <p>Pairing is invite-first. You choose who joins, so every comparison is between people who agreed to it.</p>
+      </section>
+
+      <section id="thread">
+        <span class="step">05 · The thread</span>
+        <h2>A private conversation next to the habit</h2>
+        <p>Messages lived inside the app, so a nudge and a reply stayed next to the streak they were about. There were two kinds: Current, a one-to-one chat, and Sync, a small group. A Flow ID circle held the people you chose to connect with. There was no public feed.</p>
+        <figure class="shot"><img src="img/thread.webp" alt="The Flowify messages screen" loading="lazy"><figcaption>Messages. Sample data.</figcaption></figure>
+      </section>
+
+      <section id="design">
+        <span class="step">06 · Design choices</span>
+        <h2>Small decisions that shaped it</h2>
+        <div class="grid g3">
+          <div class="card c-lilac"><h3>A fixed mood vocabulary</h3><p>The journal used a small set of moods rather than free tags, so entries stay quick and comparable over time.</p></div>
+          <div class="card c-mint"><h3>Invite-first pairing</h3><p>No discovery, no strangers. You bring people you already know.</p></div>
+          <div class="card c-peach"><h3>One place, not ten</h3><p>Journal, habits, tasks and goals share one app so the day reads as a single story.</p></div>
+        </div>
+      </section>
+
+      <section id="built">
+        <span class="step">07 · How it was built</span>
+        <h2>A real app, scoped as an MVP</h2>
+        <p>Flowify is a React and Vite app on Supabase, with row level security so people only see what they should, and realtime updates for shared habits and messages. It also had themes and nudges. I scoped it as an MVP: the loop had to work end to end, and gaps were acceptable.</p>
+      </section>
+
+      <section id="outcome">
+        <span class="step">08 · What happened</span>
+        <h2>Organic users stayed, scaling needed money</h2>
+        <p>Over nine months Flowify gathered around 300 signups. Daily active users moved up and down, but the people who found it organically liked it and kept coming back. Growing past that meant paying for acquisition, and I did not have that budget. I closed it.</p>
+      </section>
+
+      <section id="takeaways">
+        <span class="step">09 · Lessons</span>
+        <h2>Distribution is half the product</h2>
+        <div class="grid g3">
+          <div class="card c-rose"><h3>Plan distribution early</h3><p>Liking the product is not the same as finding it. Acquisition needs a plan and a budget from the start.</p></div>
+          <div class="card c-sky"><h3>Social needs two people</h3><p>A friends feature works only after the first friend arrives, so the invite is part of the product.</p></div>
+          <div class="card c-butter"><h3>Ship small, learn fast</h3><p>A prototype in under three weeks gave real feedback far sooner than planning would have.</p></div>
+        </div>
+        <div class="reflect"><b>What I would track next time.</b> Pairs formed per new user and whether paired users stay longer than solo ones. These are my reflections in hindsight, not numbers I measured.</div>
+        <p><a class="btn ghost" href="../#builds">← Back to builds</a></p>
+      </section>
+    </article>
+  </div>
+</main>
+
+<script src="../case-studies/case.js"></script>
+<script>
+(function(){
+  var M=[
+    ["Today","today","Your day at a glance: habits due, tasks and focus in one view."],
+    ["Focus","focus","A focus timer so deep work sits inside the same app."],
+    ["Habits","habits","Habit tracking on a real calendar, with My habits, Together and Supporting."],
+    ["Together","together","The same habit, two people, streaks side by side."],
+    ["Supporting","supporting","Cheer on a friend's habit without running your own."],
+    ["Journal","journal","Daily journaling with a small fixed set of moods."],
+    ["Tasks","tasks","A board that sorts tasks by how much they matter."],
+    ["Goals","goals","Longer goals that the daily habits point toward."],
+    ["Messages","thread","Private chats next to the habits they are about."]
+  ];
+  var tabs=document.querySelector(".gallery .tabs"),img=document.getElementById("gimg"),note=document.getElementById("gnote");
+  function pick(i){
+    img.src="img/"+M[i][1]+".webp";img.alt="Flowify "+M[i][0]+" screen";note.textContent=M[i][2];
+    tabs.querySelectorAll("button").forEach(function(b,j){b.setAttribute("aria-selected",j===i?"true":"false")});
+  }
+  M.forEach(function(m,i){
+    var b=document.createElement("button");b.type="button";b.setAttribute("role","tab");b.textContent=m[0];
+    b.addEventListener("click",function(){pick(i)});tabs.appendChild(b);
+  });
+  pick(0);
+})();
+</script>
+</body>
+</html>

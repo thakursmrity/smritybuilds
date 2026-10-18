@@ -231,6 +231,7 @@ section.page[hidden]{display:none}
 .build.w6{grid-column:span 6}
 .build .status{align-self:flex-start;font-size:13px;font-weight:600;background:rgba(255,255,255,.8);border-radius:999px;padding:4px 11px}
 .build p{font-size:15.5px;margin:0}
+.build.w6 p{max-width:none}
 .build a.more{margin-top:auto;font-weight:600;font-size:15px;text-underline-offset:4px}
 /* whole card opens its page (case study library) */
 .build .card-link::after{content:"";position:absolute;inset:0;z-index:2;border-radius:inherit}
@@ -537,7 +538,7 @@ const SITE = {
 
   builds: [
     { name: "Sequor", status: "Building", color: "lilac", size: "w6", text: "An AI sales OS for small companies, starting with prospecting and outreach and growing into pipeline, enablement and post-sales. My hands-on way of learning revenue tech from the inside.", link: "https://sequorai.com", linkText: "Visit sequorai.com" },
-    { name: "Kitten Notes and Flowify", status: "Closed, with lessons", color: "rose", size: "w3", text: "Journals for learners became a digital journaling space, then Flowify, my first app. Organic users loved it; scaling needed acquisition money I didn't have. I learned distribution is half the product." },
+    { name: "Kitten Notes and Flowify", status: "Closed, with lessons", color: "rose", size: "w3", page: "kitten-notes-flowify/", pageText: "Read the story →", text: "Journals for learners became a digital journaling space, then Flowify, my first app. Organic users loved it; scaling needed acquisition money I didn't have. I learned distribution is half the product." },
     { name: "The Product Future", status: "Ongoing", color: "sky", size: "w3", text: "A short-form Instagram series explaining how great products work, narrative first and backed by data." },
     { name: "Revenue tech landscape", status: "Research", color: "butter", size: "w3", text: "A comparison of Apollo, AiSDR, Reply.io, Clay, Instantly and Artisan, and competitive intelligence on Clay, ColdIQ and SimpliAI: what each does better, and worse." },
     { name: "Case study library", status: "Ongoing", color: "lilac", size: "w3", text: "Every project documented with one template, from context and discovery to edge cases and post-launch learnings, sorted into AI and ML.", page: "case-studies/" }
@@ -855,7 +856,7 @@ $("#builds-grid").innerHTML = SITE.builds.map((b) => {
   return `<article class="build ${b.size}" style="background:${C(b.color)};color:${INK(b.color)}">
     <span class="status">${b.status}</span><h3 style="color:var(--ink)">${b.name}</h3><p>${b.text}</p>
     ${b.link ? `<a class="more" href="${b.link}" target="_blank" rel="noopener">${b.linkText}</a>` : ""}
-    ${b.page ? `<a class="more card-link" href="${b.page}">Open the library →</a>` : ""}
+    ${b.page ? `<a class="more card-link" href="${b.page}">${b.pageText || "Open the library →"}</a>` : ""}
     <svg class="deco" viewBox="0 0 100 100" aria-hidden="true"><path d="M0 100 A100 100 0 0 1 100 0 L100 100Z" fill="${C(other)}"/><circle cx="70" cy="70" r="14" fill="var(--paper)"/></svg>
   </article>`;
 }).join("");
