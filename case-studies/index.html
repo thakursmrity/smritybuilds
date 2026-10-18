@@ -71,7 +71,6 @@ const CASES = [
     brand: "Zomato",
     title: "Bringing back the weekday lunch",
     type: "Product strategy",
-    question: "Order growth is slowing. Users are still growing, but each one orders less often. As the PM, how would you lift order frequency?",
     colors: ["#E23744", "#F4727C", "#FBC9CD"],
     href: "zomato/",
     deck: "zomato-lunch-frequency.pdf"
@@ -82,7 +81,6 @@ const CASES = [
     dark: true,
     title: "Winning back the daily commuter",
     type: "Product improvement",
-    question: "How would you improve Uber?",
     colors: ["#111111", "#4A4A4A", "#BDBDBD"],
     href: "uber/"
   }
@@ -109,8 +107,6 @@ function card(c, i) {
         <span class="brand${c.dark ? " dark" : ""}">${c.brand}</span>
       </div>
       <div class="body">
-        <span class="q-label">The question</span>
-        <p class="q">${c.question}</p>
         <h3>${c.title}</h3>
       </div>
     </a>`;
@@ -131,11 +127,9 @@ document.getElementById("cats").innerHTML = CATEGORIES.map((g, gi) => {
   return `
     <section class="cat" id="cat-${g.id}">
       <div class="cat-head">
-        <div>
-          <span class="eyebrow e-${g.color}">${String(gi + 1).padStart(2, "0")} · ${list.length} ${list.length === 1 ? "case" : "cases"}</span>
-          <h2>${g.name}</h2>
-        </div>
-        <div><p>${g.blurb}</p></div>
+        <span class="eyebrow e-${g.color}">${String(gi + 1).padStart(2, "0")} · ${list.length} ${list.length === 1 ? "case" : "cases"}</span>
+        <h2>${g.name}</h2>
+        <p>${g.blurb}</p>
       </div>
       <div class="lib">${cards}</div>
     </section>`;

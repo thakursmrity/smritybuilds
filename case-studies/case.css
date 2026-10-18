@@ -229,3 +229,10 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:14px;color
 .theme-uber .top{background:rgba(249,249,249,.88)}
 .theme-zomato .nav a[aria-current="page"],.theme-uber .nav a[aria-current="page"]{background:var(--accent);color:#fff}
 .theme-zomato .card:not([class*="c-"]),.theme-uber .card:not([class*="c-"]){background:#fff}
+
+/* category header: name, then one line describing the product type */
+.cat-head{display:block}
+.cat-head .eyebrow{margin-bottom:10px}
+.cat-head h2{margin:0 0 8px}
+.cat-head p{max-width:none;margin:0}
+@media (min-width:921px){.cat-head p{white-space:nowrap}}
