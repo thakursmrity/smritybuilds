@@ -128,7 +128,9 @@ function card(c, i) {
 
 document.getElementById("catJump").innerHTML = CATEGORIES.map((g) => {
   const n = CASES.filter((c) => c.category === g.id).length;
-  return `<a href="#cat-${g.id}">${g.name}<b>${n}</b></a>`;
+  return n
+    ? `<a href="#cat-${g.id}">${g.name}<b>${n}</b></a>`
+    : `<span class="off" aria-disabled="true">${g.name}<b>${n}</b></span>`;
 }).join("");
 
 document.getElementById("cats").innerHTML = CATEGORIES.map((g, gi) => {

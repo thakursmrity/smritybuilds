@@ -191,3 +191,5 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:14px;color
   .gantt .axis,.gantt .row{grid-template-columns:90px minmax(0,1fr)}
   .gantt .bar{font-size:11px;padding:0 6px}
 }
+.cat-jump .off{font-size:14.5px;padding:7px 14px;border-radius:999px;border:1px dashed var(--line);color:var(--ink-soft);opacity:.65;cursor:default}
+.cat-jump .off b{font-weight:700;margin-left:4px}
